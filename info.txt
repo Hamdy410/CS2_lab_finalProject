@@ -1,0 +1,6 @@
+Member Name		ID		Email
+Hamdy El-Madbouly	900245558	hamdy_osama@aucegypt.edu
+Omar Beshir		900242301	zayed.omar@aucegypt.edu
+Ahmed Yamany		900235125	Ahmed.M.Yamany@aucegypt.edu
+
+
