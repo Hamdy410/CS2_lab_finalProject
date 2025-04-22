@@ -63,7 +63,7 @@ QString User::serialize() const
 {
     return QString("%1,%2,%3").arg(username).arg(password).arg(roleToString(role));
 }
-uint User::qHash(const User& user)
+uint qHash(const User& user)
 {
     return qHash(user.getUsername());
 }
