@@ -1,13 +1,14 @@
 #include "operationrecord.h"
 #include "operationrecord.h"
 #include <QTextStream>
-#include <Qfile>
+#include <QFile>
 #include <QString>
 #include "record.h"
 #include <vector>
 #include "item.h"
 #include "user.h"
 #include <QDateTime>
+#include <QTextStream>
 
 OperationRecord::OperationRecord() {
     loadOperationRecords();
@@ -30,12 +31,46 @@ bool OperationRecord::loadOperationRecords() {
         QString operation = values[7];
 
         Item newItem(name, category, quantity, price, supplier);
-        addRecord(newItem, username, time, operation)
+        addRecord(newItem, username, time, operation);
     }
+    file.close();
     return true;
 }
 
 void OperationRecord::addRecord(const Item& item, const QString& username, const QDateTime& time=QDateTime::currentDateTime(), const QString& operation="Unknown") {
     Record newRecord(item, username, time, operation);
     records.push_back(newRecord);
+}
+
+const QVector<Record>& OperationRecord::getRecords() const {
+    return records;
+}
+
+bool OperationRecord::save() {
+    QFile file(":/db/db/operation_records.csv");
+    QTextStream out(&file);
+
+    for (int i = 0; i < records.size(); i++) {
+        QString name = records[i].getItem().name();
+        QString category = records[i].getItem().category();
+        int quantity = records[i].getItem().quantity();
+        double price = records[i].getItem().price();
+        QString supplier = records[i].getItem().supplier();
+        QString username = records[i].getUsername();
+        QDateTime time = records[i].getTime();
+        QString operation = records[i].getOperation();
+
+        QString row = QString("%1,%2,%3,%4,%5,%6,%7,%8\n")
+                          .arg(name)
+                          .arg(category)
+                          .arg(quantity)
+                          .arg(price)
+                          .arg(supplier)
+                          .arg(username)
+                          .arg(time.toString())
+                          .arg(operation);
+        out << row;
+    }
+    file.close();
+    return true;
 }

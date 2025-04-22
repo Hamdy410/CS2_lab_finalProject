@@ -9,3 +9,19 @@ Record::Record(const Item& itemParam, const QString& usernameParam, const QDateT
     time = timeParam;
     operation = operationParam;
 }
+
+Item Record::item() {
+    return item;
+}
+
+QString Record::username() {
+    return username;
+}
+
+QDateTime Record::time() {
+    return time;
+}
+
+QString Record::operation() {
+    return operation;
+}
