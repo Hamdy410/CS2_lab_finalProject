@@ -1,5 +1,6 @@
 #ifndef ROLE_H
 #define ROLE_H
+#include <QString>
 
 enum class Role {
     STAFF,
