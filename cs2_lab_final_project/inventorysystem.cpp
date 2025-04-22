@@ -5,7 +5,7 @@
 InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
                                  const QString &inventoryFile,
                                  const QString &operationsFile)
-    : Qobject(parent),
+    : QObject(parent),
     currentUser(nullptr),
     operations(operationsFile),
     usersFilePath(usersFile),
@@ -66,14 +66,14 @@ bool InventorySystem::save() {
     usersFile.close();
     inventory.saveToCSV();
 
-    return True;
+    return true;
 }
 
-bool InventorySystem::authenticateUser(const QString &user, const QString &password) {
+bool InventorySystem::authenticateUser(const QString &username, const QString &password) {
     for (const auto& user : users) {
         if (user.getUsername() == username) {
             if (user.login(password)) {
-                for (auto it = user.begin(); it != users.end(); it++) {
+                for (auto it = users.begin(); it != users.end(); it++) {
                     if (it->getUsername() == username) {
                         currentUser = const_cast<User*>(&(*it));
                         emit userChanged();
@@ -142,7 +142,7 @@ QVector<User> InventorySystem::getUsers() const {
         return QVector<User>();
     }
 
-    return QVector<User>::fromList(users.toList());
+    return QVector<User>(users.begin(), users.end());
 }
 
 bool InventorySystem::userExists(const QString &username) const {
@@ -158,14 +158,14 @@ bool InventorySystem::updateUsername(const QString &oldusername, const QString &
     if (!isAuthenticated() || !currentUserCanManageUsers())
         return false;
 
-    if (userExists(username))
+    if (userExists(oldusername))
         return false;
 
     User targetUser;
     bool found = false;
 
     for (const auto& user : users) {
-        if (user.getUsername() == oldUsername) {
+        if (user.getUsername() == oldusername) {
             targetUser = user;
             found = true;
             break;
@@ -180,7 +180,7 @@ bool InventorySystem::updateUsername(const QString &oldusername, const QString &
     users.remove(targetUser);
     users.insert(updatedUser);
 
-    if (currentUser & currentUser->getUsername() == oldUsername) {
+    if (currentUser && currentUser->getUsername() == oldusername) {
         for (auto it = users.begin(); it != users.end(); it++) {
             if (it->getUsername() == newUsername) {
                 currentUser = const_cast<User*>(&(*it));
@@ -191,42 +191,7 @@ bool InventorySystem::updateUsername(const QString &oldusername, const QString &
 
     Item dummyItem;
     operations.addRecord(dummyItem, *currentUser, QDateTime::currentDateTime(),
-        "Changed username from " + oldUsername + "to " + newUsername);
-
-    save();
-    emit userChanged();
-    return true;
-}
-
-bool InventorySystem::updateUserRole(const QString &username, Role newRole) {
-    if (!isAuthenticated() || !currentUserCanManageUsers())
-        return false;
-
-    if (currentUser->getUsername() == username)
-        return false;
-
-    User targetUser;
-    bool found = false;
-
-    for (const auto& user : users) {
-        if (user.getUsername() == username) {
-            targetUser = user;
-            found = true;
-            break;
-        }
-    }
-
-    if (!found)
-        return false;
-
-    User updatedUser(username, targetUser.getPassword(), newRole);
-
-    users.remove(targetUser);
-    users.insert(updatedUser);
-
-    Item dummyItem;
-    operations.addRecord(dummyItem, *currentUser, QDateTime::currentDateTime(),
-        "Updated role for user: " + username);
+        "Changed username from " + oldusername + "to " + newUsername);
 
     save();
     emit userChanged();
@@ -253,8 +218,8 @@ bool InventorySystem::resetUserPassword(const QString &username, const QString &
 
     User updatedUser(username, newPassword, targetUser.getRole());
 
-    user.remove(targetUser);
-    user.insert(updatedUser);
+    users.remove(targetUser);
+    users.insert(updatedUser);
 
     Item dummyItem;
     operations.addRecord(dummyItem, *currentUser, QDateTime::currentDateTime(),
@@ -291,28 +256,6 @@ bool InventorySystem::updateUserRole(const QString &username, Role newRole) {
     return false;
 }
 
-bool InventorySystem::resetUserPassword(const QString &username, const QString &newPassword) {
-    if (!isAuthenticated() || !currentUserCanManageUsers())
-        return false;
-
-    for (auto it = users.begin(); it != users.end(); it++) {
-        if (it->getUsername() == username) {
-            User updatedUser(username, newPassword, it->getRole());
-
-            Item dummyItem;
-            operations.addRecord(dummyItem, *currentUser,
-                                QDateTime::currentDateTime(),
-                                "Reset password for user: " + username);
-            users.erase(it);
-            users.insert(updatedUser);
-            save();
-            emit userChanged();
-            return true;
-        }
-    }
-
-    return false;
-}
 bool InventorySystem::addItem(const Item &item) {
     if (!isAuthenticated() || !currentUserCanEditInventory())
         return false;
@@ -354,7 +297,7 @@ QVector<Item> InventorySystem::searchItems(const QString &name, const QString &s
 }
 
 QVector<Item> InventorySystem::getLowStockItems() {
-    if (!isAutheticated()) {
+    if (!isAuthenticated()) {
         return QVector<Item>();
     }
 

@@ -2,6 +2,10 @@
 #define USER_H
 
 #include <QString>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
+#include <QCryptoGraphicHash>
 #include "role.h"
 
 class User
@@ -15,7 +19,7 @@ public:
     User(const QString& username="", const QString& password="",
             Role role=Role::STAFF);
 
-    bool login(const QString& enteredPassword);
+    bool login(const QString& enteredPassword) const;
     bool changePassword(const QString& oldPassword, const QString& newPassword);
     bool canManageUsers() const;
     bool canEditInventory() const;
@@ -27,9 +31,15 @@ public:
     QString getPassword() const;
 
     QString serialize() const;
+    // Hash function for user to work with QSet
+    uint qHash(const User& user);
 };
 
+<<<<<<< HEAD
 // Hash function for user to work with QSet
-unit qHash(const User& user);
+uint qHash(const User& user);
+=======
+
+>>>>>>> 6bf460d7faa6c80e63b9d9f57bd7a2f0397ca49e
 
 #endif // USER_H

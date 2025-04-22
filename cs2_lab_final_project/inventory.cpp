@@ -48,7 +48,7 @@ bool Inventory::removeItem(const Item &theItem) {
     return false;
 }
 
-bool Inventory::searchItem(const QString& itemName="", const QString& itemSupplier) {
+QVector<Item> Inventory::searchItem(const QString& itemName, const QString& itemSupplier) {
     QVector<Item> matchingItems;
     for (const auto &item : items) {
         bool nameMatches = itemName.isEmpty() || item.name() == itemName;
@@ -66,7 +66,7 @@ QVector<Item> Inventory::getLowStockItems() {
     QVector<Item> lowStockItems;
     for (const auto& item : items) {
         if (item.quantity() < 5) {
-            lowStockItems.append(items);
+            lowStockItems.append(item);
         }
     }
 
@@ -86,8 +86,7 @@ bool Inventory::generateReport() {
     out << "INVENTORY LISTING:\n";
     out << "----------------------------\n";
     for (const auto& item : items) {
-        QTextStream itemStream(&out);
-        item.getDetails(itemStream);
+        item.getDetails(out);
     }
 
     QVector<Item> lowStock = getLowStockItems();
@@ -97,8 +96,7 @@ bool Inventory::generateReport() {
         out << "No low stock items found.\n";
     } else {
         for (const auto& item: lowStock) {
-            QTextStream itemStream(&out);
-            item.getDetails(itemStream);
+            item.getDetails(out);
         }
     }
 
@@ -117,7 +115,7 @@ bool Inventory::loadFromCSV() {
 
     while (!in.atEnd()) {
         QString line = in.readLine();
-        QString fields = line.split(",");
+        QStringList fields = line.split(",");
 
         if (fields.size() >= 5) {
             Item item(
