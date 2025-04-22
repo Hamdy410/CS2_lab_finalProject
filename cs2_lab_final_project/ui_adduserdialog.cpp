@@ -1,5 +1,10 @@
 #include "ui_adduserdialog.h"
 #include "ui_ui_adduserdialog.h"
+#include <QStyle>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QLabel>
+#include <QDialogButtonBox>
 
 Ui_AddUserDialog::Ui_AddUserDialog(InventorySystem* system, QWidget *parent) :
     QDialog(parent),
@@ -14,7 +19,7 @@ Ui_AddUserDialog::Ui_AddUserDialog(InventorySystem* system, QWidget *parent) :
     // Setup combo box
     ui->roleComboBox->addItem("Staff", static_cast<int>(Role::STAFF));
     ui->roleComboBox->addItem("Manager", static_cast<int>(Role::MANAGER));
-    ui->roleComboBox->addAction("Admin", static_cast<int>(Role::ADMING));
+    ui->roleComboBox->addAction("Admin", static_cast<int>(Role::ADMIN));
 
     ui->roleComboBox->setCurrentIndex(0);
 

@@ -24,7 +24,7 @@ SOURCES += \
     ui_adduserdialog.cpp \
     ui_adminform.cpp \
     ui_edituserdialog.cpp \
-    user.cpp
+    user.cpp \
 
 HEADERS += \
     dashboard.h \

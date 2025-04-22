@@ -41,7 +41,6 @@ public:
     bool updateUsername(const QString& oldusername, const QString& newUsername);
     bool resetUserPassword(const QString& username, const QString& newPassword);
     bool updateUserRole(const QString& username, Role newRole);
-    bool resetUserPassword(const QString& username, const QString& newPassword);
 
     // Inventory Operations
     bool addItem(const Item& item);
