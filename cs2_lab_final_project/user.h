@@ -15,7 +15,7 @@ public:
     User(const QString& username="", const QString& password="",
             Role role=Role::STAFF);
 
-    bool login(const QString& enteredPassword);
+    bool login(const QString& enteredPassword) const;
     bool changePassword(const QString& oldPassword, const QString& newPassword);
     bool canManageUsers() const;
     bool canEditInventory() const;
@@ -30,6 +30,6 @@ public:
 };
 
 // Hash function for user to work with QSet
-unit qHash(const User& user);
+uint qHash(const User& user);
 
 #endif // USER_H
