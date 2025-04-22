@@ -18,6 +18,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     operationrecord.cpp \
+    record.cpp \
+    role.cpp \
+    signupform.cpp \
+    ui_adduserdialog.cpp\
+    ui_adminform.cpp \
+    ui_edituserdialog.cpp \
     user.cpp
 
 HEADERS += \
@@ -29,13 +35,23 @@ HEADERS += \
     loginform.h \
     mainwindow.h \
     operationrecord.h \
-    user.h \
+    record.h \
+    role.h \
+    signupform.h \
+    ui_adduserdialog.h \
+    ui_adminform.h \
+    ui_edituserdialog.h \
+    user.h
 
 FORMS += \
     dashboard.ui \
     inventoryform.ui \
     loginform.ui \
     mainwindow.ui \
+    signupform.ui \
+    ui_adduserdialog.ui \
+    ui_adminform.ui \
+    ui_edituserdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
