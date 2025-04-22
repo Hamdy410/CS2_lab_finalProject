@@ -32,7 +32,8 @@ public:
 
     QString serialize() const;
     // Hash function for user to work with QSet
-    uint qHash(const User& user);
+    //uint qHash(const User& user);
 };
+
 
 #endif // USER_H
