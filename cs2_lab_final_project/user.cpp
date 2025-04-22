@@ -7,7 +7,7 @@ User::User(const QString& username, const QString& password,
     this->password = password;
     this->role = role;
 }
-bool User::login(const QString& enteredPassword)
+bool User::login(const QString& enteredPassword) const
 {
     return enteredPassword == password;
 }

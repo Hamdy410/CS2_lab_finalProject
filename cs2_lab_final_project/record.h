@@ -5,14 +5,14 @@
 #include "item.h"
 #include "user.h"
 #include <QString>
-#include "record.h"
 
-struct Record {
+class Record {
+private:
     Item item;
     QString username;
     QDateTime time;
     QString operation;
-
+public:
     Record(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam,
            const QString& operationParam="Unknown");
 
