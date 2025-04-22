@@ -13,11 +13,11 @@ private:
     QString recordsFilePath;
 
 public:
-    OperationRecord();
-    void addRecord(const Item& item, const QString& username, const QDateTime& time=QDateTime::currentDateTime(), const QString& operation="Unknown");
+    OperationRecord(QString csvFilePath);
+    void addRecord(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam=QDateTime::currentDateTime(), const QString& operationParam="Unknown");
     bool save();
     const QVector<Record>& getRecords() const;
-    bool loadOperationRecords();
+    bool loadOperationRecords(QString csvFilePath);
     Item item;
     QDateTime time;
 };
