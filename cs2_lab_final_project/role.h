@@ -2,6 +2,7 @@
 #define ROLE_H
 #include <QString>
 
+#include <QString>
 enum class Role {
     STAFF,
     MANAGER,
