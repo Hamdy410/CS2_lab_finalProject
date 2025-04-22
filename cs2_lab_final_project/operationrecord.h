@@ -13,6 +13,7 @@ private:
     QString recordsFilePath;
 
 public:
+<<<<<<< HEAD
     Operation(const QString& filePath="operations.csv");
     void addRecord(const Item& item, const User& user,
         const QDateTime& time=QDateTime::currentDateTime(),
@@ -21,6 +22,13 @@ public:
     bool save();
 
     const QVector<Record>& getRecords() const;
+=======
+    OperationRecord(Item itemParam, User userParam, QDateTime timeParam);
+    bool loadOperationRecords();
+    Item item;
+    User user;
+    QDateTime time;
+>>>>>>> 45d8d739672ecad24dea7d9414b3ae5fcda1f962
 };
 
 #endif // OPERATIONRECORD_H
