@@ -1,5 +1,4 @@
 #include "ui_adduserdialog.h"
-#include "ui_ui_adduserdialog.h"
 
 Ui_AddUserDialog::Ui_AddUserDialog(InventorySystem* system, QWidget *parent) :
     QDialog(parent),
