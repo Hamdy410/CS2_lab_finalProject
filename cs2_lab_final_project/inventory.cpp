@@ -48,7 +48,7 @@ bool Inventory::removeItem(const Item &theItem) {
     return false;
 }
 
-bool Inventory::searchItem(const QString &itemName, const QString &itemSupplier) {
+bool Inventory::searchItem(const QString& itemName="", const QString& itemSupplier) {
     QVector<Item> matchingItems;
     for (const auto &item : items) {
         bool nameMatches = itemName.isEmpty() || item.name() == itemName;

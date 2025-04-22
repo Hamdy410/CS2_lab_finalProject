@@ -1,7 +1,7 @@
 #include "user.h"
 
-User::User(const QString& username="", const QString& password="",
-           Role role=Role::STAFF)
+User::User(const QString& username, const QString& password,
+           Role role)
 {
     this->username = username;
     this->password = password;
@@ -31,11 +31,21 @@ bool User::canEditInventory() const
 }
 bool User::operator==(const User& theObject) const
 {
-    return username == theObject.username && password == theObject.password && role == theObject.role;
+    return username == theObject.username && password == theObject.password
+           && role == theObject.role;
 }
 bool User::load(const QString& userData)
 {
+    QStringList parts = userData.split(',');
+    if (parts.size() != 3) {
+        return false;
+    }
 
+    username = parts[0];
+    password = parts[1];
+    role = stringToRole(parts[2]);
+
+    return true;
 }
 QString User::getUsername() const
 {
