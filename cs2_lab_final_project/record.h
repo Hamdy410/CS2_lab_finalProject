@@ -4,15 +4,17 @@
 #include <QDateTime>
 #include "item.h"
 #include "user.h"
+#include <QString>
+#include "record.h"
 
 struct Record {
     Item item;
-    User user;
+    QString username;
     QDateTime time;
     QString operation;
 
-    Record(const Item& item, const User& user, const QDateTime& time,
-           const QString& operation="Unknown");
+    Record(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam,
+           const QString& operationParam="Unknown");
 
     QString serialize() const;
     bool deserialize(const QString& data);
