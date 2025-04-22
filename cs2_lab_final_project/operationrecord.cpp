@@ -22,11 +22,12 @@ bool OperationRecord::loadOperationRecords() {
 
         QString name = values[0];
         QString category = values[1];
-        int quantity = QString::number(values[2]);
-        double price = QString::number(values[3]);
+        int quantity = QString::toInt(values[2]);
+        double price = QString::toDouble(values[3]);
         QString supplier = values[4];
         QString username = values[5];
         QDateTime time = QDateTime::fromString(values[6]);
+        QString operation = values[7];
 
         Item newItem(name, category, quantity, price, supplier);
         addRecord(newItem, username, time, operation)

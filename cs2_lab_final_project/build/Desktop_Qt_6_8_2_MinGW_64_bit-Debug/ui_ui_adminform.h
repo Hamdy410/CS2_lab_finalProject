@@ -18,7 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTableView>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -37,7 +37,7 @@ public:
     QPushButton *addUserButton;
     QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *tableSection;
-    QTableView *userTableWidget;
+    QTableWidget *userTableWidget;
 
     void setupUi(QDialog *Ui_AdminForm)
     {
@@ -85,7 +85,7 @@ public:
         tableSection = new QHBoxLayout();
         tableSection->setObjectName("tableSection");
         tableSection->setContentsMargins(-1, 0, -1, -1);
-        userTableWidget = new QTableView(verticalLayoutWidget);
+        userTableWidget = new QTableWidget(verticalLayoutWidget);
         userTableWidget->setObjectName("userTableWidget");
 
         tableSection->addWidget(userTableWidget);
