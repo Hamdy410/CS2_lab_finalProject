@@ -7,7 +7,8 @@
 class OperationRecord
 {
 public:
-    OperationRecord();
+    OperationRecord(Item itemParam, User userParam, QDateTime timeParam);
+    bool loadOperationRecords();
     Item item;
     User user;
     QDateTime time;
