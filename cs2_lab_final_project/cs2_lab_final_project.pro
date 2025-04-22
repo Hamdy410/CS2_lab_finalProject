@@ -11,28 +11,34 @@ CONFIG += c++17
 SOURCES += \
     dashboard.cpp \
     inventory.cpp \
+    inventoryform.cpp \
     inventorysystem.cpp \
     item.cpp \
     loginform.cpp \
     main.cpp \
     mainwindow.cpp \
     operationrecord.cpp \
+    signupform.cpp \
     user.cpp
 
 HEADERS += \
     dashboard.h \
     inventory.h \
+    inventoryform.h \
     inventorysystem.h \
     item.h \
     loginform.h \
     mainwindow.h \
     operationrecord.h \
+    signupform.h \
     user.h
 
 FORMS += \
     dashboard.ui \
+    inventoryform.ui \
     loginform.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    signupform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
