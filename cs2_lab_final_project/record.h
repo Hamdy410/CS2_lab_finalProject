@@ -20,7 +20,6 @@ public:
     QString getUsername();
     QDateTime getTime();
     QString getOperation();
-
     QString serialize() const;
     bool deserialize(const QString& data);
 };

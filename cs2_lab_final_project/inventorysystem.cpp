@@ -108,7 +108,7 @@ bool InventorySystem::addUser(const User &user) {
     save();
 
     Item dummyItem;
-    operations.addRecord(dummyItem, *currentUser, QDateTime(), "Added User: " + user.getUsername());
+    operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime(), "Added User: " + user.getUsername());
     return true;
 }
 
@@ -125,7 +125,7 @@ bool InventorySystem::removeUser(const QString &username) {
     for (auto it = users.begin(); it != users.end(); it++) {
         if (it->getUsername() == username) {
             Item dummyItem;
-            operations.addRecord(dummyItem, *currentUser,
+            operations.addRecord(dummyItem, currentUser->getUsername(),
                                  QDateTime::currentDateTime(),
                                  "Removed User: " + username);
             users.erase(it);
@@ -190,7 +190,7 @@ bool InventorySystem::updateUsername(const QString &oldusername, const QString &
     }
 
     Item dummyItem;
-    operations.addRecord(dummyItem, *currentUser, QDateTime::currentDateTime(),
+    operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime::currentDateTime(),
         "Changed username from " + oldusername + "to " + newUsername);
 
     save();
@@ -222,7 +222,7 @@ bool InventorySystem::resetUserPassword(const QString &username, const QString &
     users.insert(updatedUser);
 
     Item dummyItem;
-    operations.addRecord(dummyItem, *currentUser, QDateTime::currentDateTime(),
+    operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime::currentDateTime(),
         "Reset password for user: " + username);
 
     save();
@@ -242,7 +242,7 @@ bool InventorySystem::updateUserRole(const QString &username, Role newRole) {
             User updatedUser(username, it->getPassword(), newRole);
 
             Item dummyItem;
-            operations.addRecord(dummyItem, *currentUser,
+            operations.addRecord(dummyItem, currentUser->getUsername(),
                                  QDateTime::currentDateTime(),
                                  "Updated role for users: " + username);
             users.erase(it);
@@ -262,7 +262,7 @@ bool InventorySystem::addItem(const Item &item) {
 
     bool result = inventory.addItem(item);
     if (result) {
-        operations.addRecord(item, *currentUser,
+        operations.addRecord(item, currentUser->getUsername(),
                             QDateTime::currentDateTime(),
                             "Added Item");
         save();
@@ -278,7 +278,7 @@ bool InventorySystem::removeItem(const Item& item) {
 
     bool result = inventory.removeItem(item);
     if (result) {
-        operations.addRecord(item, *currentUser,
+        operations.addRecord(item, currentUser->getUsername(),
                             QDateTime::currentDateTime(),
                             "Removed Item");
         save();
@@ -311,7 +311,7 @@ bool InventorySystem::generateReport() {
     bool result = inventory.generateReport();
     if (result) {
         Item dummyItem;
-        operations.addRecord(dummyItem, *currentUser,
+        operations.addRecord(dummyItem, currentUser->getUsername(),
                             QDateTime::currentDateTime(),
                             "Generated Report");
     }

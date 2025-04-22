@@ -10,12 +10,12 @@
 #include <QDateTime>
 #include <QTextStream>
 
-OperationRecord::OperationRecord() {
-    loadOperationRecords();
+OperationRecord::OperationRecord(QString csvFilePath) {
+    loadOperationRecords(csvFilePath);
 }
 
-bool OperationRecord::loadOperationRecords() {
-    QFile file(":/db/db/operation_records.csv");
+bool OperationRecord::loadOperationRecords(QString csvFilePath) {
+    QFile file(csvFilePath);
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();
@@ -23,8 +23,8 @@ bool OperationRecord::loadOperationRecords() {
 
         QString name = values[0];
         QString category = values[1];
-        int quantity = QString::toInt(values[2]);
-        double price = QString::toDouble(values[3]);
+        int quantity = values[2].toInt();
+        double price = values[3].toDouble();
         QString supplier = values[4];
         QString username = values[5];
         QDateTime time = QDateTime::fromString(values[6]);
@@ -37,8 +37,8 @@ bool OperationRecord::loadOperationRecords() {
     return true;
 }
 
-void OperationRecord::addRecord(const Item& item, const QString& username, const QDateTime& time=QDateTime::currentDateTime(), const QString& operation="Unknown") {
-    Record newRecord(item, username, time, operation);
+void OperationRecord::addRecord(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam, const QString& operationParam) {
+    Record newRecord(itemParam, usernameParam, timeParam, operationParam);
     records.push_back(newRecord);
 }
 

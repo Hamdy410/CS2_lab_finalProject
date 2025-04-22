@@ -3,25 +3,25 @@
 #include <QString>
 #include "item.h"
 
-Record::Record(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam, const QString& operationParam="Unknown") {
+Record::Record(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam, const QString& operationParam) {
     item = itemParam;
     username = usernameParam;
     time = timeParam;
     operation = operationParam;
 }
 
-Item Record::item() {
+Item Record::getItem() {
     return item;
 }
 
-QString Record::username() {
+QString Record::getUsername() {
     return username;
 }
 
-QDateTime Record::time() {
+QDateTime Record::getTime() {
     return time;
 }
 
-QString Record::operation() {
+QString Record::getOperation() {
     return operation;
 }
