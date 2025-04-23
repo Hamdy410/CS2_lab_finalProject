@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 #include "record.h"
+#include "inventorysystem.h"
 
 class OperationRecord
 {
@@ -13,7 +14,8 @@ private:
     QString recordsFilePath;
 
 public:
-    OperationRecord(QString csvFilePath);
+    InventorySystem* inventorySystem;
+    OperationRecord(InventorySystem* inventorySystemParam, QString csvFilePath);
     void addRecord(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam=QDateTime::currentDateTime(), const QString& operationParam="Unknown");
     bool save();
     const QVector<Record>& getRecords() const;

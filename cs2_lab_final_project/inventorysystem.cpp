@@ -7,7 +7,7 @@ InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
                                  const QString &operationsFile)
     : QObject(parent),
     currentUser(nullptr),
-    operations(operationsFile),
+    operations(this, operationsFile),
     usersFilePath(usersFile),
     inventoryFilePath(inventoryFile) {
     load();

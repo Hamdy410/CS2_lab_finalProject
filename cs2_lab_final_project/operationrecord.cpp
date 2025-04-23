@@ -9,8 +9,10 @@
 #include "user.h"
 #include <QDateTime>
 #include <QTextStream>
+#include "inventorysystem.h"
 
-OperationRecord::OperationRecord(QString csvFilePath) {
+OperationRecord::OperationRecord(InventorySystem* inventorySystemParam, QString csvFilePath) {
+    inventorySystem = inventorySystemParam;
     loadOperationRecords(csvFilePath);
 }
 
