@@ -5,7 +5,8 @@
 #include <QFile>
 #include <QTextStream>
 #include "record.h"
-#include "inventorysystem.h"
+
+class InventorySystem;
 
 class OperationRecord
 {
