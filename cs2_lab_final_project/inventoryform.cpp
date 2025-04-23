@@ -3,11 +3,12 @@
 #include <QString>
 #include "item.h"
 
-InventoryForm::InventoryForm(QWidget *parent)
+InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::InventoryForm)
 {
     ui->setupUi(this);
+    inventorySystem = inventorySystemParam;
 }
 
 InventoryForm::~InventoryForm()
@@ -25,5 +26,6 @@ void InventoryForm::on_pushButtonAdd_clicked()
 
     Item newItem(name, category, quantity, price, supplier);
     // Add newItem to item vector
+    inventorySystem->addItem(newItem);
 }
 

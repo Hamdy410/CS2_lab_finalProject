@@ -1,5 +1,6 @@
 #ifndef LOGINFORM_H
 #define LOGINFORM_H
+#include "inventorysystem.h"
 
 #include <QDialog>
 
@@ -12,8 +13,13 @@ class LoginForm : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginForm(QWidget *parent = nullptr);
+    explicit LoginForm(InventorySystem* inventorySystemParam, QWidget *parent = nullptr);
     ~LoginForm();
+    InventorySystem *inventorySystem;
+private slots:
+    void on_pushButton_Login_clicked();
+
+    void on_pushButton_Sign_Up_clicked();
 
 private:
     Ui::LoginForm *ui;

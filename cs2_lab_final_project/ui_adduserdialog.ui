@@ -143,7 +143,11 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="passwordLineEdit"/>
+       <widget class="QLineEdit" name="passwordLineEdit">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_6">
@@ -205,7 +209,11 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="confirmPasswordLineEdit"/>
+       <widget class="QLineEdit" name="confirmPasswordLineEdit">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_9">
@@ -267,7 +275,18 @@
        </spacer>
       </item>
       <item>
-       <widget class="QComboBox" name="roleComboBox"/>
+       <widget class="QComboBox" name="roleComboBox">
+        <item>
+         <property name="text">
+          <string>Manager</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Staff</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_12">

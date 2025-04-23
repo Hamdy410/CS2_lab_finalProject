@@ -41,6 +41,7 @@ public:
         lineEditPassword = new QLineEdit(SignUpForm);
         lineEditPassword->setObjectName("lineEditPassword");
         lineEditPassword->setGeometry(QRect(220, 110, 101, 20));
+        lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
         lineEditReenterPassword = new QLineEdit(SignUpForm);
         lineEditReenterPassword->setObjectName("lineEditReenterPassword");
         lineEditReenterPassword->setGeometry(QRect(220, 150, 101, 20));

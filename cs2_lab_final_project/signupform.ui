@@ -32,6 +32,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEditReenterPassword">
    <property name="geometry">
