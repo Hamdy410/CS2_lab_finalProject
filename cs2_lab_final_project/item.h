@@ -19,9 +19,9 @@ public:
 
     bool updateQuantity(int quantity, QString operation);
     bool getDetails(QTextStream& outs) const;
-    bool operator==(const Item& theObject) const;
-    Item& operator+=(const Item& theObject) const;
-    Item& operator-=(const Item& theObject) const;
+    bool operator==(const Item& theObject);
+    Item& operator+=(const Item& theObject);
+    Item& operator-=(const Item& theObject);
     bool load();
 
     QString name() const;
