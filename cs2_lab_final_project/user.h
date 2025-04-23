@@ -35,5 +35,6 @@ public:
     //uint qHash(const User& user);
 };
 
+inline uint qHash(const User& key, uint seed = 0);
 
 #endif // USER_H

@@ -119,6 +119,7 @@ public:
 
         passwordLineEdit = new QLineEdit(verticalLayoutWidget);
         passwordLineEdit->setObjectName("passwordLineEdit");
+        passwordLineEdit->setEchoMode(QLineEdit::EchoMode::Password);
 
         passwordSection->addWidget(passwordLineEdit);
 
@@ -146,6 +147,7 @@ public:
 
         confirmPasswordLineEdit = new QLineEdit(verticalLayoutWidget);
         confirmPasswordLineEdit->setObjectName("confirmPasswordLineEdit");
+        confirmPasswordLineEdit->setEchoMode(QLineEdit::EchoMode::Password);
 
         confirmPasswordSection->addWidget(confirmPasswordLineEdit);
 
@@ -172,6 +174,8 @@ public:
         roleSection->addItem(horizontalSpacer_11);
 
         roleComboBox = new QComboBox(verticalLayoutWidget);
+        roleComboBox->addItem(QString());
+        roleComboBox->addItem(QString());
         roleComboBox->setObjectName("roleComboBox");
 
         roleSection->addWidget(roleComboBox);
@@ -219,6 +223,9 @@ public:
         passwordLabel->setText(QCoreApplication::translate("Ui_AddUserDialog", "Password:", nullptr));
         confirlmPasswordLabel->setText(QCoreApplication::translate("Ui_AddUserDialog", "Confirm Password:", nullptr));
         roleLabel->setText(QCoreApplication::translate("Ui_AddUserDialog", "Role:", nullptr));
+        roleComboBox->setItemText(0, QCoreApplication::translate("Ui_AddUserDialog", "Manager", nullptr));
+        roleComboBox->setItemText(1, QCoreApplication::translate("Ui_AddUserDialog", "Staff", nullptr));
+
     } // retranslateUi
 
 };

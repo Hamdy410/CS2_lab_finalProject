@@ -1,4 +1,5 @@
 #include "user.h"
+#include <QHash>
 
 User::User(const QString& username, const QString& password,
            Role role)
@@ -31,8 +32,7 @@ bool User::canEditInventory() const
 }
 bool User::operator==(const User& theObject) const
 {
-    return username == theObject.username && password == theObject.password
-           && role == theObject.role;
+    return this->getUsername() == theObject.getUsername();
 }
 bool User::load(const QString& userData)
 {
@@ -63,7 +63,8 @@ QString User::serialize() const
 {
     return QString("%1,%2,%3").arg(username).arg(password).arg(roleToString(role));
 }
-uint qHash(const User& user)
-{
-    return qHash(user.getUsername());
+
+#include <QtGlobal>
+inline uint qHash(const User& key, uint seed) {
+    return static_cast<uint>(::qHash(key.getUsername(), static_cast<size_t>(seed)));
 }

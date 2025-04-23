@@ -1,4 +1,5 @@
 #include "inventory.h"
+#include "item.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
