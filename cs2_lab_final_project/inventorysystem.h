@@ -1,7 +1,6 @@
 #ifndef INVENTORYSYSTEM_H
 #define INVENTORYSYSTEM_H
 
-#include <QSet>
 #include <QVector>
 #include "inventory.h"
 #include "user.h"
@@ -13,7 +12,7 @@ class InventorySystem : public QObject
     Q_OBJECT
 
 private:
-    QSet<User> users;
+    QVector<User> users;
     Inventory inventory;
     User* currentUser;
     OperationRecord operations;
