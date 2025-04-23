@@ -5,7 +5,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
-#include <QCryptoGraphicHash>
 #include "role.h"
 
 class User
@@ -31,10 +30,7 @@ public:
     QString getPassword() const;
 
     QString serialize() const;
-    // Hash function for user to work with QSet
-    //uint qHash(const User& user);
 };
 
-inline uint qHash(const User& key, uint seed = 0);
 
 #endif // USER_H

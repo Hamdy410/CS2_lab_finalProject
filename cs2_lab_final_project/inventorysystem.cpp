@@ -32,13 +32,13 @@ bool InventorySystem::load() {
             QString line = in.readLine();
             User user;
             if (user.load(line)) {
-                users.insert(user);
+                users.push_back(user);
             }
         }
         usersFile.close();
     } else {
         // Create a dedault admin if user file doesn't exist
-        users.insert(User("admin", "admin", Role::ADMIN));
+        users.push_back(User("admin", "admin", Role::ADMIN));
         save();
     }
 
@@ -104,7 +104,7 @@ bool InventorySystem::addUser(const User &user) {
         }
     }
 
-    users.insert(user);
+    users.push_back(user);
     save();
 
     Item dummyItem;
@@ -142,7 +142,7 @@ QVector<User> InventorySystem::getUsers() const {
         return QVector<User>();
     }
 
-    return QVector<User>(users.begin(), users.end());
+    return users;
 }
 
 bool InventorySystem::userExists(const QString &username) const {
@@ -177,8 +177,8 @@ bool InventorySystem::updateUsername(const QString &oldusername, const QString &
 
     User updatedUser(newUsername, targetUser.getPassword(), targetUser.getRole());
 
-    users.remove(targetUser);
-    users.insert(updatedUser);
+    users.removeOne(targetUser);
+    users.push_back(updatedUser);
 
     if (currentUser && currentUser->getUsername() == oldusername) {
         for (auto it = users.begin(); it != users.end(); it++) {
@@ -218,8 +218,8 @@ bool InventorySystem::resetUserPassword(const QString &username, const QString &
 
     User updatedUser(username, newPassword, targetUser.getRole());
 
-    users.remove(targetUser);
-    users.insert(updatedUser);
+    users.removeOne(targetUser);
+    users.push_back(updatedUser);
 
     Item dummyItem;
     operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime::currentDateTime(),
@@ -246,7 +246,7 @@ bool InventorySystem::updateUserRole(const QString &username, Role newRole) {
                                  QDateTime::currentDateTime(),
                                  "Updated role for users: " + username);
             users.erase(it);
-            users.insert(updatedUser);
+            users.push_back(updatedUser);
             save();
             emit userChanged();
             return true;

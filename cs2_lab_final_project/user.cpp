@@ -1,5 +1,5 @@
 #include "user.h"
-#include <QHash>
+#include "user.h"
 
 User::User(const QString& username, const QString& password,
            Role role)
@@ -64,7 +64,3 @@ QString User::serialize() const
     return QString("%1,%2,%3").arg(username).arg(password).arg(roleToString(role));
 }
 
-#include <QtGlobal>
-inline uint qHash(const User& key, uint seed) {
-    return static_cast<uint>(::qHash(key.getUsername(), static_cast<size_t>(seed)));
-}

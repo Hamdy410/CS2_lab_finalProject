@@ -33,6 +33,4 @@ public:
     const QSet<Item>& getItems() const;
 };
 
-uint qHash(const Item& item);
-
 #endif // INVENTORY_H
