@@ -4,10 +4,6 @@
 #include <QTextStream>
 #include <QDateTime>
 
-uint qHash(const Item& item) {
-    return qHash(item.name() + ":" + item.supplier());
-}
-
 Inventory::Inventory() {
     loadFromCSV();
 }
