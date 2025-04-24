@@ -13,31 +13,31 @@ Inventory::~Inventory() {
 }
 
 bool Inventory::addItem(const Item &theItem) {
-    for (auto it = items.begin(); it != items.end(); it++) {
-        if (*it == theItem) {
-            Item updatedItem = *it;
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i] == theItem) {
+            Item updatedItem = items[i];
             updatedItem += theItem;
 
             // Since QSet doesn't allow direct modification
-            items.remove(*it);
-            items.insert(updatedItem);
+            items.removeOne(items[i]);
+            items.push_back(updatedItem);
             return true;
         }
     }
 
-    items.insert(theItem);
+    items.push_back(theItem);
     return true;
 }
 
 bool Inventory::removeItem(const Item &theItem) {
-    for (auto it = items.begin(); it != items.end(); it++) {
-        if (*it == theItem) {
-            Item updatedItem = *it;
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i] == theItem) {
+            Item updatedItem = items[i];
             updatedItem.setQuantity(updatedItem.quantity() - theItem.quantity());
             // Allow negative quantities for loans
 
-            items.remove(*it);
-            items.insert(updatedItem);
+            items.removeOne(items[i]);
+            items.push_back(updatedItem);
             return true;
         }
     }
@@ -150,6 +150,6 @@ bool Inventory::saveToCSV() {
     return true;
 }
 
-const QSet<Item>& Inventory::getItems() const {
+const QVector<Item>& Inventory::getItems() const {
     return items;
 }
