@@ -89,6 +89,12 @@ void AdminForm::populateTable() {
         buttonLayout->setContentsMargins(0, 0, 0, 0);
         buttonLayout->setSpacing(5);
         ui->userDisplayTable->setCellWidget(row, 2, buttonWidget);
+
+        // Added to prevent the current user from deleting or editing themselves
+        if (users[row].getUsername() == inventorySystem->getCurrentUser()->getUsername()) {
+            editButton->setEnabled(false);
+            deleteButton->setEnabled(false);
+        }
     }
 }
 
@@ -101,9 +107,9 @@ void AdminForm::onEditUser(int row) {
 
 void AdminForm::onDeleteUser(int row) {
     QString username = ui->userDisplayTable->item(row, 0)->text();
-    qDebug() << "Deleted username: " << username;
-    qDebug() << "Delete Button called";
-    qDebug() << "refresh Now";
+    qDebug() << "Username: " << username;
+    inventorySystem->removeUser(username);
+    refreshTable();
 }
 
 void AdminForm::refreshTable() {
