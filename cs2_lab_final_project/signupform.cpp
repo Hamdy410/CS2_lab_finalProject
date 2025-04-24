@@ -22,11 +22,5 @@ void SignUpForm::on_pushButtonSignUp_clicked()
 {
     QString username = ui->lineEditUsername->text();
     QString password = ui->lineEditPassword->text();
-    QString role = ui->comboBoxRole->currentText();
-
-    User newUser = User(username, password, stringToRole(role));
-    if (!inventorySystem->addUser(newUser)) {
-        QMessageBox::critical(this, "Sign Up Error", "Cannot create user!");
-    }
 }
 

@@ -22,6 +22,7 @@ SOURCES += \
     record.cpp \
     role.cpp \
     signupform.cpp \
+    systemui.cpp \
     user.cpp \
 
 HEADERS += \
@@ -36,6 +37,7 @@ HEADERS += \
     record.h \
     role.h \
     signupform.h \
+    systemui.h \
     user.h
 
 FORMS += \
@@ -43,7 +45,8 @@ FORMS += \
     inventoryform.ui \
     loginform.ui \
     mainwindow.ui \
-    signupform.ui
+    signupform.ui \
+    systemui.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
