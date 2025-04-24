@@ -1,5 +1,6 @@
 #include "user.h"
 #include "user.h"
+#include "role.h"
 
 User::User(const QString& username, const QString& password,
            Role role)
@@ -24,11 +25,14 @@ bool User::changePassword(const QString& oldPassword, const QString& newPassword
 }
 bool User::canManageUsers() const
 {
+    qDebug() << "Current role:" << roleToString(role);
+    qDebug() << "Result in manage users: " << (role == Role::ADMIN);
     return role == Role::ADMIN;
 }
 bool User::canEditInventory() const
 {
-    return role == Role::MANAGER;
+    qDebug() << "Current role: " << roleToString(role);
+    return (role == Role::ADMIN || role == Role::MANAGER);
 }
 bool User::operator==(const User& theObject) const
 {
