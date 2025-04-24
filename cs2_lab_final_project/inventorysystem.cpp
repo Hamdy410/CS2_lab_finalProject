@@ -11,10 +11,15 @@ InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
     usersFilePath(usersFile),
     inventoryFilePath(inventoryFile) {
     load();
+    for (const auto &user : users) {
+        qDebug() << "Detected user: " << user.getUsername();
+    }
 }
 
 InventorySystem::~InventorySystem() {
+    qDebug() << "save called in destructor";
     currentUser = nullptr;
+
     save();
 }
 
@@ -38,7 +43,7 @@ bool InventorySystem::load() {
         usersFile.close();
     } else {
         // Create a dedault admin if user file doesn't exist
-        users.push_back(User("admin", "admin", Role::ADMIN));
+        users.push_back(User("admin", "123456", Role::ADMIN));
         save();
     }
 
@@ -54,7 +59,11 @@ bool InventorySystem::save() {
     // Save Users
     QFile usersFile(usersFilePath);
     if(!usersFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Failed to open file or for writing:" << usersFile.fileName();
+        qDebug() << "Error:" << usersFile.errorString();
         return false;
+    }
 
     QTextStream outUsers(&usersFile);
     outUsers << "username,password,role" << Qt::endl;
@@ -70,6 +79,10 @@ bool InventorySystem::save() {
 }
 
 bool InventorySystem::authenticateUser(const QString &username, const QString &password) {
+    for (const auto& user : users) {
+        qDebug() << "Detected User: " << user.getUsername();
+    }
+
     for (const auto& user : users) {
         if (user.getUsername() == username) {
             if (user.login(password)) {
@@ -115,6 +128,10 @@ bool InventorySystem::addUser(const User &user) {
 }
 
 bool InventorySystem::removeUser(const QString &username) {
+    for (const auto& user: users) {
+        qDebug() << "User before delete" << user.getUsername();
+    }
+
     if (!isAuthenticated() || !currentUserCanManageUsers()) {
         return false;
     }
@@ -131,9 +148,12 @@ bool InventorySystem::removeUser(const QString &username) {
                                  QDateTime::currentDateTime(),
                                  "Removed User: " + username);
             users.erase(it);
-            save();
             return true;
         }
+    }
+
+    for (const auto& user: users) {
+        qDebug() << "User after delete: " << user.getUsername();
     }
 
     return false;
