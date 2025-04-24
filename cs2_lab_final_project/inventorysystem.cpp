@@ -92,9 +92,11 @@ bool InventorySystem::logout() {
     emit userChanged();
     return true;
 }
+#include <iostream>
 
 bool InventorySystem::addUser(const User &user) {
     if (!isAuthenticated() || !currentUserCanManageUsers()) {
+        std::cout << "shit" << std::endl;
         return false;
     }
 
