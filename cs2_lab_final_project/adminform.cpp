@@ -45,6 +45,8 @@ void AdminForm::on_filtersComboBox_currentIndexChanged(int index)
 
 void AdminForm::on_goBackPushButton_clicked()
 {
+    this->parentWidget()->show();
+    this->close();
     qDebug() << "Go Back Button called";
 }
 
