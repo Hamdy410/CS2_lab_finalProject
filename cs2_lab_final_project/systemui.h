@@ -27,6 +27,9 @@ private slots:
 
     void on_inventoryManagerButton_clicked();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private:
     Ui::SystemUI *ui;
     InventorySystem* inventorySystem = nullptr;

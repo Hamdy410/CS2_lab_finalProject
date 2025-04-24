@@ -24,92 +24,105 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Ui_AdminForm
+class Ui_AdminForm
 {
 public:
     QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout_2;
-    QHBoxLayout *filterSection;
-    QLabel *label;
-    QSpacerItem *horizontalSpacer_2;
-    QComboBox *roleFilterComboBox;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *goBackPushButton;
     QSpacerItem *horizontalSpacer;
-    QPushButton *addUserButton;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label;
+    QComboBox *filtersComboBox;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *addnewUserPushButton;
     QSpacerItem *horizontalSpacer_3;
-    QHBoxLayout *tableSection;
-    QTableWidget *userTableWidget;
+    QHBoxLayout *horizontalLayout;
+    QTableWidget *userDisplayTable;
 
-    void setupUi(QDialog *Ui_AdminForm)
+    void setupUi(QDialog *AdminForm)
     {
-        if (Ui_AdminForm->objectName().isEmpty())
-            Ui_AdminForm->setObjectName("Ui_AdminForm");
-        Ui_AdminForm->resize(1097, 573);
-        verticalLayoutWidget = new QWidget(Ui_AdminForm);
+        if (AdminForm->objectName().isEmpty())
+            AdminForm->setObjectName("AdminForm");
+        AdminForm->resize(770, 650);
+        verticalLayoutWidget = new QWidget(AdminForm);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(39, 39, 1011, 491));
-        verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        filterSection = new QHBoxLayout();
-        filterSection->setObjectName("filterSection");
+        verticalLayoutWidget->setGeometry(QRect(29, 39, 701, 561));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        goBackPushButton = new QPushButton(verticalLayoutWidget);
+        goBackPushButton->setObjectName("goBackPushButton");
+        goBackPushButton->setMinimumSize(QSize(75, 75));
+
+        horizontalLayout_3->addWidget(goBackPushButton);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         label = new QLabel(verticalLayoutWidget);
         label->setObjectName("label");
 
-        filterSection->addWidget(label);
+        horizontalLayout_2->addWidget(label);
 
-        horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        filtersComboBox = new QComboBox(verticalLayoutWidget);
+        filtersComboBox->setObjectName("filtersComboBox");
 
-        filterSection->addItem(horizontalSpacer_2);
+        horizontalLayout_2->addWidget(filtersComboBox);
 
-        roleFilterComboBox = new QComboBox(verticalLayoutWidget);
-        roleFilterComboBox->setObjectName("roleFilterComboBox");
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        filterSection->addWidget(roleFilterComboBox);
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        horizontalSpacer = new QSpacerItem(24, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        addnewUserPushButton = new QPushButton(verticalLayoutWidget);
+        addnewUserPushButton->setObjectName("addnewUserPushButton");
 
-        filterSection->addItem(horizontalSpacer);
+        horizontalLayout_2->addWidget(addnewUserPushButton);
 
-        addUserButton = new QPushButton(verticalLayoutWidget);
-        addUserButton->setObjectName("addUserButton");
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
 
-        filterSection->addWidget(addUserButton);
-
-        horizontalSpacer_3 = new QSpacerItem(65, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
-
-        filterSection->addItem(horizontalSpacer_3);
+        horizontalLayout_2->addItem(horizontalSpacer_3);
 
 
-        verticalLayout_2->addLayout(filterSection);
+        verticalLayout->addLayout(horizontalLayout_2);
 
-        tableSection = new QHBoxLayout();
-        tableSection->setObjectName("tableSection");
-        tableSection->setContentsMargins(-1, 0, -1, -1);
-        userTableWidget = new QTableWidget(verticalLayoutWidget);
-        userTableWidget->setObjectName("userTableWidget");
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
+        userDisplayTable = new QTableWidget(verticalLayoutWidget);
+        userDisplayTable->setObjectName("userDisplayTable");
 
-        tableSection->addWidget(userTableWidget);
-
-
-        verticalLayout_2->addLayout(tableSection);
+        horizontalLayout->addWidget(userDisplayTable);
 
 
-        retranslateUi(Ui_AdminForm);
+        verticalLayout->addLayout(horizontalLayout);
 
-        QMetaObject::connectSlotsByName(Ui_AdminForm);
+
+        retranslateUi(AdminForm);
+
+        QMetaObject::connectSlotsByName(AdminForm);
     } // setupUi
 
-    void retranslateUi(QDialog *Ui_AdminForm)
+    void retranslateUi(QDialog *AdminForm)
     {
-        Ui_AdminForm->setWindowTitle(QCoreApplication::translate("Ui_AdminForm", "Dialog", nullptr));
-        label->setText(QCoreApplication::translate("Ui_AdminForm", "Filter by role::", nullptr));
-        addUserButton->setText(QCoreApplication::translate("Ui_AdminForm", "PushButton", nullptr));
+        AdminForm->setWindowTitle(QCoreApplication::translate("AdminForm", "Dialog", nullptr));
+        goBackPushButton->setText(QCoreApplication::translate("AdminForm", "Go Back", nullptr));
+        label->setText(QCoreApplication::translate("AdminForm", "Filters: ", nullptr));
+        addnewUserPushButton->setText(QCoreApplication::translate("AdminForm", "Add new User", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Ui_AdminForm: public Ui_Ui_AdminForm {};
+    class AdminForm: public Ui_AdminForm {};
 } // namespace Ui
 
 QT_END_NAMESPACE
