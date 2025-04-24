@@ -56,7 +56,7 @@ void SystemUI::on_dashboardButton_clicked()
 
 void SystemUI::on_adminPageButton_clicked()
 {
-    qDebug() << "This is admin page";
+    qDebug() << "This is the admin page";
 }
 
 
