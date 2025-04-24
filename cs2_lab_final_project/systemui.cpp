@@ -1,10 +1,12 @@
 #include "systemui.h"
 #include "ui_systemui.h"
 #include "user.h"
+#include "adminform.h"
 
 #include <QFont>
 #include <QString>
 #include <QDebug>
+#include <QCloseEvent>
 
 SystemUI::SystemUI(QWidget *parent, InventorySystem* inventorySystem)
     : QDialog(parent)
@@ -36,7 +38,6 @@ SystemUI::SystemUI(QWidget *parent, InventorySystem* inventorySystem)
 
 SystemUI::~SystemUI()
 {
-    delete inventorySystem;
     delete ui;
 }
 
@@ -56,7 +57,11 @@ void SystemUI::on_dashboardButton_clicked()
 
 void SystemUI::on_adminPageButton_clicked()
 {
-    qDebug() << "This is the admin page";
+    qDebug() << "Admin Page is clicked";
+    AdminForm* adminForm = new AdminForm(this, inventorySystem);
+    adminForm->show();
+
+    this->hide();
 }
 
 
@@ -65,3 +70,8 @@ void SystemUI::on_inventoryManagerButton_clicked()
     qDebug() << "This is inventory manager";
 }
 
+void SystemUI::closeEvent(QCloseEvent *event) {
+    this->parentWidget()->show();
+    this->close();
+    event->accept();
+}
