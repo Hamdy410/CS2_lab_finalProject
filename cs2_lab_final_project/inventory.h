@@ -11,7 +11,7 @@
 class Inventory
 {
 private:
-    QVector<Item> items; // Using QSet as the unsorted_set equivalent
+    QVector<Item> items;
 
 public:
     Inventory();
