@@ -32,5 +32,6 @@ int main(int argc, char *argv[])
     qDebug() << "Saving users to:" << usersPath;
     LoginForm w(inventorySystem);
     w.show();
+
     return a.exec();
 }

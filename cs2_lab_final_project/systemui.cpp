@@ -2,6 +2,7 @@
 #include "ui_systemui.h"
 #include "user.h"
 #include "adminform.h"
+#include "dashboard.h"
 
 #include <QFont>
 #include <QString>
@@ -52,6 +53,10 @@ void SystemUI::on_signoutPushButton_clicked()
 void SystemUI::on_dashboardButton_clicked()
 {
     qDebug() << "This is dashboard";
+    Dashboard* dashboard = new Dashboard(this);
+    dashboard->show();
+
+    this->hide();
 }
 
 
