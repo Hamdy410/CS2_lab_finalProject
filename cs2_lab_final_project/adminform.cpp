@@ -22,6 +22,7 @@ AdminForm::AdminForm(QWidget *parent, InventorySystem* inventorySystem)
     ui->userDisplayTable->setHorizontalHeaderLabels({"Username", "Role", "Actions"});
 
     ui->userDisplayTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->userDisplayTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     ui->filtersComboBox->addItem("All Roles");
     ui->filtersComboBox->addItem("Admin");
@@ -40,6 +41,9 @@ AdminForm::~AdminForm()
 void AdminForm::on_filtersComboBox_currentIndexChanged(int index)
 {
     qDebug() << "Index changed to: " << index;
+    QString selectedRole = ui->filtersComboBox->currentText();
+    qDebug() << "Filter applied:" << selectedRole;
+    populateTable(selectedRole);
 }
 
 
@@ -56,32 +60,33 @@ void AdminForm::on_addnewUserPushButton_clicked()
     qDebug() << "Add New User Button Called";
 }
 
-void AdminForm::populateTable() {
+void AdminForm::populateTable(const QString& roleFilter) {
     ui->userDisplayTable->clearContents();
     ui->userDisplayTable->setRowCount(0);
 
     QVector<User> users = inventorySystem->getUsers();
-    for (int row = 0; row < users.size(); row++) {
-        // Insert a new row
-        ui->userDisplayTable->insertRow(row);
+    for (int row = 0, displayRow = 0; row < users.size(); row++) {
+        const User& user = users[row];
 
-        // Insert the data into each column
-        ui->userDisplayTable->setItem(row, 0, new QTableWidgetItem(users[row].getUsername()));
-        ui->userDisplayTable->setItem(row, 1, new QTableWidgetItem(roleToString(users[row].getRole())));
+        // Apply filters
+        if (roleFilter != "All Roles" && roleToString(user.getRole()) != roleFilter)
+            continue;
 
-        // Create the buttons for Edit and Delete
+        ui->userDisplayTable->insertRow(displayRow);
+        ui->userDisplayTable->setItem(displayRow, 0, new QTableWidgetItem(user.getUsername()));
+        ui->userDisplayTable->setItem(displayRow, 1, new QTableWidgetItem(roleToString(user.getRole())));
+
         QPushButton* editButton = new QPushButton("Edit");
         QPushButton* deleteButton = new QPushButton("Delete");
 
         editButton->setFixedSize(60, 25);
         deleteButton->setFixedSize(60, 25);
 
-        // Connect the buttons to the actions
-        connect(editButton, &QPushButton::clicked, this, [this, row] () {
-            onEditUser(row);
+        connect(editButton, &QPushButton::clicked, this, [this, displayRow] () {
+            onEditUser(displayRow);
         });
-        connect(deleteButton, &QPushButton::clicked, this, [this, row] () {
-            onDeleteUser(row);
+        connect(deleteButton, &QPushButton::clicked, this, [this, displayRow]() {
+            onDeleteUser(displayRow);
         });
 
         QWidget *buttonWidget = new QWidget;
@@ -90,13 +95,14 @@ void AdminForm::populateTable() {
         buttonLayout->addWidget(deleteButton);
         buttonLayout->setContentsMargins(0, 0, 0, 0);
         buttonLayout->setSpacing(5);
-        ui->userDisplayTable->setCellWidget(row, 2, buttonWidget);
+        ui->userDisplayTable->setCellWidget(displayRow, 2, buttonWidget);
 
-        // Added to prevent the current user from deleting or editing themselves
-        if (users[row].getUsername() == inventorySystem->getCurrentUser()->getUsername()) {
+        if (user.getUsername() == inventorySystem->getCurrentUser()->getUsername()) {
             editButton->setEnabled(false);
             deleteButton->setEnabled(false);
         }
+
+        displayRow++;
     }
 }
 
@@ -115,7 +121,8 @@ void AdminForm::onDeleteUser(int row) {
 }
 
 void AdminForm::refreshTable() {
-    populateTable();
+    QString currentFilter = ui->filtersComboBox->currentText();
+    populateTable(currentFilter);
 }
 
 void AdminForm::closeEvent(QCloseEvent *event) {

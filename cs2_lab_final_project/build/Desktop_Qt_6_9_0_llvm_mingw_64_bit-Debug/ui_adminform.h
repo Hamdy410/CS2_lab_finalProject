@@ -85,6 +85,7 @@ public:
 
         addnewUserPushButton = new QPushButton(verticalLayoutWidget);
         addnewUserPushButton->setObjectName("addnewUserPushButton");
+        addnewUserPushButton->setMinimumSize(QSize(0, 35));
 
         horizontalLayout_2->addWidget(addnewUserPushButton);
 

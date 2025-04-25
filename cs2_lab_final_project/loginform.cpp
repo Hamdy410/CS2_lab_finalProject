@@ -13,6 +13,17 @@ LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
 {
     ui->setupUi(this);
     inventorySystem = inventorySystemParam;
+
+    ui->lineEdit_Password->setEchoMode(QLineEdit::Password);
+    togglePasswordAction = new QAction(QIcon(":/icons/eye_closed.png"), "", this);
+    ui->lineEdit_Password->addAction(togglePasswordAction, QLineEdit::TrailingPosition);
+    isPasswordVisible = false;
+
+    connect(togglePasswordAction, &QAction::triggered, this, [=] () {
+        isPasswordVisible = !isPasswordVisible;
+        ui->lineEdit_Password->setEchoMode(isPasswordVisible ? QLineEdit::Normal : QLineEdit::Password);
+        togglePasswordAction->setIcon(QIcon(isPasswordVisible ? ":/icons/eye_open.png" : ":icons/eye_closed.png"));
+    });
 }
 
 LoginForm::~LoginForm()
@@ -34,6 +45,9 @@ void LoginForm::on_pushButton_Login_clicked()
         qDebug() << "Found the user";
         SystemUI* system = new SystemUI(this, inventorySystem);
         system->show();
+
+        this->ui->lineEdit_Username->setText("");
+        this->ui->lineEdit_Password->setText("");
 
         this->hide();
     } else {

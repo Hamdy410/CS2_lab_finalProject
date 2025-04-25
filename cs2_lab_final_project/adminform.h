@@ -34,7 +34,7 @@ protected:
 private:
     Ui::AdminForm *ui;
     InventorySystem* inventorySystem = nullptr;
-    void populateTable();
+    void populateTable(const QString& roleFilter = "All Roles");
 };
 
 #endif // ADMINFORM_H
