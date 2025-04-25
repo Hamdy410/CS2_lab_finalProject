@@ -42,7 +42,7 @@ bool InventorySystem::load() {
         }
         usersFile.close();
     } else {
-        // Create a dedault admin if user file doesn't exist
+        // Create a default admin if user file doesn't exist
         QFile default_file(":db/default_users.csv");
         if (default_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             qDebug() << "Default users is working now.";

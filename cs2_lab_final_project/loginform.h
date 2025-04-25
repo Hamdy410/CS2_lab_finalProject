@@ -3,6 +3,7 @@
 #include "inventorysystem.h"
 
 #include <QDialog>
+#include <QAction>
 
 namespace Ui {
 class LoginForm;
@@ -23,6 +24,8 @@ private slots:
 
 private:
     Ui::LoginForm *ui;
+    QAction* togglePasswordAction;
+    bool isPasswordVisible;
 };
 
 #endif // LOGINFORM_H

@@ -4,4 +4,8 @@
         <file>default_operations.csv</file>
         <file>default_users.csv</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>eye_closed.png</file>
+        <file>eye_open.png</file>
+    </qresource>
 </RCC>
