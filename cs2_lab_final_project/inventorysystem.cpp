@@ -43,8 +43,26 @@ bool InventorySystem::load() {
         usersFile.close();
     } else {
         // Create a dedault admin if user file doesn't exist
-        users.push_back(User("admin", "123456", Role::ADMIN));
-        save();
+        QFile default_file(":db/default_users.csv");
+        if (default_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qDebug() << "Default users is working now.";
+            users.clear();
+            QTextStream in_def(&default_file);
+
+            if (!in_def.atEnd()) {
+                in_def.readLine();
+            }
+
+            while (!in_def.atEnd()) {
+                QString line = in_def.readLine();
+                User user;
+                if (user.load(line)) {
+                    qDebug() << "User Added.";
+                    users.push_back(user);
+                }
+            }
+            default_file.close();
+        }
     }
 
     // Load Inventory
