@@ -1,3 +1,7 @@
 <RCC>
-    <qresource prefix="/db"/>
+    <qresource prefix="/db">
+        <file>default_items.csv</file>
+        <file>default_operations.csv</file>
+        <file>default_users.csv</file>
+    </qresource>
 </RCC>
