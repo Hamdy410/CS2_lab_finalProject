@@ -5,7 +5,8 @@
 #include "role.h"
 
 #include "editroleform.h"
-
+#include "adduserform.h"
+#include "QMessageBox"
 #include <QTableWidgetItem>
 #include <QWidget>
 #include <QHBoxLayout>
@@ -60,6 +61,25 @@ void AdminForm::on_goBackPushButton_clicked()
 void AdminForm::on_addnewUserPushButton_clicked()
 {
     qDebug() << "Add New User Button Called";
+    AddUserForm* addUser= new AddUserForm(this);
+    addUser->show();
+    if (addUser->exec() == QDialog::Accepted)
+    {
+        QString username = addUser->getUsername();
+        QString password = addUser->getPassword();
+        Role role = addUser->getRole();
+
+        User newUser (username, password, role);
+        if (inventorySystem->userExists(username))
+        {
+            QMessageBox::warning(this, "Error", "Username already exists");
+        }
+        else if(inventorySystem->addUser(newUser))
+        {
+            refreshTable();
+        }
+
+    }
 }
 
 void AdminForm::populateTable(const QString& roleFilter) {

@@ -73,26 +73,14 @@
      <widget class="QLineEdit" name="lineEdit_Username"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_Password"/>
+     <widget class="QLineEdit" name="lineEdit_Password">
+      <property name="echoMode">
+       <enum>QLineEdit::EchoMode::Password</enum>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBox_Role">
-      <item>
-       <property name="text">
-        <string>Staff</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Admin</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Manager</string>
-       </property>
-      </item>
-     </widget>
+     <widget class="QComboBox" name="comboBox_Role"/>
     </item>
    </layout>
   </widget>
