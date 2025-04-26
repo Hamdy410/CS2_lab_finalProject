@@ -4,6 +4,8 @@
 #include "inventorysystem.h"
 #include "role.h"
 
+#include "editroleform.h"
+
 #include <QTableWidgetItem>
 #include <QWidget>
 #include <QHBoxLayout>
@@ -110,7 +112,11 @@ void AdminForm::onEditUser(int row) {
     QString username = ui->userDisplayTable->item(row, 0)->text();
     QString role = ui->userDisplayTable->item(row, 1)->text();
 
+    editRoleform* EditRole;
+    EditRole->show();
+
     qDebug() << "User Edit Button called";
+    refreshTable();
 }
 
 void AdminForm::onDeleteUser(int row) {
