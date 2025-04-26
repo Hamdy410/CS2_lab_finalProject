@@ -8,13 +8,10 @@
 
 #define FILE_ITEMS "items.csv"
 
-// Forward declare hash function for QSet to use with Item
-uint qHash(const Item& item);
-
 class Inventory
 {
 private:
-    QSet<Item> items; // Using QSet as the unsorted_set equivalent
+    QVector<Item> items;
 
 public:
     Inventory();
@@ -30,7 +27,7 @@ public:
     bool loadFromCSV();
     bool saveToCSV();
 
-    const QSet<Item>& getItems() const;
+    const QVector<Item>& getItems() const;
 };
 
 #endif // INVENTORY_H

@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -23,12 +24,12 @@ class Ui_SignUpForm
 public:
     QLineEdit *lineEditUsername;
     QLineEdit *lineEditPassword;
-    QLineEdit *lineEditReenterPassword;
     QLabel *label;
     QLabel *label_2;
-    QLabel *label_3;
     QLabel *label_4;
     QPushButton *pushButtonSignUp;
+    QComboBox *comboBoxRole;
+    QLabel *label_5;
 
     void setupUi(QDialog *SignUpForm)
     {
@@ -41,24 +42,27 @@ public:
         lineEditPassword = new QLineEdit(SignUpForm);
         lineEditPassword->setObjectName("lineEditPassword");
         lineEditPassword->setGeometry(QRect(220, 110, 101, 20));
-        lineEditReenterPassword = new QLineEdit(SignUpForm);
-        lineEditReenterPassword->setObjectName("lineEditReenterPassword");
-        lineEditReenterPassword->setGeometry(QRect(220, 150, 101, 20));
+        lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
         label = new QLabel(SignUpForm);
         label->setObjectName("label");
         label->setGeometry(QRect(80, 70, 71, 20));
         label_2 = new QLabel(SignUpForm);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(80, 110, 71, 20));
-        label_3 = new QLabel(SignUpForm);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(80, 150, 131, 20));
         label_4 = new QLabel(SignUpForm);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(140, 20, 131, 20));
+        label_4->setGeometry(QRect(160, 20, 61, 20));
         pushButtonSignUp = new QPushButton(SignUpForm);
         pushButtonSignUp->setObjectName("pushButtonSignUp");
-        pushButtonSignUp->setGeometry(QRect(150, 200, 83, 29));
+        pushButtonSignUp->setGeometry(QRect(150, 230, 83, 29));
+        comboBoxRole = new QComboBox(SignUpForm);
+        comboBoxRole->addItem(QString());
+        comboBoxRole->addItem(QString());
+        comboBoxRole->setObjectName("comboBoxRole");
+        comboBoxRole->setGeometry(QRect(220, 150, 82, 28));
+        label_5 = new QLabel(SignUpForm);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(80, 150, 131, 20));
 
         retranslateUi(SignUpForm);
 
@@ -70,9 +74,12 @@ public:
         SignUpForm->setWindowTitle(QCoreApplication::translate("SignUpForm", "Dialog", nullptr));
         label->setText(QCoreApplication::translate("SignUpForm", "Username:", nullptr));
         label_2->setText(QCoreApplication::translate("SignUpForm", "Password:", nullptr));
-        label_3->setText(QCoreApplication::translate("SignUpForm", "Re-enter Password:", nullptr));
-        label_4->setText(QCoreApplication::translate("SignUpForm", "Create an Account!", nullptr));
+        label_4->setText(QCoreApplication::translate("SignUpForm", "Add User", nullptr));
         pushButtonSignUp->setText(QCoreApplication::translate("SignUpForm", "Sign up", nullptr));
+        comboBoxRole->setItemText(0, QCoreApplication::translate("SignUpForm", "Manager", nullptr));
+        comboBoxRole->setItemText(1, QCoreApplication::translate("SignUpForm", "Staff", nullptr));
+
+        label_5->setText(QCoreApplication::translate("SignUpForm", "Role:", nullptr));
     } // retranslateUi
 
 };
