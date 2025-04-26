@@ -27,21 +27,32 @@
      <string/>
     </property>
    </item>
-   <item>
-    <property name="text">
-     <string>Admin</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Manager</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Staff</string>
-    </property>
-   </item>
+  </widget>
+  <widget class="QLabel" name="usernameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>username</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_OK">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>83</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
   </widget>
  </widget>
  <resources/>

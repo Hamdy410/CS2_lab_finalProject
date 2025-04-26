@@ -13,6 +13,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -20,6 +22,8 @@ class Ui_editRoleform
 {
 public:
     QComboBox *comboBox_editRole;
+    QLabel *usernameLabel;
+    QPushButton *pushButton_OK;
 
     void setupUi(QDialog *editRoleform)
     {
@@ -28,11 +32,14 @@ public:
         editRoleform->resize(331, 213);
         comboBox_editRole = new QComboBox(editRoleform);
         comboBox_editRole->addItem(QString());
-        comboBox_editRole->addItem(QString());
-        comboBox_editRole->addItem(QString());
-        comboBox_editRole->addItem(QString());
         comboBox_editRole->setObjectName("comboBox_editRole");
         comboBox_editRole->setGeometry(QRect(110, 80, 82, 28));
+        usernameLabel = new QLabel(editRoleform);
+        usernameLabel->setObjectName("usernameLabel");
+        usernameLabel->setGeometry(QRect(20, 30, 91, 21));
+        pushButton_OK = new QPushButton(editRoleform);
+        pushButton_OK->setObjectName("pushButton_OK");
+        pushButton_OK->setGeometry(QRect(170, 130, 83, 29));
 
         retranslateUi(editRoleform);
 
@@ -43,10 +50,9 @@ public:
     {
         editRoleform->setWindowTitle(QCoreApplication::translate("editRoleform", "Dialog", nullptr));
         comboBox_editRole->setItemText(0, QString());
-        comboBox_editRole->setItemText(1, QCoreApplication::translate("editRoleform", "Admin", nullptr));
-        comboBox_editRole->setItemText(2, QCoreApplication::translate("editRoleform", "Manager", nullptr));
-        comboBox_editRole->setItemText(3, QCoreApplication::translate("editRoleform", "Staff", nullptr));
 
+        usernameLabel->setText(QCoreApplication::translate("editRoleform", "username", nullptr));
+        pushButton_OK->setText(QCoreApplication::translate("editRoleform", "OK", nullptr));
     } // retranslateUi
 
 };
