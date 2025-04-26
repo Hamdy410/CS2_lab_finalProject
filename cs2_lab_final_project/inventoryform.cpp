@@ -2,6 +2,8 @@
 #include "ui_inventoryform.h"
 #include <QString>
 #include "item.h"
+#include <QTableWidgetItem>
+
 
 InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
