@@ -374,3 +374,8 @@ bool InventorySystem::currentUserCanEditInventory() const {
 QString InventorySystem::getCurrentUsername() const {
     return isAuthenticated() ? currentUser->getUsername() : "";
 }
+
+const Inventory& InventorySystem::getInventory() const
+{
+    return inventory;
+}

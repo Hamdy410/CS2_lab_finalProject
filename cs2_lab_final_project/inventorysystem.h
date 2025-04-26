@@ -47,6 +47,7 @@ public:
     QVector<Item> searchItems(const QString& name="", const QString& supplier="");
     QVector<Item> getLowStockItems();
     bool generateReport();
+const Inventory& getInventory() const;
 
     // Current user info
     bool isAuthenticated() const;

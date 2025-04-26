@@ -102,7 +102,8 @@ bool Inventory::generateReport() {
 }
 
 bool Inventory::loadFromCSV() {
-    QFile file(FILE_ITEMS);
+    //QFile file(FILE_ITEMS);
+    QFile file(DEFAULT_ITEMS);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
 
