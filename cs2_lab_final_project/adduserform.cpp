@@ -45,7 +45,7 @@ QString AddUserForm::getUsername() const
 }
 QString AddUserForm::getPassword() const
 {
-    return ui->lineEdit_Password->text().trimmed();
+    return ui->lineEdit_Password->text();
 }
 Role AddUserForm::getRole() const
 {
