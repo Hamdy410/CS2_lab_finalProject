@@ -26,7 +26,8 @@ void editRoleform::setUserInfo(const QString& username, Role currentRole)
 
     // Set current role in combo box
     int index = ui->comboBox_editRole->findData(static_cast<int>(currentRole));
-    if (index != -1) {
+    if (index != -1)
+    {
         ui->comboBox_editRole->setCurrentIndex(index);
     }
 }

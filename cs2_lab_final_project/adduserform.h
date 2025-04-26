@@ -2,6 +2,7 @@
 #define ADDUSERFORM_H
 
 #include <QDialog>
+#include "role.h"
 
 namespace Ui {
 class AddUserForm;
@@ -14,9 +15,15 @@ class AddUserForm : public QDialog
 public:
     explicit AddUserForm(QWidget *parent = nullptr);
     ~AddUserForm();
+    QString getUsername() const;
+    QString getPassword() const;
+    Role getRole() const;
+
+private slots:
+    void on_pushButton_OK_clicked();
 
 private:
-    Ui::AddUserForm *ui;
+    Ui::AddUserForm *ui;    
 };
 
 #endif // ADDUSERFORM_H

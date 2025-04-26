@@ -78,13 +78,11 @@ public:
 
         lineEdit_Password = new QLineEdit(widget1);
         lineEdit_Password->setObjectName("lineEdit_Password");
+        lineEdit_Password->setEchoMode(QLineEdit::EchoMode::Password);
 
         verticalLayout_2->addWidget(lineEdit_Password);
 
         comboBox_Role = new QComboBox(widget1);
-        comboBox_Role->addItem(QString());
-        comboBox_Role->addItem(QString());
-        comboBox_Role->addItem(QString());
         comboBox_Role->setObjectName("comboBox_Role");
 
         verticalLayout_2->addWidget(comboBox_Role);
@@ -102,10 +100,6 @@ public:
         label_Username->setText(QCoreApplication::translate("AddUserForm", "Username:", nullptr));
         label_Password->setText(QCoreApplication::translate("AddUserForm", "Password:", nullptr));
         label_Role->setText(QCoreApplication::translate("AddUserForm", "Role", nullptr));
-        comboBox_Role->setItemText(0, QCoreApplication::translate("AddUserForm", "Staff", nullptr));
-        comboBox_Role->setItemText(1, QCoreApplication::translate("AddUserForm", "Admin", nullptr));
-        comboBox_Role->setItemText(2, QCoreApplication::translate("AddUserForm", "Manager", nullptr));
-
     } // retranslateUi
 
 };
