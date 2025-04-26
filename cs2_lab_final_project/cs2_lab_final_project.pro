@@ -12,6 +12,7 @@ CONFIG   += c++17
 SOURCES += \
     adminform.cpp \
     dashboard.cpp \
+    editroleform.cpp \
     inventory.cpp \
     inventoryform.cpp \
     inventorysystem.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     adminform.h \
     dashboard.h \
+    editroleform.h \
     inventory.h \
     inventoryform.h \
     inventorysystem.h \
@@ -45,6 +47,7 @@ HEADERS += \
 FORMS += \
     adminform.ui \
     dashboard.ui \
+    editroleform.ui \
     inventoryform.ui \
     loginform.ui \
     mainwindow.ui \
