@@ -23,7 +23,9 @@ private slots:
     void on_pushButton_OK_clicked();
 
 private:
-    Ui::AddUserForm *ui;    
+    Ui::AddUserForm *ui;
+    QAction* togglePasswordAction;
+    bool isPasswordVisible;
 };
 
 #endif // ADDUSERFORM_H
