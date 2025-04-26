@@ -118,15 +118,12 @@ void AdminForm::onEditUser(int row) {
 
     if (editForm->exec() == QDialog::Accepted)
     {
-        // Get the new role
         Role newRole = editForm->getSelectedRole();
 
         // Update the user in the inventory system
         inventorySystem->updateUserRole(username, newRole);
         qDebug() << "User Edit Button called";
         ui->userDisplayTable->item(row, 1)->setText(roleToString(newRole));
-        //ui->userDisplayTable->item(row, 1)->text();
-        //refreshTable();
     }
     delete editForm;
 }

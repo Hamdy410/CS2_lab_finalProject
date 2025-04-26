@@ -10,11 +10,6 @@ editRoleform::editRoleform(QWidget *parent)
     ui->comboBox_editRole->addItem("Staff", static_cast<int>(Role::STAFF));
     ui->comboBox_editRole->addItem("Manager", static_cast<int>(Role::MANAGER));
     ui->comboBox_editRole->addItem("Admin", static_cast<int>(Role::ADMIN));
-
-    //connect(ui->buttonBox, &QDialogbuttonBox::accepted, this, &editRoleform::on_buttonBox_accepted);
-    //connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &editRoleform::on_buttonBox_rejected);
-
-    //qDebug() << "EditRoleForm created";
     connect(ui->pushButton_OK, &QPushButton::clicked, this, &editRoleform::on_pushButton_OK_clicked);
 
 }
@@ -44,17 +39,6 @@ void editRoleform::on_comboBox_editRole_currentIndexChanged(int index)
 {
     QString updatedRole = ui->comboBox_editRole->currentText();
 }
-// void editRoleform::on_buttonBox_accepted()
-// {
-//     accept();  // This will close the dialog with QDialog::Accepted
-// }
-
-// void editRoleform::on_buttonBox_rejected()
-// {
-//     reject();  // This will close the dialog with QDialog::Rejected
-// }
-
-
 void editRoleform::on_pushButton_OK_clicked()
 {
     accept();
