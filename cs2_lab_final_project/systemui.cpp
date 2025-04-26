@@ -3,6 +3,7 @@
 #include "user.h"
 #include "adminform.h"
 #include "dashboard.h"
+#include "inventoryform.h"
 
 #include <QFont>
 #include <QString>
@@ -73,6 +74,8 @@ void SystemUI::on_adminPageButton_clicked()
 void SystemUI::on_inventoryManagerButton_clicked()
 {
     qDebug() << "This is inventory manager";
+    InventoryForm* inventoryManager = new InventoryForm(inventorySystem, this);
+    inventoryManager->show();
 }
 
 void SystemUI::closeEvent(QCloseEvent *event) {
