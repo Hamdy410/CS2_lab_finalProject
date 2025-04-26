@@ -18,6 +18,9 @@ public:
 private slots:
     void on_pushButtonAdd_clicked();
 
+    void on_pushButtonSearch_clicked();
+    void populateTable(const QVector<Item>& items);
+
 private:
     Ui::InventoryForm *ui;
     InventorySystem* inventorySystem;
