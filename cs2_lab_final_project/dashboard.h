@@ -2,6 +2,7 @@
 #define DASHBOARD_H
 
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class Dashboard;
@@ -14,6 +15,12 @@ class Dashboard : public QDialog
 public:
     explicit Dashboard(QWidget *parent = nullptr);
     ~Dashboard();
+
+private slots:
+    void on_goBackPushButton_clicked();
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::Dashboard *ui;

@@ -53,6 +53,7 @@ public:
     bool currentUserCanManageUsers() const;
     bool currentUserCanEditInventory() const;
     QString getCurrentUsername() const;
+    User* getCurrentUser() const { return currentUser; }
 
 signals:
     void userChanged();

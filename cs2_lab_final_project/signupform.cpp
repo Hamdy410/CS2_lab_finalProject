@@ -2,6 +2,8 @@
 #include "ui_signupform.h"
 #include <QDebug>
 #include <QMessageBox>
+#include "user.h"
+#include "role.h"
 
 SignUpForm::SignUpForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
@@ -20,11 +22,5 @@ void SignUpForm::on_pushButtonSignUp_clicked()
 {
     QString username = ui->lineEditUsername->text();
     QString password = ui->lineEditPassword->text();
-    QString password2 = ui->lineEditReenterPassword->text();
-
-    if (password != password2) {
-        QMessageBox::critical(this, "Sign Up Error", "Passwords do not match. Please re-enter them.");
-        return;
-    }
 }
 

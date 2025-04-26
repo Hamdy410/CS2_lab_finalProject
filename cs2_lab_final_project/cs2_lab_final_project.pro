@@ -10,6 +10,7 @@ CONFIG   += c++17
 # DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adminform.cpp \
     dashboard.cpp \
     inventory.cpp \
     inventoryform.cpp \
@@ -22,9 +23,11 @@ SOURCES += \
     record.cpp \
     role.cpp \
     signupform.cpp \
+    systemui.cpp \
     user.cpp \
 
 HEADERS += \
+    adminform.h \
     dashboard.h \
     inventory.h \
     inventoryform.h \
@@ -36,14 +39,17 @@ HEADERS += \
     record.h \
     role.h \
     signupform.h \
+    systemui.h \
     user.h
 
 FORMS += \
+    adminform.ui \
     dashboard.ui \
     inventoryform.ui \
     loginform.ui \
     mainwindow.ui \
-    signupform.ui
+    signupform.ui \
+    systemui.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
