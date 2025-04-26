@@ -7,6 +7,7 @@
 #include "item.h"
 
 #define FILE_ITEMS "items.csv"
+#define DEFAULT_ITEMS ":db/default_items.csv"
 
 class Inventory
 {
