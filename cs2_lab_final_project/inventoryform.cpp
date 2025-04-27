@@ -151,3 +151,9 @@ void InventoryForm::displayLowStock()
         ui->textEditLowStock->append(item.name());
     }
 }
+
+void InventoryForm::on_pushButton_Go_back_clicked()
+{
+    this->parentWidget()->show();
+    this->close();
+}
