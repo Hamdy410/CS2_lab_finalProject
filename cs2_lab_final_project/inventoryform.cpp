@@ -24,12 +24,36 @@ void InventoryForm::on_pushButtonAdd_clicked()
     QString name = ui->lineEditAddName->text();
     QString category = ui->lineEditAddCategory->text();
     double price = ui->lineEditAddPrice->text().toDouble();
+    QString strPrice = ui->lineEditAddPrice->text();
     int quantity = ui->lineEditAddQuantity->text().toInt();
+    QString strQuantity = ui->lineEditAddQuantity->text();
     QString supplier = ui->lineEditAddSupplier->text();
 
+    if (name.isEmpty() || category.isEmpty() || supplier.isEmpty() ||
+        strPrice.isEmpty() || strQuantity.isEmpty()) {
+        QMessageBox::warning(this, "Error", "All fields must be filled");
+        return;
+    }
+    if (price <= 0)
+    {
+        QMessageBox::warning(this, "Error", "Invalid price value");
+        return;
+    }
+    if (quantity <= 0)
+    {
+        QMessageBox::warning(this, "Error", "Invalid quantity value");
+        return;
+    }
     Item newItem(name, category, quantity, price, supplier);
-    // Add newItem to item vector
-    inventorySystem->addItem(newItem);
+    QVector<Item> existingItems = inventorySystem->searchItems(name, "");
+
+    for (const Item& item : existingItems)
+    {
+        if (item.name() == name && item.category() == category && item.supplier() == supplier) {
+            QMessageBox::warning(this, "Error", "Item already exists with same name, category and supplier");
+            return;
+        }
+    }
     if (inventorySystem->addItem(newItem))
     {
         ui->lineEditAddName->clear();
@@ -37,6 +61,8 @@ void InventoryForm::on_pushButtonAdd_clicked()
         ui->lineEditAddPrice->clear();
         ui->lineEditAddQuantity->clear();
         ui->lineEditAddSupplier->clear();
+
+        QMessageBox::information(this, "Done", "Item is added");
     }
 }
 
