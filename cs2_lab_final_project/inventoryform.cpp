@@ -12,6 +12,7 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
     ui->setupUi(this);
     inventorySystem = inventorySystemParam;
     refreshItems();
+    displayLowStock();
 }
 
 InventoryForm::~InventoryForm()
@@ -85,12 +86,10 @@ void InventoryForm::refreshItems()
 {
     // Clear existing items
     ui->tableWidgetInventoryItems->setRowCount(0);
-
-    // Get search criteria and value
     QString searchValue = ui->lineEditSearch->text().trimmed();
     QString searchCriteria = ui->comboBoxCriteria->currentText();
 
-    // Get items from inventory system based on search criteria
+    // to get items from inventory system based on search criteria
     QVector<Item> items;
     if (!searchValue.isEmpty())
     {
@@ -101,11 +100,23 @@ void InventoryForm::refreshItems()
         else if (searchCriteria == "Category")
         {
             items = inventorySystem->getInventory().getItems();
-            // Filter by category
             QVector<Item> filteredItems;
             for (const Item& item : items)
             {
                 if (item.category().contains(searchValue, Qt::CaseInsensitive))
+                {
+                    filteredItems.append(item);
+                }
+            }
+            items = filteredItems;
+        }
+        else if (searchCriteria == "Name")
+        {
+            items = inventorySystem->getInventory().getItems();
+            QVector<Item> filteredItems;
+            for (const Item& item : items)
+            {
+                if (item.name().contains(searchValue, Qt::CaseInsensitive))
                 {
                     filteredItems.append(item);
                 }
@@ -117,19 +128,26 @@ void InventoryForm::refreshItems()
     {
         items = inventorySystem->getInventory().getItems();
     }
-
-    // Add items to table
-    for (int i = 0; i < items.size(); ++i) {
+    // to add items to table
+    for (int i = 0; i < items.size(); ++i)
+    {
         const Item& item = items[i];
         ui->tableWidgetInventoryItems->insertRow(i);
-
         ui->tableWidgetInventoryItems->setItem(i, 0, new QTableWidgetItem(item.name()));
         ui->tableWidgetInventoryItems->setItem(i, 1, new QTableWidgetItem(QString::number(item.quantity())));
         ui->tableWidgetInventoryItems->setItem(i, 2, new QTableWidgetItem(item.category()));
         ui->tableWidgetInventoryItems->setItem(i, 3, new QTableWidgetItem(QString::number(item.price())));
         ui->tableWidgetInventoryItems->setItem(i, 4, new QTableWidgetItem(item.supplier()));
     }
+}
 
-    // Resize columns to fit content
-    ui->tableWidgetInventoryItems->resizeColumnsToContents();
+void InventoryForm::displayLowStock()
+{
+    // these items' quantity is less than 15, to edit the number got to inventory class
+    QVector<Item> lowStock = inventorySystem->getLowStockItems();
+    ui->textEditLowStock->clear();
+    for(const Item& item : lowStock)
+    {
+        ui->textEditLowStock->append(item.name());
+    }
 }
