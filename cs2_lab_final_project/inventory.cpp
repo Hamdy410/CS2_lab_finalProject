@@ -62,7 +62,7 @@ QVector<Item> Inventory::searchItem(const QString& itemName, const QString& item
 QVector<Item> Inventory::getLowStockItems() {
     QVector<Item> lowStockItems;
     for (const auto& item : items) {
-        if (item.quantity() < 5) {
+        if (item.quantity() < 15) {
             lowStockItems.append(item);
         }
     }

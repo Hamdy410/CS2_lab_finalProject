@@ -14,7 +14,7 @@ class InventoryForm : public QDialog
 public:
     explicit InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent = nullptr);
     ~InventoryForm();
-
+    void displayLowStock();
 private slots:
     void on_pushButtonAdd_clicked();
     void on_pushButtonSearch_clicked();

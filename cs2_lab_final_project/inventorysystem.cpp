@@ -340,7 +340,6 @@ QVector<Item> InventorySystem::getLowStockItems() {
     if (!isAuthenticated()) {
         return QVector<Item>();
     }
-
     return inventory.getLowStockItems();
 }
 
