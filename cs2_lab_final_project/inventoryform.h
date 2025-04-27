@@ -22,6 +22,8 @@ private slots:
     void on_lineEditSearch_textChanged(const QString &);
     void on_comboBoxSearchCriteria_currentIndexChanged(int);
 
+    void on_pushButton_Go_back_clicked();
+
 private:
     Ui::InventoryForm *ui;
     InventorySystem* inventorySystem;
