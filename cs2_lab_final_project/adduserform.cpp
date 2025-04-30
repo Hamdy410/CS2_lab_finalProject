@@ -1,13 +1,13 @@
 #include "adduserform.h"
 #include "ui_adduserform.h"
 #include <QAction>
+#include "QMessageBox"
 
 AddUserForm::AddUserForm(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddUserForm)
 {
     ui->setupUi(this);
-    connect(ui->pushButton_OK, &QPushButton::clicked, this, &AddUserForm::on_pushButton_OK_clicked);
     ui->comboBox_Role->clear();
     ui->comboBox_Role->addItem("Staff", static_cast<int>(Role::STAFF));
     ui->comboBox_Role->addItem("Manager", static_cast<int>(Role::MANAGER));
@@ -32,21 +32,57 @@ AddUserForm::~AddUserForm()
 
 void AddUserForm::on_pushButton_OK_clicked()
 {
-    if (getUsername().isEmpty() || getPassword().isEmpty())
+    QString username = getUsername();
+    QString password = getPassword();
+    Role role = getRole();
+
+    if (username.isEmpty() || password.isEmpty())
     {
-        qDebug() << "Username or password cannot be empty";
+        QMessageBox::warning(this, "Error", "Username and password cannot be empty");
         return;
     }
+    if (password.length() < 9)
+    {
+        QMessageBox::warning(this, "Error", "Password must be at least 9 characters long");
+        return;
+    }
+    if (!validatePassword(password, role))
+    {
+        QMessageBox::warning(this, "Error", "Password must start with user's role");
+        return;
+    }
+
     accept();
 }
+
+bool AddUserForm::validatePassword(const QString& password, Role role)
+{
+    QString prefix;
+    switch (role)
+    {
+    case Role::ADMIN:
+        prefix = "admin";
+        break;
+    case Role::MANAGER:
+        prefix = "manager";
+        break;
+    case Role::STAFF:
+        prefix = "staff";
+        break;
+    }
+    return password.startsWith(prefix, Qt::CaseInsensitive);
+}
+
 QString AddUserForm::getUsername() const
 {
     return ui->lineEdit_Username->text().trimmed();
 }
+
 QString AddUserForm::getPassword() const
 {
     return ui->lineEdit_Password->text();
 }
+
 Role AddUserForm::getRole() const
 {
     return static_cast<Role>(ui->comboBox_Role->currentData().toInt());
