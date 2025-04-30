@@ -3,10 +3,10 @@
 #include "user.h"
 #include "inventorysystem.h"
 #include "role.h"
-
 #include "editroleform.h"
 #include "adduserform.h"
 #include "QMessageBox"
+
 #include <QTableWidgetItem>
 #include <QWidget>
 #include <QHBoxLayout>
@@ -22,9 +22,11 @@ AdminForm::AdminForm(QWidget *parent, InventorySystem* inventorySystem)
     setWindowTitle("Admin Form - Manage Users");
 
     ui->userDisplayTable->setColumnCount(3);
-    ui->userDisplayTable->setHorizontalHeaderLabels({"Username", "Role", "Actions"});
+    ui->userDisplayTable->setHorizontalHeaderLabels({"Username", "Role",
+                                                     "Actions"});
 
-    ui->userDisplayTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->userDisplayTable->horizontalHeader()->setSectionResizeMode(
+        QHeaderView::Stretch);
     ui->userDisplayTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     ui->filtersComboBox->addItem("All Roles");
@@ -92,8 +94,13 @@ void AdminForm::populateTable(const QString& roleFilter) {
             continue;
 
         ui->userDisplayTable->insertRow(displayRow);
-        ui->userDisplayTable->setItem(displayRow, 0, new QTableWidgetItem(user.getUsername()));
-        ui->userDisplayTable->setItem(displayRow, 1, new QTableWidgetItem(roleToString(user.getRole())));
+        ui->userDisplayTable->setItem(displayRow, 0, new
+                                      QTableWidgetItem(user.getUsername()));
+        ui->userDisplayTable->setItem(
+            displayRow,
+            1,
+            new QTableWidgetItem(roleToString(user.getRole()))
+            );
 
         QPushButton* editButton = new QPushButton("Edit");
         QPushButton* deleteButton = new QPushButton("Delete");
