@@ -20,8 +20,6 @@ public:
 private slots:
     void on_pushButton_Login_clicked();
 
-    void on_pushButton_Sign_Up_clicked();
-
 private:
     Ui::LoginForm *ui;
     QAction* togglePasswordAction;

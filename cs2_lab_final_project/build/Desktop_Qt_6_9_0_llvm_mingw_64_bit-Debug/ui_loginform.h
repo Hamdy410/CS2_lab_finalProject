@@ -26,8 +26,6 @@ public:
     QLabel *label_Password;
     QLineEdit *lineEdit_Username;
     QLineEdit *lineEdit_Password;
-    QLabel *label_Question;
-    QPushButton *pushButton_Sign_Up;
     QPushButton *pushButton_Login;
 
     void setupUi(QDialog *LoginForm)
@@ -51,12 +49,6 @@ public:
         lineEdit_Password->setObjectName("lineEdit_Password");
         lineEdit_Password->setGeometry(QRect(120, 160, 201, 28));
         lineEdit_Password->setEchoMode(QLineEdit::EchoMode::Password);
-        label_Question = new QLabel(LoginForm);
-        label_Question->setObjectName("label_Question");
-        label_Question->setGeometry(QRect(60, 270, 141, 21));
-        pushButton_Sign_Up = new QPushButton(LoginForm);
-        pushButton_Sign_Up->setObjectName("pushButton_Sign_Up");
-        pushButton_Sign_Up->setGeometry(QRect(210, 270, 83, 29));
         pushButton_Login = new QPushButton(LoginForm);
         pushButton_Login->setObjectName("pushButton_Login");
         pushButton_Login->setGeometry(QRect(270, 200, 91, 31));
@@ -72,8 +64,6 @@ public:
         label_Login->setText(QCoreApplication::translate("LoginForm", "Login:", nullptr));
         label_Username->setText(QCoreApplication::translate("LoginForm", "Username:", nullptr));
         label_Password->setText(QCoreApplication::translate("LoginForm", "Password:", nullptr));
-        label_Question->setText(QCoreApplication::translate("LoginForm", "Don't have account?", nullptr));
-        pushButton_Sign_Up->setText(QCoreApplication::translate("LoginForm", "Sign Up", nullptr));
         pushButton_Login->setText(QCoreApplication::translate("LoginForm", "Login", nullptr));
     } // retranslateUi
 

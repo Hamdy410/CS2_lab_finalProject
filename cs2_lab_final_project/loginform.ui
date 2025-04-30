@@ -75,32 +75,6 @@
     <enum>QLineEdit::EchoMode::Password</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_Question">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>270</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Don't have account?</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_Sign_Up">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>270</y>
-     <width>83</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Sign Up</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_Login">
    <property name="geometry">
     <rect>

@@ -70,15 +70,12 @@ void AdminForm::on_addnewUserPushButton_clicked()
         Role role = addUser->getRole();
 
         User newUser (username, password, role);
-        if (inventorySystem->userExists(username))
-        {
-            QMessageBox::warning(this, "Error", "Username already exists");
-        }
-        else if(inventorySystem->addUser(newUser))
+        if(inventorySystem->addUser(newUser))
         {
             refreshTable();
+        } else {
+            QMessageBox::warning(this, "Error", "Username already exists");
         }
-
     }
 }
 
