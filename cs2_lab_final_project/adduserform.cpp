@@ -2,6 +2,7 @@
 #include "ui_adduserform.h"
 #include <QAction>
 #include "QMessageBox"
+#include <QRegularExpression>
 
 AddUserForm::AddUserForm(QWidget *parent)
     : QDialog(parent)
@@ -48,7 +49,7 @@ void AddUserForm::on_pushButton_OK_clicked()
     }
     if (!validatePassword(password, role))
     {
-        QMessageBox::warning(this, "Error", "Password must start with user's role");
+        QMessageBox::warning(this, "Error", "Password must include at least one uppercase and one lowercase character");
         return;
     }
 
@@ -57,20 +58,23 @@ void AddUserForm::on_pushButton_OK_clicked()
 
 bool AddUserForm::validatePassword(const QString& password, Role role)
 {
-    QString prefix;
-    switch (role)
-    {
-    case Role::ADMIN:
-        prefix = "admin";
-        break;
-    case Role::MANAGER:
-        prefix = "manager";
-        break;
-    case Role::STAFF:
-        prefix = "staff";
-        break;
-    }
-    return password.startsWith(prefix, Qt::CaseInsensitive);
+    // QString prefix;
+    // switch (role)
+    // {
+    // case Role::ADMIN:
+    //     prefix = "admin";
+    //     break;
+    // case Role::MANAGER:
+    //     prefix = "manager";
+    //     break;
+    // case Role::STAFF:
+    //     prefix = "staff";
+    //     break;
+    // }
+    //return password.startsWith(prefix, Qt::CaseInsensitive);
+    QString pattern = R"((?=.*[a-z])(?=.*[A-Z]).{9,})";
+    QRegularExpression regex(pattern);
+    return regex.match(password).hasMatch();
 }
 
 QString AddUserForm::getUsername() const
