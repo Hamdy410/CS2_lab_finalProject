@@ -102,27 +102,49 @@ bool Inventory::generateReport() {
 }
 
 bool Inventory::loadFromCSV() {
-    //QFile file(FILE_ITEMS);
-    QFile file(DEFAULT_ITEMS);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return false;
+    QFile file(FILE_ITEMS);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QFile defaultFile(DEFAULT_ITEMS);
+        if (!defaultFile.open(QIODevice::ReadOnly | QIODevice::Text))
+            return false;
+
+        QTextStream in(&defaultFile);
+        if (!in.atEnd())
+            in.readLine();
+
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList fields = line.split(",");
+
+            if (fields.size() >= 5) {
+                Item item(
+                    fields[0],
+                    fields[1],
+                    fields[2].toInt(),
+                    fields[3].toDouble(),
+                    fields[4]
+                    );
+                addItem(item);
+            }
+        }
+
+        defaultFile.close();
+        return true;
+    }
 
     QTextStream in(&file);
-    if (!in.atEnd())
-        in.readLine();
-
-    while (!in.atEnd()) {
+    if (!in.atEnd()) {
         QString line = in.readLine();
         QStringList fields = line.split(",");
 
         if (fields.size() >= 5) {
             Item item(
-                fields[0],              // name
-                fields[1],              // category
-                fields[2].toInt(),      // quantity
-                fields[3].toDouble(),   // price
-                fields[4]               // supplier
-            );
+                fields[0],
+                fields[1],
+                fields[2].toInt(),
+                fields[3].toDouble(),
+                fields[4]
+                );
             addItem(item);
         }
     }
