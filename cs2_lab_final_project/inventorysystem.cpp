@@ -19,7 +19,6 @@ InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
 InventorySystem::~InventorySystem() {
     qDebug() << "save called in destructor";
     currentUser = nullptr;
-
     save();
 }
 
@@ -137,7 +136,6 @@ bool InventorySystem::addUser(const User &user) {
     }
 
     users.push_back(user);
-    save();
 
     Item dummyItem;
     operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime(),
@@ -237,7 +235,6 @@ bool InventorySystem::updateUsername(const QString &oldusername,
                          "Changed username from " + oldusername +
                          "to " + newUsername);
 
-    save();
     emit userChanged();
     return true;
 }
@@ -271,7 +268,6 @@ bool InventorySystem::resetUserPassword(const QString &username,
                          QDateTime::currentDateTime(),
         "Reset password for user: " + username);
 
-    save();
     emit userChanged();
     return true;
 }
@@ -293,7 +289,6 @@ bool InventorySystem::updateUserRole(const QString &username, Role newRole) {
                                  "Updated role for users: " + username);
             users.erase(it);
             users.push_back(updatedUser);
-            save();
             emit userChanged();
             return true;
         }
@@ -311,7 +306,6 @@ bool InventorySystem::addItem(const Item &item) {
         operations.addRecord(item, currentUser->getUsername(),
                             QDateTime::currentDateTime(),
                             "Added Item");
-        save();
         emit inventoryChanged();
     }
 
@@ -327,7 +321,6 @@ bool InventorySystem::removeItem(const Item& item) {
         operations.addRecord(item, currentUser->getUsername(),
                             QDateTime::currentDateTime(),
                             "Removed Item");
-        save();
         emit inventoryChanged();
     }
 

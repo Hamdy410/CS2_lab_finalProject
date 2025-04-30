@@ -136,26 +136,35 @@ void AdminForm::populateTable(const QString& roleFilter) {
 
 void AdminForm::onEditUser(int row) {
     QString username = ui->userDisplayTable->item(row, 0)->text();
-    QString role = ui->userDisplayTable->item(row, 1)->text();
+    QString roleStr = ui->userDisplayTable->item(row, 0)->text();
 
-    Role currentRole = stringToRole(role);
+    Role currentRole = stringToRole(roleStr);
+
+    const QVector<User>& users = inventorySystem->getUsers();
+    QString password;
+    for (const User& user : users) {
+        if (user.getUsername() == username) {
+            password = user.getPassword();
+            break;
+        }
+    }
+
     editRoleform* editForm = new editRoleform(this);
-    editForm->setUserInfo(username, currentRole);
+    editForm->setUserInfo(username, password, currentRole);
 
-    if (editForm->exec() == QDialog::Accepted)
-    {
+    if (editForm->exec() == QDialog::Accepted) {
         QString newUsername = editForm->getNewUsername();
         QString newPassword = editForm->getNewPassword();
         Role newRole = editForm->getSelectedRole();
 
-        // Update the user in the inventory system
         inventorySystem->updateUsername(username, newUsername);
         inventorySystem->resetUserPassword(newUsername, newPassword);
         inventorySystem->updateUserRole(newUsername, newRole);
-        qDebug() << "User Edit Button called";
+
         ui->userDisplayTable->item(row, 1)->setText(roleToString(newRole));
         ui->userDisplayTable->item(row, 0)->setText(newUsername);
     }
+
     delete editForm;
 }
 

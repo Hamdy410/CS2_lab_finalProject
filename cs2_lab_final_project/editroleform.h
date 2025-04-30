@@ -2,6 +2,8 @@
 #define EDITROLEFORM_H
 
 #include <QDialog>
+#include <QAction>
+
 #include "role.h"
 
 namespace Ui {
@@ -16,7 +18,8 @@ public:
     explicit editRoleform(QWidget *parent = nullptr);
     ~editRoleform();
     // Set the current user's information
-    void setUserInfo(const QString& username, Role currentRole);
+    void setUserInfo(const QString& username,
+                     const QString& password, Role currentRole);
     Role getSelectedRole() const;
     QString getNewUsername() const;
     QString getNewPassword() const;
@@ -29,6 +32,9 @@ private:
     Ui::editRoleform *ui;
     QString m_username;
     bool validatePassword(const QString& password);
+
+    QAction* togglePasswordAction = nullptr;
+    bool isPasswordVisible = false;
 };
 
 #endif // EDITROLEFORM_H
