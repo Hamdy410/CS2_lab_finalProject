@@ -26,11 +26,11 @@
     <string>OK</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>80</y>
+     <y>70</y>
      <width>111</width>
      <height>151</height>
     </rect>
@@ -59,13 +59,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>70</y>
-     <width>191</width>
-     <height>161</height>
+     <x>150</x>
+     <y>60</y>
+     <width>181</width>
+     <height>171</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -83,6 +83,22 @@
      <widget class="QComboBox" name="comboBox_Role"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_password_warning">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>230</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Password should include atleast one uppercase and one lowercase character.</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <resources/>
