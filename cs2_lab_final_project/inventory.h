@@ -6,16 +6,19 @@
 #include <QString>
 #include "item.h"
 
-#define FILE_ITEMS "items.csv"
 #define DEFAULT_ITEMS ":db/default_items.csv"
 
 class Inventory
 {
 private:
     QVector<Item> items;
+    QString m_inventoryFilePath;
+
+    QStringList parseCSVRow(const QString& line);
+    QString quoteField(const QString& field);
 
 public:
-    Inventory();
+    Inventory(const QString& inventoryFilePath);
     virtual ~Inventory();
 
 

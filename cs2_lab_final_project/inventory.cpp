@@ -4,7 +4,44 @@
 #include <QTextStream>
 #include <QDateTime>
 
-Inventory::Inventory() {
+QStringList Inventory::parseCSVRow(const QString &line) {
+    QStringList result;
+    QString current;
+    bool inQuotes = false;
+
+    for (int i = 0; i < line.length(); i++) {
+        QChar c = line[i];
+        if (c == '"') {
+            // Check for the escaped quote.
+            if (inQuotes && i + 1 < line.length() && line[i+1] == '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (c == ',' && !inQuotes) {
+            result.append(current.trimmed());
+            current.clear();
+        } else {
+            current += c;
+        }
+    }
+
+    result.append(current.trimmed());
+    return result;
+}
+
+QString Inventory::quoteField(const QString &field) {
+    if (field.contains(',') || field.contains('"')) {
+        QString escaped = field;
+        escaped.replace("\"", "\"\"");
+        return "\"" + escaped + "\"";
+    }
+
+    return field;
+}
+
+Inventory::Inventory(const QString& inventoryFilePath) : m_inventoryFilePath(inventoryFilePath) {
     loadFromCSV();
 }
 
@@ -102,7 +139,7 @@ bool Inventory::generateReport() {
 }
 
 bool Inventory::loadFromCSV() {
-    QFile file(FILE_ITEMS);
+    QFile file(m_inventoryFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QFile defaultFile(DEFAULT_ITEMS);
         if (!defaultFile.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -114,7 +151,7 @@ bool Inventory::loadFromCSV() {
 
         while (!in.atEnd()) {
             QString line = in.readLine();
-            QStringList fields = line.split(",");
+            QStringList fields = parseCSVRow(line);
 
             if (fields.size() >= 5) {
                 Item item(
@@ -135,7 +172,7 @@ bool Inventory::loadFromCSV() {
     QTextStream in(&file);
     if (!in.atEnd()) {
         QString line = in.readLine();
-        QStringList fields = line.split(",");
+        QStringList fields = parseCSVRow(line);
 
         if (fields.size() >= 5) {
             Item item(
@@ -154,7 +191,7 @@ bool Inventory::loadFromCSV() {
 }
 
 bool Inventory::saveToCSV() {
-    QFile file(FILE_ITEMS);
+    QFile file(m_inventoryFilePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
@@ -162,11 +199,11 @@ bool Inventory::saveToCSV() {
     out << "name, category, quantity, price, supplier" << Qt::endl;
 
     for (const auto& item : items) {
-        out << item.name() << ","
-            << item.category() << ","
+        out << quoteField(item.name()) << ","
+            << quoteField(item.category()) << ","
             << item.quantity() << ","
             << item.price() << ","
-            << item.supplier() << Qt::endl;
+            << quoteField(item.supplier()) << Qt::endl;
     }
 
     file.close();
