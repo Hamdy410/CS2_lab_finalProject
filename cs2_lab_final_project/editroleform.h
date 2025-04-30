@@ -18,6 +18,9 @@ public:
     // Set the current user's information
     void setUserInfo(const QString& username, Role currentRole);
     Role getSelectedRole() const;
+    QString getNewUsername() const;
+    QString getNewPassword() const;
+
 private slots:
     void on_comboBox_editRole_currentIndexChanged(int index);
     void on_pushButton_OK_clicked();
@@ -25,6 +28,7 @@ private slots:
 private:
     Ui::editRoleform *ui;
     QString m_username;
+    bool validatePassword(const QString& password);
 };
 
 #endif // EDITROLEFORM_H

@@ -26,7 +26,7 @@ private:
     Ui::AddUserForm *ui;
     QAction* togglePasswordAction;
     bool isPasswordVisible;
-    bool validatePassword(const QString& password, Role role);
+    bool validatePassword(const QString& password);
 };
 
 #endif // ADDUSERFORM_H
