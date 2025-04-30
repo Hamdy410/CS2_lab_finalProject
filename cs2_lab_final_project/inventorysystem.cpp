@@ -9,7 +9,7 @@ InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
     currentUser(nullptr),
     operations(this, operationsFile),
     usersFilePath(usersFile),
-    inventoryFilePath(inventoryFile) {
+    inventory(inventoryFile){
     load();
     for (const auto &user : users) {
         qDebug() << "Detected user: " << user.getUsername();
