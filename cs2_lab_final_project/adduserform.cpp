@@ -35,7 +35,6 @@ void AddUserForm::on_pushButton_OK_clicked()
 {
     QString username = getUsername();
     QString password = getPassword();
-    Role role = getRole();
 
     if (username.isEmpty() || password.isEmpty())
     {
@@ -47,7 +46,7 @@ void AddUserForm::on_pushButton_OK_clicked()
         QMessageBox::warning(this, "Error", "Password must be at least 9 characters long");
         return;
     }
-    if (!validatePassword(password, role))
+    if (!validatePassword(password))
     {
         QMessageBox::warning(this, "Error", "Password must include at least one uppercase and one lowercase character");
         return;
@@ -56,22 +55,8 @@ void AddUserForm::on_pushButton_OK_clicked()
     accept();
 }
 
-bool AddUserForm::validatePassword(const QString& password, Role role)
+bool AddUserForm::validatePassword(const QString& password)
 {
-    // QString prefix;
-    // switch (role)
-    // {
-    // case Role::ADMIN:
-    //     prefix = "admin";
-    //     break;
-    // case Role::MANAGER:
-    //     prefix = "manager";
-    //     break;
-    // case Role::STAFF:
-    //     prefix = "staff";
-    //     break;
-    // }
-    //return password.startsWith(prefix, Qt::CaseInsensitive);
     QString pattern = R"((?=.*[a-z])(?=.*[A-Z]).{9,})";
     QRegularExpression regex(pattern);
     return regex.match(password).hasMatch();

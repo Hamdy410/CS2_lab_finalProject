@@ -13,26 +13,11 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QComboBox" name="comboBox_editRole">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>80</y>
-     <width>82</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string/>
-    </property>
-   </item>
-  </widget>
   <widget class="QLabel" name="usernameLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>30</y>
+     <y>20</y>
      <width>91</width>
      <height>21</height>
     </rect>
@@ -44,8 +29,8 @@
   <widget class="QPushButton" name="pushButton_OK">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>130</y>
+     <x>230</x>
+     <y>150</y>
      <width>83</width>
      <height>29</height>
     </rect>
@@ -53,6 +38,82 @@
    <property name="text">
     <string>OK</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_passwordWarning">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Passwors should contain at least one uppercase and lowercase character</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>84</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_newUsername">
+      <property name="text">
+       <string>New username:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_newPassword">
+      <property name="text">
+       <string>New password:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_newRole">
+      <property name="text">
+       <string>New role: </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>50</y>
+     <width>111</width>
+     <height>88</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLineEdit" name="lineEdit_username"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_password"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBox_editRole">
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
