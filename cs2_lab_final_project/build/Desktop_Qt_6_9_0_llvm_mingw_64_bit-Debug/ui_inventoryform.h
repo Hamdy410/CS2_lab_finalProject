@@ -46,6 +46,7 @@ public:
     QPushButton *pushButtonAdd;
     QLabel *label_10;
     QTextEdit *textEditLowStock;
+    QPushButton *pushButton_Go_back;
 
     void setupUi(QDialog *InventoryForm)
     {
@@ -140,6 +141,9 @@ public:
         textEditLowStock = new QTextEdit(InventoryForm);
         textEditLowStock->setObjectName("textEditLowStock");
         textEditLowStock->setGeometry(QRect(940, 70, 131, 111));
+        pushButton_Go_back = new QPushButton(InventoryForm);
+        pushButton_Go_back->setObjectName("pushButton_Go_back");
+        pushButton_Go_back->setGeometry(QRect(10, 20, 91, 51));
 
         retranslateUi(InventoryForm);
 
@@ -188,6 +192,7 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
                         "0px;\">Item #4</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Item #5</p></body></html>", nullptr));
+        pushButton_Go_back->setText(QCoreApplication::translate("InventoryForm", "Go back", nullptr));
     } // retranslateUi
 
 };

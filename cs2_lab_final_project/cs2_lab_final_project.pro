@@ -24,7 +24,6 @@ SOURCES += \
     operationrecord.cpp \
     record.cpp \
     role.cpp \
-    signupform.cpp \
     systemui.cpp \
     user.cpp \
 
@@ -42,7 +41,6 @@ HEADERS += \
     operationrecord.h \
     record.h \
     role.h \
-    signupform.h \
     systemui.h \
     user.h
 
@@ -54,7 +52,6 @@ FORMS += \
     inventoryform.ui \
     loginform.ui \
     mainwindow.ui \
-    signupform.ui \
     systemui.ui
 
 # Default rules for deployment.

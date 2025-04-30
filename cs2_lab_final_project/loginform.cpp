@@ -54,14 +54,3 @@ void LoginForm::on_pushButton_Login_clicked()
         qDebug() << "Cannot find the user.";
     }
 }
-
-
-void LoginForm::on_pushButton_Sign_Up_clicked()
-{
-    SignUpForm *signUpForm = new SignUpForm(inventorySystem);
-
-    signUpForm->show();
-
-    this->close();
-}
-
