@@ -1,45 +1,10 @@
 #include "inventory.h"
 #include "item.h"
+#include "helpers.h"
+
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
-
-QStringList Inventory::parseCSVRow(const QString &line) {
-    QStringList result;
-    QString current;
-    bool inQuotes = false;
-
-    for (int i = 0; i < line.length(); i++) {
-        QChar c = line[i];
-        if (c == '"') {
-            // Check for the escaped quote.
-            if (inQuotes && i + 1 < line.length() && line[i+1] == '"') {
-                current += '"';
-                i++;
-            } else {
-                inQuotes = !inQuotes;
-            }
-        } else if (c == ',' && !inQuotes) {
-            result.append(current.trimmed());
-            current.clear();
-        } else {
-            current += c;
-        }
-    }
-
-    result.append(current.trimmed());
-    return result;
-}
-
-QString Inventory::quoteField(const QString &field) {
-    if (field.contains(',') || field.contains('"')) {
-        QString escaped = field;
-        escaped.replace("\"", "\"\"");
-        return "\"" + escaped + "\"";
-    }
-
-    return field;
-}
 
 Inventory::Inventory(const QString& inventoryFilePath) : m_inventoryFilePath(inventoryFilePath) {
     loadFromCSV();
@@ -170,7 +135,7 @@ bool Inventory::loadFromCSV() {
     }
 
     QTextStream in(&file);
-    if (!in.atEnd()) {
+    while (!in.atEnd()) {
         QString line = in.readLine();
         QStringList fields = parseCSVRow(line);
 
@@ -205,6 +170,8 @@ bool Inventory::saveToCSV() {
             << item.price() << ","
             << quoteField(item.supplier()) << Qt::endl;
     }
+
+    qDebug() << "Saving to:" << m_inventoryFilePath;
 
     file.close();
     return true;

@@ -14,6 +14,7 @@ SOURCES += \
     adminform.cpp \
     dashboard.cpp \
     editroleform.cpp \
+    helpers.cpp \
     inventory.cpp \
     inventoryform.cpp \
     inventorysystem.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     adminform.h \
     dashboard.h \
     editroleform.h \
+    helpers.h \
     inventory.h \
     inventoryform.h \
     inventorysystem.h \

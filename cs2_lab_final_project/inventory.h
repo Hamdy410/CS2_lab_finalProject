@@ -14,9 +14,6 @@ private:
     QVector<Item> items;
     QString m_inventoryFilePath;
 
-    QStringList parseCSVRow(const QString& line);
-    QString quoteField(const QString& field);
-
 public:
     Inventory(const QString& inventoryFilePath);
     virtual ~Inventory();
