@@ -64,7 +64,7 @@ void AdminForm::on_addnewUserPushButton_clicked()
 {
     qDebug() << "Add New User Button Called";
     AddUserForm* addUser= new AddUserForm(this);
-    addUser->show();
+    //addUser->show();
     if (addUser->exec() == QDialog::Accepted)
     {
         QString username = addUser->getUsername();
@@ -75,7 +75,9 @@ void AdminForm::on_addnewUserPushButton_clicked()
         if(inventorySystem->addUser(newUser))
         {
             refreshTable();
-        } else {
+        }
+        else
+        {
             QMessageBox::warning(this, "Error", "Username already exists");
         }
     }
