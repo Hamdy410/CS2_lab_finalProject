@@ -37,9 +37,9 @@ public:
     bool removeUser(const QString& username);
     QVector<User> getUsers() const;
     bool userExists(const QString& username) const;
-    bool updateUsername(const QString& oldusername, const QString& newUsername);
-    bool resetUserPassword(const QString& username, const QString& newPassword);
-    bool updateUserRole(const QString& username, Role newRole);
+
+    bool updateUser(const QString& oldUsername, const QString& newUsername,
+                    const QString& newPassword, Role newRole);
 
     // Inventory Operations
     bool addItem(const Item& item);

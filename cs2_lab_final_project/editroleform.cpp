@@ -41,6 +41,8 @@ void editRoleform::setUserInfo(const QString &username, const QString &password,
     int index = ui->comboBox_editRole->findData(static_cast<int>(currentRole));
     if (index != -1)
         ui->comboBox_editRole->setCurrentIndex(index);
+
+    ui->usernameLabel->setText(username);
 }
 
 QString editRoleform::getUsername() const {
