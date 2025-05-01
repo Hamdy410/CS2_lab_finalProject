@@ -38,8 +38,8 @@ void editRoleform::setUserInfo(const QString& username, const QString& password,
 {
     m_username = username;
     ui->usernameLabel->setText(username);
-    ui->lineEdit_username->setText(username);
-    ui->lineEdit_password->setText(password);
+    //ui->lineEdit_username->setText(username);
+    //ui->lineEdit_password->setText(password);
 
     int index = ui->comboBox_editRole->findData(static_cast<int>(currentRole));
     if (index != -1)
