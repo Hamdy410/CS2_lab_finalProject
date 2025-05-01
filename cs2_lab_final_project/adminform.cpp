@@ -155,10 +155,7 @@ void AdminForm::onEditUser(int row) {
         QString newPassword = editForm->getPassword();
         Role newRole = editForm->getRole();
 
-        inventorySystem->updateUsername(username, newUsername);
-        inventorySystem->resetUserPassword(newUsername, newPassword);
-        inventorySystem->updateUserRole(newUsername, newRole);
-
+        inventorySystem->updateUser(username, newUsername, newPassword, newRole);
         refreshTable();
     }
 
