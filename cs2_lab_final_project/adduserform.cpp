@@ -41,14 +41,14 @@ void AddUserForm::on_pushButton_OK_clicked()
         QMessageBox::warning(this, "Error", "Username and password cannot be empty");
         return;
     }
-    if (password.length() < 9)
+    if (password.length() < 8)
     {
-        QMessageBox::warning(this, "Error", "Password must be at least 9 characters long");
+        QMessageBox::warning(this, "Error", "Password must be at least 8 characters long");
         return;
     }
     if (!validatePassword(password))
     {
-        QMessageBox::warning(this, "Error", "Password must include at least one uppercase and one lowercase character");
+        QMessageBox::warning(this, "Error", "Password must include at least one uppercase, one lowercase character and one number");
         return;
     }
 
@@ -57,7 +57,7 @@ void AddUserForm::on_pushButton_OK_clicked()
 
 bool AddUserForm::validatePassword(const QString& password)
 {
-    QString pattern = R"((?=.*[a-z])(?=.*[A-Z]).{9,})";
+    QString pattern = R"((?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,})";
     QRegularExpression regex(pattern);
     return regex.match(password).hasMatch();
 }
