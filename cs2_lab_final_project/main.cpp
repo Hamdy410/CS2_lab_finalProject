@@ -7,6 +7,19 @@
 #include <QDir>
 #include <QStandardPaths>
 
+/*
+ * Important Notice:
+ *      Data files (.csv) are created inside the Users folders.
+ *      Typically, in windows:
+ *          C:\Users\<username>\AppData\Roaming\CS2_Team\Inventory_System_Manager
+ *      Right now, you will find two files:
+ *          items.csv
+ *          users.csv
+ *
+ *      Operations Logic have been handled, but its file has not been impelemented
+ *      as for now.
+ */
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
