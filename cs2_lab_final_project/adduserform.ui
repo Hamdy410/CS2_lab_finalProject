@@ -94,7 +94,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Password should include atleast one uppercase and one lowercase character.</string>
+    <string>Password should include at least one uppercase, one lowercase character and one number.</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
