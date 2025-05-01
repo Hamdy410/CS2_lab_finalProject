@@ -136,13 +136,11 @@ void AdminForm::populateTable(const QString& roleFilter) {
 
 void AdminForm::onEditUser(int row) {
     QString username = ui->userDisplayTable->item(row, 0)->text();
-    QString roleStr = ui->userDisplayTable->item(row, 0)->text();
-
+    QString roleStr = ui->userDisplayTable->item(row, 1)->text();
     Role currentRole = stringToRole(roleStr);
 
-    const QVector<User>& users = inventorySystem->getUsers();
     QString password;
-    for (const User& user : users) {
+    for (const User& user : inventorySystem->getUsers()) {
         if (user.getUsername() == username) {
             password = user.getPassword();
             break;
@@ -153,20 +151,20 @@ void AdminForm::onEditUser(int row) {
     editForm->setUserInfo(username, password, currentRole);
 
     if (editForm->exec() == QDialog::Accepted) {
-        QString newUsername = editForm->getNewUsername();
-        QString newPassword = editForm->getNewPassword();
-        Role newRole = editForm->getSelectedRole();
+        QString newUsername = editForm->getUsername();
+        QString newPassword = editForm->getPassword();
+        Role newRole = editForm->getRole();
 
         inventorySystem->updateUsername(username, newUsername);
         inventorySystem->resetUserPassword(newUsername, newPassword);
         inventorySystem->updateUserRole(newUsername, newRole);
 
-        ui->userDisplayTable->item(row, 1)->setText(roleToString(newRole));
-        ui->userDisplayTable->item(row, 0)->setText(newUsername);
+        refreshTable();
     }
 
     delete editForm;
 }
+
 
 void AdminForm::onDeleteUser(int row) {
     QString username = ui->userDisplayTable->item(row, 0)->text();
