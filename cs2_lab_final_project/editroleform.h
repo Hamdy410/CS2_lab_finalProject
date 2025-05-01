@@ -20,21 +20,20 @@ public:
     // Set the current user's information
     void setUserInfo(const QString& username,
                      const QString& password, Role currentRole);
-    Role getSelectedRole() const;
-    QString getNewUsername() const;
-    QString getNewPassword() const;
+
+    QString getUsername() const;
+    QString getPassword() const;
+    Role getRole() const;
 
 private slots:
-    void on_comboBox_editRole_currentIndexChanged(int index);
     void on_pushButton_OK_clicked();
 
 private:
     Ui::editRoleform *ui;
-    QString m_username;
-    bool validatePassword(const QString& password);
 
     QAction* togglePasswordAction = nullptr;
     bool isPasswordVisible = false;
+    bool validatePassword(const QString& password);
 };
 
 #endif // EDITROLEFORM_H
