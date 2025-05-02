@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
         qDebug() << "Failed to create director:" << dataDir;
         return a.exec();
     }
+
     QString usersPath = dataDir + QDir::separator() + "users.csv";
     QString inventoryPath = dataDir + QDir::separator() + "inventory.csv";
     QString operationsPath = dataDir + QDir::separator() + "operations.csv";
