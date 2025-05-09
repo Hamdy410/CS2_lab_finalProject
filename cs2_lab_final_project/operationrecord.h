@@ -23,6 +23,7 @@ public:
     bool loadOperationRecords(QString csvFilePath);
     Item item;
     QDateTime time;
+    QString getBestSeller();
 };
 
 #endif // OPERATIONRECORD_H

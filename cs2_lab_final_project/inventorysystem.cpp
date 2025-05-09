@@ -289,3 +289,7 @@ const Inventory& InventorySystem::getInventory() const
 {
     return inventory;
 }
+
+OperationRecord InventorySystem::returnOperationRecord() {
+    return operations;
+}

@@ -7,8 +7,10 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Dashboard)
 {
-    inventorySystem = inventorySystem;
+    inventorySystem = inventorySystemInput;
     ui->setupUi(this);
+    ui->label_BestSellerSold->setText("Dashboard: " + inventorySystem->returnOperationRecord().getBestSeller());
+
 }
 
 Dashboard::~Dashboard()

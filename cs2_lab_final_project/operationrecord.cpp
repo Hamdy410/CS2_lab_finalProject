@@ -76,3 +76,18 @@ bool OperationRecord::save() {
     file.close();
     return true;
 }
+
+QString OperationRecord::getBestSeller() {
+    int maxSold = 0;
+    QString nameSold = "No Sales Yet!";
+
+    for (Record record:records) {
+        auto item = record.getItem();
+
+        if (item.quantity() > maxSold) {
+            maxSold = item.quantity();
+            nameSold = item.name();
+        }
+    }
+    return nameSold;
+}

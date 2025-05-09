@@ -55,6 +55,7 @@ public:
     bool currentUserCanEditInventory() const;
     QString getCurrentUsername() const;
     User* getCurrentUser() const { return currentUser; }
+    OperationRecord returnOperationRecord();
 
 signals:
     void userChanged();
