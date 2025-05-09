@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QCloseEvent>
+#include "inventorysystem.h"
 
 namespace Ui {
 class Dashboard;
@@ -13,7 +14,7 @@ class Dashboard : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dashboard(QWidget *parent = nullptr);
+    explicit Dashboard(InventorySystem* inventorySystemInput, QWidget *parent = nullptr);
     ~Dashboard();
 
 private slots:
@@ -24,6 +25,7 @@ protected:
 
 private:
     Ui::Dashboard *ui;
+    InventorySystem* inventorySystem;
 };
 
 #endif // DASHBOARD_H

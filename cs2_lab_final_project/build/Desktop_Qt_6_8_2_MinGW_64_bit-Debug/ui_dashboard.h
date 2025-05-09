@@ -27,33 +27,45 @@ public:
     QLabel *label_BestSellerSold;
     QLabel *label_LowestSellerSold;
     QLabel *label_OnlyLeft;
+    QPushButton *goBackPushButton;
+    QLabel *label;
 
     void setupUi(QDialog *Dashboard)
     {
         if (Dashboard->objectName().isEmpty())
             Dashboard->setObjectName("Dashboard");
-        Dashboard->resize(400, 300);
+        Dashboard->resize(537, 455);
         pushButton_Report = new QPushButton(Dashboard);
         pushButton_Report->setObjectName("pushButton_Report");
-        pushButton_Report->setGeometry(QRect(20, 230, 101, 29));
+        pushButton_Report->setGeometry(QRect(90, 320, 101, 29));
         label_BestSeller = new QLabel(Dashboard);
         label_BestSeller->setObjectName("label_BestSeller");
-        label_BestSeller->setGeometry(QRect(30, 20, 181, 31));
+        label_BestSeller->setGeometry(QRect(100, 110, 181, 31));
         label_lowesrSeller = new QLabel(Dashboard);
         label_lowesrSeller->setObjectName("label_lowesrSeller");
-        label_lowesrSeller->setGeometry(QRect(30, 90, 221, 31));
+        label_lowesrSeller->setGeometry(QRect(100, 180, 221, 31));
         label_LowStock = new QLabel(Dashboard);
         label_LowStock->setObjectName("label_LowStock");
-        label_LowStock->setGeometry(QRect(30, 160, 251, 31));
+        label_LowStock->setGeometry(QRect(100, 250, 251, 31));
         label_BestSellerSold = new QLabel(Dashboard);
         label_BestSellerSold->setObjectName("label_BestSellerSold");
-        label_BestSellerSold->setGeometry(QRect(30, 50, 171, 31));
+        label_BestSellerSold->setGeometry(QRect(100, 140, 171, 31));
         label_LowestSellerSold = new QLabel(Dashboard);
         label_LowestSellerSold->setObjectName("label_LowestSellerSold");
-        label_LowestSellerSold->setGeometry(QRect(30, 120, 171, 31));
+        label_LowestSellerSold->setGeometry(QRect(100, 210, 171, 31));
         label_OnlyLeft = new QLabel(Dashboard);
         label_OnlyLeft->setObjectName("label_OnlyLeft");
-        label_OnlyLeft->setGeometry(QRect(30, 190, 171, 31));
+        label_OnlyLeft->setGeometry(QRect(100, 280, 171, 31));
+        goBackPushButton = new QPushButton(Dashboard);
+        goBackPushButton->setObjectName("goBackPushButton");
+        goBackPushButton->setGeometry(QRect(20, 20, 81, 65));
+        goBackPushButton->setMinimumSize(QSize(65, 65));
+        label = new QLabel(Dashboard);
+        label->setObjectName("label");
+        label->setGeometry(QRect(220, 20, 121, 61));
+        QFont font;
+        font.setPointSize(16);
+        label->setFont(font);
 
         retranslateUi(Dashboard);
 
@@ -70,6 +82,8 @@ public:
         label_BestSellerSold->setText(QCoreApplication::translate("Dashboard", "Sold: ", nullptr));
         label_LowestSellerSold->setText(QCoreApplication::translate("Dashboard", "Sold: ", nullptr));
         label_OnlyLeft->setText(QCoreApplication::translate("Dashboard", "Only left: ", nullptr));
+        goBackPushButton->setText(QCoreApplication::translate("Dashboard", "Go Back", nullptr));
+        label->setText(QCoreApplication::translate("Dashboard", "Welcome!", nullptr));
     } // retranslateUi
 
 };
