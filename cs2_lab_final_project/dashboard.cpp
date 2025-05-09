@@ -9,8 +9,9 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
 {
     inventorySystem = inventorySystemInput;
     ui->setupUi(this);
-    ui->label_BestSellerSold->setText("Dashboard: " + inventorySystem->returnOperationRecord().getBestSeller());
-
+    ui->label_BestSellerSold->setText("Sold: " + inventorySystem->returnOperationRecord().getBestSeller());
+    ui->label_LowestSellerSold->setText("Sold: " + inventorySystem->returnOperationRecord().getLowestSeller());
+    ui->label_OnlyLeft->setText(inventorySystem->returnOperationRecord().getLowStock());
 }
 
 Dashboard::~Dashboard()
