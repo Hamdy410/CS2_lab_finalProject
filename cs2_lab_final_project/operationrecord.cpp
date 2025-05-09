@@ -91,3 +91,33 @@ QString OperationRecord::getBestSeller() {
     }
     return nameSold;
 }
+
+QString OperationRecord::getLowestSeller() {
+    int minSold = INT_MAX;
+    QString nameSold = "No Sales Yet!";
+
+    for (Record record:records) {
+        auto item = record.getItem();
+
+        if (item.quantity() < minSold) {
+            minSold = item.quantity();
+            nameSold = item.name();
+        }
+    }
+    return nameSold;
+}
+
+QString OperationRecord::getLowStock() {
+    QString result;
+
+    for (Record record:records) {
+        auto item = record.getItem();
+
+        if (item.quantity() < 5) {
+            result += item.name() + " has only " + QString::number(item.quantity()) + " left! \n";
+        }
+    }
+    if (result == "")
+        result = "No low stocks!";
+    return result;
+}

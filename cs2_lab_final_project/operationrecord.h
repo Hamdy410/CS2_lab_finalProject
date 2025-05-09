@@ -24,6 +24,8 @@ public:
     Item item;
     QDateTime time;
     QString getBestSeller();
+    QString getLowestSeller();
+    QString getLowStock();
 };
 
 #endif // OPERATIONRECORD_H
