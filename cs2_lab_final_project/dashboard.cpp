@@ -1,12 +1,13 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
-
+#include "inventorysystem.h"
 #include <QCloseEvent>
 
-Dashboard::Dashboard(QWidget *parent)
+Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Dashboard)
 {
+    inventorySystem = inventorySystem;
     ui->setupUi(this);
 }
 

@@ -54,7 +54,7 @@ void SystemUI::on_signoutPushButton_clicked()
 void SystemUI::on_dashboardButton_clicked()
 {
     qDebug() << "This is dashboard";
-    Dashboard* dashboard = new Dashboard(this);
+    Dashboard* dashboard = new Dashboard(inventorySystem, this);
     dashboard->show();
 
     this->hide();
