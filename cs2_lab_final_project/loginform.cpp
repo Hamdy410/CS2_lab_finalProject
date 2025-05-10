@@ -23,6 +23,29 @@ LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
         ui->lineEdit_Password->setEchoMode(isPasswordVisible ? QLineEdit::Normal : QLineEdit::Password);
         togglePasswordAction->setIcon(QIcon(isPasswordVisible ? ":/icons/eye_open.png" : ":icons/eye_closed.png"));
     });
+
+    darkStyle = R"(
+    QWidget { background-color: #121212; color: #E0E0E0; }
+    QPushButton { background-color: #1F1F1F; color: #E0E0E0; }
+    QLineEdit { background-color: #1F1F1F; color: #E0E0E0; }
+)";
+
+    lightStyle = R"(
+    QWidget { background-color: #FFFFFF; color: #000000; }
+    QPushButton { background-color: #F0F0F0; color: #000000; }
+    QLineEdit { background-color: #FFFFFF; color: #000000; }
+)";
+
+    isDarkMode = false; //the default is the light mode
+    toggleChoosingTheme= new QAction(QIcon(":/icons/sun_15195263.png"), "", this);
+    ui->pushButton_Theme->setIcon(QIcon(":/icons/sun_15195263.png"));
+    qApp->setStyleSheet(lightStyle);
+
+    // connect(toggleChoosingTheme, &QAction::triggered, this, [=]() mutable {
+    //     isDarkMode = !isDarkMode;
+    //     qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
+    //     toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
+    // });
 }
 
 LoginForm::~LoginForm()
@@ -53,3 +76,21 @@ void LoginForm::on_pushButton_Login_clicked()
         qDebug() << "Cannot find the user.";
     }
 }
+
+// void LoginForm::makeDark()
+// {
+//     qApp->setStyleSheet(darkStyle);
+// }
+
+// void LoginForm::makeLight()
+// {
+//     qApp->setStyleSheet(lightStyle);
+// }
+
+void LoginForm::on_pushButton_Theme_clicked()
+{
+    isDarkMode = !isDarkMode;
+    qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
+    toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
+}
+

@@ -7,5 +7,7 @@
     <qresource prefix="/icons">
         <file>eye_closed.png</file>
         <file>eye_open.png</file>
+        <file>moon_4867888.png</file>
+        <file>sun_15195263.png</file>
     </qresource>
 </RCC>
