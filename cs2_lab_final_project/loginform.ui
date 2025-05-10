@@ -94,14 +94,26 @@
      <x>290</x>
      <y>30</y>
      <width>41</width>
-     <height>29</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
     <string>PushButton</string>
    </property>
+   <property name="icon">
+    <iconset resource="db.qrc">
+     <normaloff>:/icons/sun_15195263.png</normaloff>:/icons/sun_15195263.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="db.qrc"/>
+ </resources>
  <connections/>
 </ui>
