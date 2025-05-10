@@ -88,6 +88,19 @@
     <string>Login</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_Theme">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>30</y>
+     <width>41</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
