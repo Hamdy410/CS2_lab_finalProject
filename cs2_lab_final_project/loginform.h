@@ -36,7 +36,7 @@ private slots:
 //     void makeDark();
 //     void makeLight();
 
-    void on_pushButton_Theme_clicked();
+    //void on_pushButton_Theme_clicked();
 
 private:
     QString darkStyle;
