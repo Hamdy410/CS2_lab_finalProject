@@ -6,6 +6,8 @@
 
 #include "systemui.h"
 
+bool LoginForm::isDarkMode = false;
+
 LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::LoginForm)
@@ -28,15 +30,22 @@ LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
     QWidget { background-color: #121212; color: #E0E0E0; }
     QPushButton { background-color: #1F1F1F; color: #E0E0E0; }
     QLineEdit { background-color: #1F1F1F; color: #E0E0E0; }
-)";
+    )";
+    //black, very light grey
+    //dark grey, very light grey
+    // dark grey, very light grey
+
 
     lightStyle = R"(
     QWidget { background-color: #FFFFFF; color: #000000; }
     QPushButton { background-color: #F0F0F0; color: #000000; }
     QLineEdit { background-color: #FFFFFF; color: #000000; }
-)";
+    )";
+    //white, black
+    // light grey, black
+    // white, black
 
-    isDarkMode = false; //the default is the light mode
+    //the default is the light mode
     ui->pushButton_Theme->setText("");
     ui->pushButton_Theme->setIcon(QIcon(":/icons/moon_4867888.png"));
     qApp->setStyleSheet(lightStyle);

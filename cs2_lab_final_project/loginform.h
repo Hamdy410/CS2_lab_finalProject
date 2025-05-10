@@ -17,17 +17,19 @@ public:
     explicit LoginForm(InventorySystem* inventorySystemParam, QWidget *parent = nullptr);
     ~LoginForm();
     InventorySystem *inventorySystem;
+    static bool isDarkMode;
+
 private slots:
     void on_pushButton_Login_clicked();
     void on_pushButton_Theme_clicked();
 
 private:
-    QString darkStyle;
-    QString lightStyle;
+
     Ui::LoginForm *ui;
     QAction* togglePasswordAction;
     bool isPasswordVisible;
-    bool isDarkMode;
+    QString darkStyle;
+    QString lightStyle;
 };
 
 #endif // LOGINFORM_H
