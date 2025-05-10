@@ -15,14 +15,9 @@ Inventory::~Inventory() {
 }
 
 bool Inventory::addItem(const Item &theItem) {
-    for (int i = 0; i < items.size(); i++) {
-        if (items[i] == theItem) {
-            Item updatedItem = items[i];
-            updatedItem += theItem;
-
-            // Since QSet doesn't allow direct modification
-            items.removeOne(items[i]);
-            items.push_back(updatedItem);
+    for (auto& item : items) {
+        if (item == theItem) {
+            item += theItem;
             return true;
         }
     }
@@ -104,6 +99,8 @@ bool Inventory::generateReport() {
 }
 
 bool Inventory::loadFromCSV() {
+    items.clear();
+
     QFile file(m_inventoryFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QFile defaultFile(DEFAULT_ITEMS);
@@ -135,6 +132,8 @@ bool Inventory::loadFromCSV() {
     }
 
     QTextStream in(&file);
+    if (!in.atEnd()) in.readLine();
+
     while (!in.atEnd()) {
         QString line = in.readLine();
         QStringList fields = parseCSVRow(line);
@@ -161,7 +160,7 @@ bool Inventory::saveToCSV() {
         return false;
 
     QTextStream out(&file);
-    out << "name, category, quantity, price, supplier" << Qt::endl;
+    out << "name,category,quantity,price,supplier" << Qt::endl;
 
     for (const auto& item : items) {
         out << quoteField(item.name()) << ","

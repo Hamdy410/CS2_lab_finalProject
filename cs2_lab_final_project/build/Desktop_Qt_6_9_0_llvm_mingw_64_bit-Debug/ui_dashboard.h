@@ -28,6 +28,7 @@ public:
     QLabel *label_LowestSellerSold;
     QLabel *label_OnlyLeft;
     QPushButton *goBackPushButton;
+    QLabel *label;
 
     void setupUi(QDialog *Dashboard)
     {
@@ -59,6 +60,12 @@ public:
         goBackPushButton->setObjectName("goBackPushButton");
         goBackPushButton->setGeometry(QRect(20, 20, 81, 65));
         goBackPushButton->setMinimumSize(QSize(65, 65));
+        label = new QLabel(Dashboard);
+        label->setObjectName("label");
+        label->setGeometry(QRect(220, 20, 121, 61));
+        QFont font;
+        font.setPointSize(16);
+        label->setFont(font);
 
         retranslateUi(Dashboard);
 
@@ -76,6 +83,7 @@ public:
         label_LowestSellerSold->setText(QCoreApplication::translate("Dashboard", "Sold: ", nullptr));
         label_OnlyLeft->setText(QCoreApplication::translate("Dashboard", "Only left: ", nullptr));
         goBackPushButton->setText(QCoreApplication::translate("Dashboard", "Go Back", nullptr));
+        label->setText(QCoreApplication::translate("Dashboard", "Welcome!", nullptr));
     } // retranslateUi
 
 };

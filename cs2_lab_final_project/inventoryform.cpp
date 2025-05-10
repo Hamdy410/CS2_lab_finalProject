@@ -11,6 +11,9 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
 {
     ui->setupUi(this);
     inventorySystem = inventorySystemParam;
+    ui->tableWidgetInventoryItems->setColumnCount(5);
+    ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
+        {"Name", "Quantity", "Category", "Price", "Supplier"});
     refreshItems();
     displayLowStock();
 }
@@ -45,18 +48,14 @@ void InventoryForm::on_pushButtonAdd_clicked()
         QMessageBox::warning(this, "Error", "Invalid quantity value");
         return;
     }
-    Item newItem(name, category, quantity, price, supplier);
-    QVector<Item> existingItems = inventorySystem->searchItems(name, "");
 
-    for (const Item& item : existingItems)
-    {
-        if (item.name() == name && item.category() == category && item.supplier() == supplier) {
-            QMessageBox::warning(this, "Error", "Item already exists with same name, category and supplier");
-            return;
-        }
-    }
+    Item newItem(name, category, quantity, price, supplier);
+
     if (inventorySystem->addItem(newItem))
     {
+        refreshItems();
+        displayLowStock();
+
         ui->lineEditAddName->clear();
         ui->lineEditAddCategory->clear();
         ui->lineEditAddPrice->clear();
@@ -82,64 +81,24 @@ void InventoryForm::on_comboBoxSearchCriteria_currentIndexChanged(int)
     refreshItems();
 }
 
-void InventoryForm::refreshItems()
-{
-    // Clear existing items
-    ui->tableWidgetInventoryItems->setRowCount(0);
-    QString searchValue = ui->lineEditSearch->text().trimmed();
-    QString searchCriteria = ui->comboBoxCriteria->currentText();
+void InventoryForm::refreshItems() {
+    ui->tableWidgetInventoryItems->setRowCount(0); // Clear existing
 
-    // to get items from inventory system based on search criteria
-    QVector<Item> items;
-    if (!searchValue.isEmpty())
-    {
-        if (searchCriteria == "Supplier")
-        {
-            items = inventorySystem->searchItems("", searchValue);
-        }
-        else if (searchCriteria == "Category")
-        {
-            items = inventorySystem->getInventory().getItems();
-            QVector<Item> filteredItems;
-            for (const Item& item : items)
-            {
-                if (item.category().contains(searchValue, Qt::CaseInsensitive))
-                {
-                    filteredItems.append(item);
-                }
-            }
-            items = filteredItems;
-        }
-        else if (searchCriteria == "Name")
-        {
-            items = inventorySystem->getInventory().getItems();
-            QVector<Item> filteredItems;
-            for (const Item& item : items)
-            {
-                if (item.name().contains(searchValue, Qt::CaseInsensitive))
-                {
-                    filteredItems.append(item);
-                }
-            }
-            items = filteredItems;
-        }
-    }
-    else
-    {
-        items = inventorySystem->getInventory().getItems();
-    }
-    // to add items to table
-    for (int i = 0; i < items.size(); ++i)
-    {
+    QVector<Item> items = inventorySystem->getInventory().getItems();
+
+    for (int i = 0; i < items.size(); ++i) {
         const Item& item = items[i];
-        ui->tableWidgetInventoryItems->insertRow(i);
-        ui->tableWidgetInventoryItems->setItem(i, 0, new QTableWidgetItem(item.name()));
-        ui->tableWidgetInventoryItems->setItem(i, 1, new QTableWidgetItem(QString::number(item.quantity())));
-        ui->tableWidgetInventoryItems->setItem(i, 2, new QTableWidgetItem(item.category()));
-        ui->tableWidgetInventoryItems->setItem(i, 3, new QTableWidgetItem(QString::number(item.price())));
-        ui->tableWidgetInventoryItems->setItem(i, 4, new QTableWidgetItem(item.supplier()));
+        int row = ui->tableWidgetInventoryItems->rowCount();
+        ui->tableWidgetInventoryItems->insertRow(row);
+
+        ui->tableWidgetInventoryItems->setItem(row, 0, new QTableWidgetItem(item.name()));
+        ui->tableWidgetInventoryItems->setItem(row, 1, new QTableWidgetItem(QString::number(item.quantity())));
+        ui->tableWidgetInventoryItems->setItem(row, 2, new QTableWidgetItem(item.category()));
+        ui->tableWidgetInventoryItems->setItem(row, 3, new QTableWidgetItem(QString::number(item.price())));
+        ui->tableWidgetInventoryItems->setItem(row, 4, new QTableWidgetItem(item.supplier()));
     }
 }
+
 
 void InventoryForm::displayLowStock()
 {
