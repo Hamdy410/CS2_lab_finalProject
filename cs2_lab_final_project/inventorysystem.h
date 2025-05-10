@@ -44,7 +44,6 @@ public:
     // Inventory Operations
     bool addItem(const Item& item);
     bool removeItem(const Item& item);
-    QVector<Item> searchItems(const QString& name="", const QString& supplier="");
     QVector<Item> getLowStockItems();
     bool generateReport();
     const Inventory& getInventory() const;

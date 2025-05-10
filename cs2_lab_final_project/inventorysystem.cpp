@@ -238,15 +238,6 @@ bool InventorySystem::removeItem(const Item& item) {
     return result;
 }
 
-QVector<Item> InventorySystem::searchItems(const QString &name,
-                                           const QString &supplier) {
-    if (!isAuthenticated()) {
-        return QVector<Item>();
-    }
-
-    return inventory.searchItem(name, supplier);
-}
-
 QVector<Item> InventorySystem::getLowStockItems() {
     if (!isAuthenticated()) {
         return QVector<Item>();

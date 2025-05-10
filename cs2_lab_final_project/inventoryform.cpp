@@ -14,6 +14,16 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
     ui->tableWidgetInventoryItems->setColumnCount(5);
     ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
         {"Name", "Quantity", "Category", "Price", "Supplier"});
+
+    // Real-time connections
+    connect(ui->lineEditSearch, &QLineEdit::textChanged, this, &InventoryForm::refreshItems);
+    connect(ui->comboBoxCriteria, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &InventoryForm::refreshItems);
+
+    ui->tableWidgetInventoryItems->horizontalHeader()->setSectionResizeMode(
+        QHeaderView::Stretch);
+    ui->tableWidgetInventoryItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     refreshItems();
     displayLowStock();
 }
@@ -66,11 +76,6 @@ void InventoryForm::on_pushButtonAdd_clicked()
     }
 }
 
-void InventoryForm::on_pushButtonSearch_clicked()
-{
-    refreshItems();
-}
-
 void InventoryForm::on_lineEditSearch_textChanged(const QString &)
 {
     refreshItems();
@@ -82,20 +87,30 @@ void InventoryForm::on_comboBoxSearchCriteria_currentIndexChanged(int)
 }
 
 void InventoryForm::refreshItems() {
-    ui->tableWidgetInventoryItems->setRowCount(0); // Clear existing
+    ui->tableWidgetInventoryItems->setRowCount(0);
+    QString searchValue = ui->lineEditSearch->text().trimmed().toLower();
+    QString searchCriteria = ui->comboBoxCriteria->currentText();
+    QVector<Item> allItems = inventorySystem->getInventory().getItems();
 
-    QVector<Item> items = inventorySystem->getInventory().getItems();
+    for (const Item& item : allItems) {
+        QString fieldValue;
 
-    for (int i = 0; i < items.size(); ++i) {
-        const Item& item = items[i];
-        int row = ui->tableWidgetInventoryItems->rowCount();
-        ui->tableWidgetInventoryItems->insertRow(row);
+        if (searchCriteria == "Name")
+            fieldValue = item.name().toLower();
+        else if (searchCriteria == "Category")
+            fieldValue = item.category().toLower();
+        else if (searchCriteria == "Supplier")
+            fieldValue = item.supplier().toLower();
 
-        ui->tableWidgetInventoryItems->setItem(row, 0, new QTableWidgetItem(item.name()));
-        ui->tableWidgetInventoryItems->setItem(row, 1, new QTableWidgetItem(QString::number(item.quantity())));
-        ui->tableWidgetInventoryItems->setItem(row, 2, new QTableWidgetItem(item.category()));
-        ui->tableWidgetInventoryItems->setItem(row, 3, new QTableWidgetItem(QString::number(item.price())));
-        ui->tableWidgetInventoryItems->setItem(row, 4, new QTableWidgetItem(item.supplier()));
+        if (searchValue.isEmpty() || fieldValue.contains(searchValue)) {
+            int row = ui->tableWidgetInventoryItems->rowCount();
+            ui->tableWidgetInventoryItems->insertRow(row);
+            ui->tableWidgetInventoryItems->setItem(row, 0, new QTableWidgetItem(item.name()));
+            ui->tableWidgetInventoryItems->setItem(row, 1, new QTableWidgetItem(QString::number(item.quantity())));
+            ui->tableWidgetInventoryItems->setItem(row, 2, new QTableWidgetItem(item.category()));
+            ui->tableWidgetInventoryItems->setItem(row, 3, new QTableWidgetItem(QString::number(item.price())));
+            ui->tableWidgetInventoryItems->setItem(row, 4, new QTableWidgetItem(item.supplier()));
+        }
     }
 }
 

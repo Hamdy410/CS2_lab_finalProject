@@ -17,7 +17,7 @@ public:
     void displayLowStock();
 private slots:
     void on_pushButtonAdd_clicked();
-    void on_pushButtonSearch_clicked();
+
     void refreshItems();
     void on_lineEditSearch_textChanged(const QString &);
     void on_comboBoxSearchCriteria_currentIndexChanged(int);
