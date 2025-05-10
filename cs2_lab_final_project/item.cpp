@@ -20,7 +20,10 @@ bool Item::updateQuantity(int quantity, QString operation) {
 bool Item::getDetails(QTextStream& outs) const { return true; }
 
 bool Item::operator==(const Item& theObject) const {
-    return theObject.name() == m_name && theObject.quantity() == m_quantity && theObject.category() == m_category && theObject.price() == m_price && theObject.supplier() == m_supplier;
+    return theObject.name() == m_name
+           && theObject.category() == m_category
+           && theObject.price() == m_price
+           && theObject.supplier() == m_supplier;
 }
 
 Item& Item::operator+=(const Item& theObject) {
