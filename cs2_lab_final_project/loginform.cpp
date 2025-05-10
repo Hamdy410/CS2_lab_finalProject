@@ -37,15 +37,9 @@ LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
 )";
 
     isDarkMode = false; //the default is the light mode
-    toggleChoosingTheme= new QAction(QIcon(":/icons/sun_15195263.png"), "", this);
-    ui->pushButton_Theme->setIcon(QIcon(":/icons/sun_15195263.png"));
+    ui->pushButton_Theme->setText("");
+    ui->pushButton_Theme->setIcon(QIcon(":/icons/moon_4867888.png"));
     qApp->setStyleSheet(lightStyle);
-
-    connect(toggleChoosingTheme, &QAction::triggered, this, [=]() mutable {
-        isDarkMode = !isDarkMode;
-        qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
-        toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
-    });
 }
 
 LoginForm::~LoginForm()
@@ -77,20 +71,10 @@ void LoginForm::on_pushButton_Login_clicked()
     }
 }
 
-// void LoginForm::makeDark()
-// {
-//     qApp->setStyleSheet(darkStyle);
-// }
-
-// void LoginForm::makeLight()
-// {
-//     qApp->setStyleSheet(lightStyle);
-// }
-
 void LoginForm::on_pushButton_Theme_clicked()
 {
     isDarkMode = !isDarkMode;
     qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
-    toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
+    ui->pushButton_Theme->setIcon(QIcon(isDarkMode ? ":/icons/sun_15195263.png" : ":/icons/moon_4867888.png"));
 }
 
