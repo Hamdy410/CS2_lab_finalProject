@@ -4,6 +4,7 @@
 #include "adminform.h"
 #include "dashboard.h"
 #include "inventoryform.h"
+#include "loginform.h"
 
 #include <QFont>
 #include <QString>
@@ -36,6 +37,20 @@ SystemUI::SystemUI(QWidget *parent, InventorySystem* inventorySystem)
         ui->inventoryManagerButton->hide();
         qDebug() << "You can not access inventory";
     }
+
+    darkStyle = R"(
+    QWidget { background-color: #121212; color: #E0E0E0; }
+    QPushButton { background-color: #1F1F1F; color: #E0E0E0; }
+    QLineEdit { background-color: #1F1F1F; color: #E0E0E0; }
+    )";
+
+    lightStyle = R"(
+    QWidget { background-color: #FFFFFF; color: #000000; }
+    QPushButton { background-color: #F0F0F0; color: #000000; }
+    QLineEdit { background-color: #FFFFFF; color: #000000; }
+    )";
+    ui->pushButton_Theme->setText("");
+    ui->pushButton_Theme->setIcon(QIcon(LoginForm::isDarkMode ? ":/icons/sun_15195263.png" : ":/icons/moon_4867888.png"));
 }
 
 SystemUI::~SystemUI()
@@ -83,3 +98,12 @@ void SystemUI::closeEvent(QCloseEvent *event) {
     this->close();
     event->accept();
 }
+
+
+void SystemUI::on_pushButton_Theme_clicked()
+{
+    LoginForm::isDarkMode = !LoginForm::isDarkMode;
+    qApp->setStyleSheet(LoginForm::isDarkMode ? darkStyle : lightStyle);
+    ui->pushButton_Theme->setIcon(QIcon(LoginForm::isDarkMode ? ":/icons/sun_15195263.png" : ":/icons/moon_4867888.png"));
+}
+

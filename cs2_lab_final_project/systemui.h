@@ -27,12 +27,16 @@ private slots:
 
     void on_inventoryManagerButton_clicked();
 
+    void on_pushButton_Theme_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::SystemUI *ui;
     InventorySystem* inventorySystem = nullptr;
+    QString darkStyle;
+    QString lightStyle;
 };
 
 #endif // SYSTEMUI_H
