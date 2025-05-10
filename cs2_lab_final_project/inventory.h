@@ -21,7 +21,6 @@ public:
 
     bool addItem(const Item& theItem);
     bool removeItem(const Item& theItem);
-    QVector<Item> searchItem(const QString& itemName="", const QString& itemSupplier="");
     QVector<Item> getLowStockItems();
     bool generateReport();
 

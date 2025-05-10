@@ -29,7 +29,6 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLineEdit *lineEditSearch;
-    QPushButton *pushButtonSearch;
     QComboBox *comboBoxCriteria;
     QLabel *label_3;
     QLabel *label_4;
@@ -84,9 +83,6 @@ public:
         lineEditSearch = new QLineEdit(InventoryForm);
         lineEditSearch->setObjectName("lineEditSearch");
         lineEditSearch->setGeometry(QRect(210, 350, 471, 28));
-        pushButtonSearch = new QPushButton(InventoryForm);
-        pushButtonSearch->setObjectName("pushButtonSearch");
-        pushButtonSearch->setGeometry(QRect(210, 430, 83, 29));
         comboBoxCriteria = new QComboBox(InventoryForm);
         comboBoxCriteria->addItem(QString());
         comboBoxCriteria->addItem(QString());
@@ -165,7 +161,6 @@ public:
         ___qtablewidgetitem4->setText(QCoreApplication::translate("InventoryForm", "Supplier", nullptr));
         label->setText(QCoreApplication::translate("InventoryForm", "Inventory", nullptr));
         label_2->setText(QCoreApplication::translate("InventoryForm", "Search:", nullptr));
-        pushButtonSearch->setText(QCoreApplication::translate("InventoryForm", "Go", nullptr));
         comboBoxCriteria->setItemText(0, QCoreApplication::translate("InventoryForm", "Name", nullptr));
         comboBoxCriteria->setItemText(1, QCoreApplication::translate("InventoryForm", "Category", nullptr));
         comboBoxCriteria->setItemText(2, QCoreApplication::translate("InventoryForm", "Supplier", nullptr));

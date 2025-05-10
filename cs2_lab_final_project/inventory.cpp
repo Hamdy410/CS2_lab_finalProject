@@ -42,20 +42,6 @@ bool Inventory::removeItem(const Item &theItem) {
     return false;
 }
 
-QVector<Item> Inventory::searchItem(const QString& itemName, const QString& itemSupplier) {
-    QVector<Item> matchingItems;
-    for (const auto &item : items) {
-        bool nameMatches = itemName.isEmpty() || item.name() == itemName;
-        bool supplierMatches = itemSupplier.isEmpty() || item.supplier() == itemSupplier;
-
-        if (nameMatches && supplierMatches) {
-            matchingItems.append(item);
-        }
-    }
-
-    return matchingItems;
-}
-
 QVector<Item> Inventory::getLowStockItems() {
     QVector<Item> lowStockItems;
     for (const auto& item : items) {
