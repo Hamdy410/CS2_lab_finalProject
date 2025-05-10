@@ -41,11 +41,11 @@ LoginForm::LoginForm(InventorySystem* inventorySystemParam, QWidget *parent)
     ui->pushButton_Theme->setIcon(QIcon(":/icons/sun_15195263.png"));
     qApp->setStyleSheet(lightStyle);
 
-    // connect(toggleChoosingTheme, &QAction::triggered, this, [=]() mutable {
-    //     isDarkMode = !isDarkMode;
-    //     qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
-    //     toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
-    // });
+    connect(toggleChoosingTheme, &QAction::triggered, this, [=]() mutable {
+        isDarkMode = !isDarkMode;
+        qApp->setStyleSheet(isDarkMode ? darkStyle : lightStyle);
+        toggleChoosingTheme->setIcon(QIcon(isDarkMode ? ":/icons/moon_4867888.png" : ":/icons/sun_15195263.png"));
+    });
 }
 
 LoginForm::~LoginForm()
