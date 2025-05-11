@@ -19,6 +19,7 @@ InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
 InventorySystem::~InventorySystem() {
     qDebug() << "save called in destructor";
     currentUser = nullptr;
+    operations.save();
     save();
 }
 

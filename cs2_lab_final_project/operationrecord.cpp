@@ -18,24 +18,66 @@ OperationRecord::OperationRecord(InventorySystem* inventorySystemParam, QString 
 
 bool OperationRecord::loadOperationRecords(QString csvFilePath) {
     QFile file(csvFilePath);
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        QStringList values = line.split(',');
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QFile defaultFile(":/db/default_operations.csv");
+        if (!defaultFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            recordsFilePath = csvFilePath;
+            return true;
+        }
 
-        QString name = values[0];
-        QString category = values[1];
-        int quantity = values[2].toInt();
-        double price = values[3].toDouble();
-        QString supplier = values[4];
-        QString username = values[5];
-        QDateTime time = QDateTime::fromString(values[6]);
-        QString operation = values[7];
+        QTextStream in(&defaultFile);
+        if (!in.atEnd()) in.readLine();
 
-        Item newItem(name, category, quantity, price, supplier);
-        addRecord(newItem, username, time, operation);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList values = line.split(',');
+
+            if (values.size() >= 8) {
+                Item newItem(
+                    values[0],
+                    values[1],
+                    values[2].toInt(),
+                    values[3].toDouble(),
+                    values[4]
+                    );
+                addRecord(
+                    newItem,
+                    values[5],
+                    QDateTime::fromString(values[6]),
+                    values[7]
+                    );
+            }
+        }
+        defaultFile.close();
+    } else {
+        QTextStream in(&file);
+        if (!in.atEnd()) in.readLine();
+
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList values = line.split(',');
+
+            if (values.size() >= 8) {
+                Item newItem(
+                    values[0],
+                    values[1],
+                    values[2].toInt(),
+                    values[3].toDouble(),
+                    values[4]
+                    );
+                addRecord(
+                    newItem,
+                    values[5],
+                    QDateTime::fromString(values[6]),
+                    values[7]
+                    );
+            }
+        }
+
+        file.close();
     }
-    file.close();
+
+    recordsFilePath = csvFilePath;
     return true;
 }
 
@@ -49,8 +91,12 @@ const QVector<Record>& OperationRecord::getRecords() const {
 }
 
 bool OperationRecord::save() {
-    QFile file(":/db/db/operation_records.csv");
+    QFile file(recordsFilePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
     QTextStream out(&file);
+    out << "name,category,quantity,price,supplier,username,time,operation" << Qt::endl;
 
     for (int i = 0; i < records.size(); i++) {
         QString name = records[i].getItem().name();
@@ -62,7 +108,7 @@ bool OperationRecord::save() {
         QDateTime time = records[i].getTime();
         QString operation = records[i].getOperation();
 
-        QString row = QString("%1,%2,%3,%4,%5,%6,%7,%8\n")
+        QString row = QString("%1,%2,%3,%4,%5,%6,%7,%8")
                           .arg(name)
                           .arg(category)
                           .arg(quantity)
@@ -71,7 +117,7 @@ bool OperationRecord::save() {
                           .arg(username)
                           .arg(time.toString())
                           .arg(operation);
-        out << row;
+        out << row << Qt::endl;
     }
     file.close();
     return true;
