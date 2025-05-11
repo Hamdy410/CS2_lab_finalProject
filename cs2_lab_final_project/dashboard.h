@@ -20,12 +20,16 @@ public:
 private slots:
     void on_goBackPushButton_clicked();
 
+    void on_pushButton_Report_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::Dashboard *ui;
     InventorySystem* inventorySystem;
+
+    void displayLowStock();
 };
 
 #endif // DASHBOARD_H

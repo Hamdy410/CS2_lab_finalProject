@@ -2,7 +2,9 @@
 #include "ui_inventoryform.h"
 #include <QString>
 #include "item.h"
+
 #include <QTableWidgetItem>
+#include <QInputDialog>
 #include <QMessageBox>
 
 InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent)
@@ -14,9 +16,9 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
 
     ui->textEditLowStock->setReadOnly(true);
 
-    ui->tableWidgetInventoryItems->setColumnCount(5);
+    ui->tableWidgetInventoryItems->setColumnCount(6);
     ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
-        {"Name", "Quantity", "Category", "Price", "Supplier"});
+        {"Name", "Quantity", "Category", "Price", "Supplier", "Action"});
 
     // Real-time connections
     connect(ui->lineEditSearch, &QLineEdit::textChanged, this, &InventoryForm::refreshItems);
@@ -113,6 +115,14 @@ void InventoryForm::refreshItems() {
             ui->tableWidgetInventoryItems->setItem(row, 2, new QTableWidgetItem(item.category()));
             ui->tableWidgetInventoryItems->setItem(row, 3, new QTableWidgetItem(QString::number(item.price())));
             ui->tableWidgetInventoryItems->setItem(row, 4, new QTableWidgetItem(item.supplier()));
+
+            // Add Sell button
+            QPushButton* sellButton = new QPushButton("Sell");
+            sellButton->setProperty("itemName", item.name());
+            sellButton->setProperty("itemSupplier", item.supplier());
+            sellButton->setProperty("itemCategory", item.category());
+            connect(sellButton, &QPushButton::clicked, this, &InventoryForm::onSellButtonClicked);
+            ui->tableWidgetInventoryItems->setCellWidget(row, 5, sellButton);
         }
     }
 }
@@ -133,4 +143,54 @@ void InventoryForm::on_pushButton_Go_back_clicked()
 {
     this->parentWidget()->show();
     this->close();
+}
+
+void InventoryForm::onSellButtonClicked() {
+    QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if (!button)
+        return;
+
+    QString itemName = button->property("itemName").toString();
+    QString itemSupplier = button->property("itemSupplier").toString();
+    QString itemCategory = button->property("itemCategory").toString();
+
+    QVector<Item> items = inventorySystem->getInventory().getItems();
+    Item targetItem;
+    bool found = false;
+
+    for (const Item& item : items) {
+        if (item.name() == itemName &&
+            item.supplier() == itemSupplier &&
+            item.category() == itemCategory) {
+            targetItem = item;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        QMessageBox::warning(this, "Error", "Item not found.");
+        return;
+    }
+
+    bool ok;
+    int sellQuantity = QInputDialog::getInt(this,
+                                    "Sell Item",
+                                    "Enter quantity to sell:",
+                                    1,
+                                    1,
+                                    targetItem.quantity(),
+                                    1,
+                                    &ok);
+    if (!ok)
+        return;
+
+    Item itemToRemove(itemName, itemCategory, sellQuantity, targetItem.price(), itemSupplier);
+    if (inventorySystem->removeItem(itemToRemove)) {
+        refreshItems();
+        displayLowStock();
+        QMessageBox::information(this, "Sucess", QString("Sole %1 units of %2").arg(sellQuantity).arg(itemName));
+    } else {
+        QMessageBox::warning(this, "Error", "Failed to update inventory.");
+    }
 }
