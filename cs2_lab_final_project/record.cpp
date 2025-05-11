@@ -10,18 +10,18 @@ Record::Record(const Item& itemParam, const QString& usernameParam, const QDateT
     operation = operationParam;
 }
 
-Item Record::getItem() {
+Item Record::getItem() const {
     return item;
 }
 
-QString Record::getUsername() {
+QString Record::getUsername() const {
     return username;
 }
 
-QDateTime Record::getTime() {
+QDateTime Record::getTime() const {
     return time;
 }
 
-QString Record::getOperation() {
+QString Record::getOperation() const {
     return operation;
 }

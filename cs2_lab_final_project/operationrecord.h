@@ -23,9 +23,9 @@ public:
     bool loadOperationRecords(QString csvFilePath);
     Item item;
     QDateTime time;
-    QString getBestSeller();
-    QString getLowestSeller();
-    QString getLowStock();
+    QString getBestSeller() const;
+    QString getLowestSeller() const;
+    QString getLowStock() const;
 };
 
 #endif // OPERATIONRECORD_H

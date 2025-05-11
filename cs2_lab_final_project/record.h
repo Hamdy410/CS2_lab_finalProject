@@ -16,10 +16,10 @@ public:
     Record(const Item& itemParam, const QString& usernameParam, const QDateTime& timeParam,
            const QString& operationParam="Unknown");
 
-    Item getItem();
-    QString getUsername();
-    QDateTime getTime();
-    QString getOperation();
+    Item getItem() const;
+    QString getUsername() const;
+    QDateTime getTime() const;
+    QString getOperation() const;
     QString serialize() const;
     bool deserialize(const QString& data);
 };

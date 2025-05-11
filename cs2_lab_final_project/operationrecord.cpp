@@ -9,7 +9,10 @@
 #include "user.h"
 #include <QDateTime>
 #include <QTextStream>
+#include <QMap>
+#include <QMapIterator>
 #include "inventorysystem.h"
+#include "helpers.h"
 
 OperationRecord::OperationRecord(InventorySystem* inventorySystemParam, QString csvFilePath) {
     inventorySystem = inventorySystemParam;
@@ -30,7 +33,7 @@ bool OperationRecord::loadOperationRecords(QString csvFilePath) {
 
         while (!in.atEnd()) {
             QString line = in.readLine();
-            QStringList values = line.split(',');
+            QStringList values = parseCSVRow(line);
 
             if (values.size() >= 8) {
                 Item newItem(
@@ -55,7 +58,7 @@ bool OperationRecord::loadOperationRecords(QString csvFilePath) {
 
         while (!in.atEnd()) {
             QString line = in.readLine();
-            QStringList values = line.split(',');
+            QStringList values = parseCSVRow(line);
 
             if (values.size() >= 8) {
                 Item newItem(
@@ -123,47 +126,86 @@ bool OperationRecord::save() {
     return true;
 }
 
-QString OperationRecord::getBestSeller() {
+QString OperationRecord::getBestSeller() const {
+    QMap<QString, int> salesByItem;
+    for (const Record& record : records) {
+        if (record.getOperation() == "Removed Item") {
+            QString itemName = record.getItem().name();
+            int quantity = record.getItem().quantity();
+
+            if (salesByItem.contains(itemName)) {
+                salesByItem[itemName] += quantity;
+            } else {
+                salesByItem[itemName] = quantity;
+            }
+        }
+    }
+
     int maxSold = 0;
-    QString nameSold = "No Sales Yet!";
+    QString bestSeller = "No Sales Yet!";
 
-    for (Record record:records) {
-        auto item = record.getItem();
-
-        if (item.quantity() > maxSold) {
-            maxSold = item.quantity();
-            nameSold = item.name();
+    QMapIterator<QString, int> i(salesByItem);
+    while (i.hasNext()) {
+        i.next();
+        if (i.value() > maxSold) {
+            maxSold = i.value();
+            bestSeller = i.key();
         }
     }
-    return nameSold;
+
+    return bestSeller + " (" + QString::number(maxSold) + " units)";
 }
 
-QString OperationRecord::getLowestSeller() {
+QString OperationRecord::getLowestSeller() const {
+    QMap<QString, int> salesByItem;
+
+    for (const Record& record: records) {
+        if (record.getOperation() == "Removed Item") {
+            QString itemName = record.getItem().name();
+            int quantity = record.getItem().quantity();
+
+            if (salesByItem.contains(itemName)) {
+                salesByItem[itemName] += quantity;
+            } else {
+                salesByItem[itemName] = quantity;
+            }
+        }
+    }
+
+    if (salesByItem.isEmpty()) {
+        return "No Sales Yet!";
+    }
+
     int minSold = INT_MAX;
-    QString nameSold = "No Sales Yet!";
+    QString lowestSeller = "";
 
-    for (Record record:records) {
-        auto item = record.getItem();
-
-        if (item.quantity() < minSold) {
-            minSold = item.quantity();
-            nameSold = item.name();
+    QMapIterator<QString, int> i(salesByItem);
+    while (i.hasNext()) {
+        i.next();
+        if (i.value() < minSold) {
+            minSold = i.value();
+            lowestSeller = i.key();
         }
     }
-    return nameSold;
+
+    return lowestSeller + " (" + QString::number(minSold) + " units)";
 }
 
-QString OperationRecord::getLowStock() {
-    QString result;
-
-    for (Record record:records) {
-        auto item = record.getItem();
-
-        if (item.quantity() < 5) {
-            result += item.name() + " has only " + QString::number(item.quantity()) + " left! \n";
-        }
+QString OperationRecord::getLowStock() const {
+    if (!inventorySystem) {
+        return "\tSystem Error: Cannot access inventory";
     }
-    if (result == "")
-        result = "No low stocks!";
+
+    QVector<Item> lowStockItems = inventorySystem->getLowStockItems();
+
+    if (lowStockItems.isEmpty()) {
+        return "\tNo low stock items!";
+    }
+
+    QString result;
+    for (const Item& item : lowStockItems) {
+        result += "\t" + item.name() + " has only " + QString::number(item.quantity()) + " left!\n";
+    }
+
     return result;
 }

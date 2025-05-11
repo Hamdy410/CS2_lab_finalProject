@@ -23,6 +23,7 @@ private slots:
     void on_comboBoxSearchCriteria_currentIndexChanged(int);
 
     void on_pushButton_Go_back_clicked();
+    void onSellButtonClicked();
 
 private:
     Ui::InventoryForm *ui;
