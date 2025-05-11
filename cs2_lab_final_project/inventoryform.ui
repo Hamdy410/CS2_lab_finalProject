@@ -102,7 +102,7 @@
     <rect>
      <x>210</x>
      <y>390</y>
-     <width>82</width>
+     <width>111</width>
      <height>28</height>
     </rect>
    </property>
@@ -151,121 +151,6 @@
    </property>
    <property name="text">
     <string>Add</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditAddName">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>520</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditAddSupplier">
-   <property name="geometry">
-    <rect>
-     <x>820</x>
-     <y>520</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditAddQuantity">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>520</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditAddPrice">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>520</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditAddCategory">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>520</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>520</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Name:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>520</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quantity:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>520</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Category:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>520</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Price:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>760</x>
-     <y>520</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Supplier:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonAdd">
@@ -338,6 +223,68 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <property name="text">
     <string>Go back</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>520</y>
+     <width>1071</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Name:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditAddName"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Quantity:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditAddQuantity"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Category:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditAddCategory"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Price:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditAddPrice"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Supplier:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditAddSupplier"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

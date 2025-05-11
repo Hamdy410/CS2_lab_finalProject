@@ -29,11 +29,11 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_3;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *pushButton_Theme;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_3;
     QLabel *welcomeLabel;
     QSpacerItem *horizontalSpacer;
+    QPushButton *pushButton_Theme;
     QPushButton *signoutPushButton;
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer;
@@ -63,12 +63,6 @@ public:
 
         verticalLayout_3->addItem(verticalSpacer_2);
 
-        pushButton_Theme = new QPushButton(verticalLayoutWidget);
-        pushButton_Theme->setObjectName("pushButton_Theme");
-        pushButton_Theme->setIconSize(QSize(30, 30));
-
-        verticalLayout_3->addWidget(pushButton_Theme);
-
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         horizontalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
@@ -83,6 +77,13 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer);
+
+        pushButton_Theme = new QPushButton(verticalLayoutWidget);
+        pushButton_Theme->setObjectName("pushButton_Theme");
+        pushButton_Theme->setMinimumSize(QSize(40, 75));
+        pushButton_Theme->setIconSize(QSize(30, 30));
+
+        horizontalLayout_5->addWidget(pushButton_Theme);
 
         signoutPushButton = new QPushButton(verticalLayoutWidget);
         signoutPushButton->setObjectName("signoutPushButton");
@@ -147,8 +148,8 @@ public:
     void retranslateUi(QDialog *SystemUI)
     {
         SystemUI->setWindowTitle(QCoreApplication::translate("SystemUI", "Dialog", nullptr));
-        pushButton_Theme->setText(QCoreApplication::translate("SystemUI", "PushButton", nullptr));
         welcomeLabel->setText(QCoreApplication::translate("SystemUI", "Welcome, username", nullptr));
+        pushButton_Theme->setText(QCoreApplication::translate("SystemUI", "PushButton", nullptr));
         signoutPushButton->setText(QCoreApplication::translate("SystemUI", "Sign Out", nullptr));
         dashboardButton->setText(QCoreApplication::translate("SystemUI", "Dashboard", nullptr));
         adminPageButton->setText(QCoreApplication::translate("SystemUI", "Admin Page", nullptr));
