@@ -11,6 +11,9 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
 {
     ui->setupUi(this);
     inventorySystem = inventorySystemParam;
+
+    ui->textEditLowStock->setReadOnly(true);
+
     ui->tableWidgetInventoryItems->setColumnCount(5);
     ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
         {"Name", "Quantity", "Category", "Price", "Supplier"});
