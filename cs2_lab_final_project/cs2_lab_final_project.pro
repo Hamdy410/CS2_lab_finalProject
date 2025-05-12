@@ -13,6 +13,7 @@ DEFINES += QT_NO_DEBUG_OUTPUT
 
 
 SOURCES += \
+    additemform.cpp \
     adduserform.cpp \
     adminform.cpp \
     dashboard.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     user.cpp \
 
 HEADERS += \
+    additemform.h \
     adduserform.h \
     adminform.h \
     dashboard.h \
@@ -52,6 +54,7 @@ HEADERS += \
     user.h
 
 FORMS += \
+    additemform.ui \
     adduserform.ui \
     adminform.ui \
     dashboard.ui \

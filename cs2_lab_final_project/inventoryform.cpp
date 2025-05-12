@@ -14,6 +14,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QLabel>
+#include "QVBoxLayout"
 
 InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
@@ -49,49 +50,11 @@ InventoryForm::~InventoryForm()
 
 void InventoryForm::on_pushButtonAdd_clicked()
 {
-    QString name = ui->lineEditAddName->text();
-    QString category = ui->lineEditAddCategory->text();
-    double price = ui->lineEditAddPrice->text().toDouble();
-    QString strPrice = ui->lineEditAddPrice->text();
-    int quantity = ui->lineEditAddQuantity->text().toInt();
-    QString strQuantity = ui->lineEditAddQuantity->text();
-    QString supplier = ui->lineEditAddSupplier->text();
-
-    if (name.isEmpty() || category.isEmpty() || supplier.isEmpty() ||
-        strPrice.isEmpty() || strQuantity.isEmpty()) {
-        QMessageBox::warning(this, "Error", "All fields must be filled");
-        return;
-    }
-    if (price <= 0)
+    AddItemForm addItemDialog(inventorySystem, this);
+    if (addItemDialog.exec() == QDialog::Accepted)
     {
-        QMessageBox::warning(this, "Error", "Invalid price value");
-        return;
-    }
-    if (quantity < 0)
-    {
-        QMessageBox::warning(this, "Error", "Invalid quantity value");
-        return;
-    }
-
-    Item newItem(name, category, quantity, price, supplier);
-
-    if (inventorySystem->addItem(newItem))
-    {
-        if (!selectedPhotoPath.isEmpty())
-        {
-            ItemPhotoManager::getInstance().saveItemPhoto(name, selectedPhotoPath);
-            selectedPhotoPath.clear();
-        }
         refreshItems();
         displayLowStock();
-
-        ui->lineEditAddName->clear();
-        ui->lineEditAddCategory->clear();
-        ui->lineEditAddPrice->clear();
-        ui->lineEditAddQuantity->clear();
-        ui->lineEditAddSupplier->clear();
-
-        QMessageBox::information(this, "Done", "Item is added");
     }
 }
 
@@ -214,18 +177,6 @@ void InventoryForm::onSellButtonClicked() {
         QMessageBox::information(this, "Sucess", QString("Sold %1 units of %2").arg(sellQuantity).arg(itemName));
     } else {
         QMessageBox::warning(this, "Error", "Failed to update inventory.");
-    }
-}
-
-void InventoryForm::on_pushButtonSelectPhoto_clicked()
-{
-    QString filePath = QFileDialog::getOpenFileName(this,
-                                "Select Item Photo", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
-
-    if (!filePath.isEmpty())
-    {
-        selectedPhotoPath = filePath;
-        QMessageBox::information(this, "Success", "Photo selected successfully");
     }
 }
 
