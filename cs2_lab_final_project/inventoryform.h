@@ -2,6 +2,8 @@
 #define INVENTORYFORM_H
 #include "inventorysystem.h"
 #include <QDialog>
+#include "itemphotomanager.h"
+
 
 namespace Ui {
 class InventoryForm;
@@ -24,10 +26,15 @@ private slots:
 
     void on_pushButton_Go_back_clicked();
     void onSellButtonClicked();
+    //---------------------------
+    void on_pushButtonSelectPhoto_clicked();
 
 private:
     Ui::InventoryForm *ui;
     InventorySystem* inventorySystem;
+    //--------------------------------
+    QString selectedPhotoPath;
+    void displayItemPhoto(const QString& itemName);
 };
 
 #endif // INVENTORYFORM_H
