@@ -19,6 +19,7 @@ SOURCES += \
     inventoryform.cpp \
     inventorysystem.cpp \
     item.cpp \
+    itemphotomanager.cpp \
     loginform.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     inventoryform.h \
     inventorysystem.h \
     item.h \
+    itemphotomanager.h \
     loginform.h \
     mainwindow.h \
     operationrecord.h \
