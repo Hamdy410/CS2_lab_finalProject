@@ -7,6 +7,16 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
+#include <QFileDialog>
+#include <QImage>
+#include <QPixmap>
+#include <QBuffer>
+#include <QByteArray>
+//#include <QSqlQuery>
+//#include <QSqlError>
+#include <QDebug>
+#include <QLabel>
+
 InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::InventoryForm)
@@ -16,9 +26,11 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
 
     ui->textEditLowStock->setReadOnly(true);
 
-    ui->tableWidgetInventoryItems->setColumnCount(6);
+    //ui->tableWidgetInventoryItems->setColumnCount(6);
+    ui->tableWidgetInventoryItems->setColumnCount(7);
+
     ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
-        {"Name", "Quantity", "Category", "Price", "Supplier", "Action"});
+        {"Name", "Quantity", "Category", "Price", "Supplier", "Photo", "Action"});
 
     // Real-time connections
     connect(ui->lineEditSearch, &QLineEdit::textChanged, this, &InventoryForm::refreshItems);
@@ -68,6 +80,11 @@ void InventoryForm::on_pushButtonAdd_clicked()
 
     if (inventorySystem->addItem(newItem))
     {
+        if (!selectedPhotoPath.isEmpty())
+        {
+            ItemPhotoManager::getInstance().saveItemPhoto(name, selectedPhotoPath);
+            selectedPhotoPath.clear();
+        }
         refreshItems();
         displayLowStock();
 
@@ -122,7 +139,15 @@ void InventoryForm::refreshItems() {
             sellButton->setProperty("itemSupplier", item.supplier());
             sellButton->setProperty("itemCategory", item.category());
             connect(sellButton, &QPushButton::clicked, this, &InventoryForm::onSellButtonClicked);
-            ui->tableWidgetInventoryItems->setCellWidget(row, 5, sellButton);
+            ui->tableWidgetInventoryItems->setCellWidget(row, 6, sellButton);
+
+            // Add photo button
+            QPushButton* photoButton = new QPushButton("View Photo");
+            photoButton->setProperty("itemName", item.name());
+            connect(photoButton, &QPushButton::clicked, [this, item]() {
+                displayItemPhoto(item.name());
+            });
+            ui->tableWidgetInventoryItems->setCellWidget(row, 5, photoButton);
         }
     }
 }
@@ -192,5 +217,30 @@ void InventoryForm::onSellButtonClicked() {
         QMessageBox::information(this, "Sucess", QString("Sole %1 units of %2").arg(sellQuantity).arg(itemName));
     } else {
         QMessageBox::warning(this, "Error", "Failed to update inventory.");
+    }
+}
+
+void InventoryForm::on_pushButtonSelectPhoto_clicked()
+{
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                                    "Select Item Photo", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
+
+    if (!filePath.isEmpty()) {
+        selectedPhotoPath = filePath;
+        QMessageBox::information(this, "Success", "Photo selected successfully");
+    }
+}
+
+void InventoryForm::displayItemPhoto(const QString& itemName)
+{
+    QPixmap photo = ItemPhotoManager::getInstance().getItemPhoto(itemName);
+    if (!photo.isNull()) {
+        QLabel* photoLabel = new QLabel(this);
+        photoLabel->setAttribute(Qt::WA_DeleteOnClose);  // Auto-delete when closed
+        photoLabel->setPixmap(photo.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        photoLabel->setWindowTitle("Item Photo: " + itemName);
+        photoLabel->show();
+    } else {
+        QMessageBox::information(this, "No Photo", "No photo available for this item");
     }
 }
