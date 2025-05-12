@@ -153,8 +153,14 @@ QString OperationRecord::getBestSeller() const {
         }
     }
 
-    return bestSeller + " (" + QString::number(maxSold) + " units)";
+    // Only append the units count if there were actual sales
+    if (maxSold > 0) {
+        return bestSeller + " (" + QString::number(maxSold) + " units)";
+    } else {
+        return bestSeller;
+    }
 }
+
 
 QString OperationRecord::getLowestSeller() const {
     QMap<QString, int> salesByItem;
