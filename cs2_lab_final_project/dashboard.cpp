@@ -4,6 +4,7 @@
 #include "inventoryform.h"
 #include <QCloseEvent>
 #include <QMessageBox>
+#include "additemform.h"
 
 Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     : QDialog(parent)
@@ -80,9 +81,17 @@ void Dashboard::on_pushButtonAddItem_clicked()
     }
     else
     {
-        InventoryForm* displayToAdd = new InventoryForm(inventorySystem, this);
-        displayToAdd->show();
-        this->hide();
+        // InventoryForm* displayToAdd = new InventoryForm(inventorySystem, this);
+        // // displayToAdd->show();
+        // // this->hide();
+        // AddItemForm addItemDialog(inventorySystem, this);
+        // if (addItemDialog.exec() == QDialog::Accepted)
+        // {
+        //     displayToAdd->refreshItems();
+        //     displayLowStock();
+        // }
+        AddItemForm* add = new AddItemForm(inventorySystem, this);
+        add->show();
     }
 }
 
