@@ -8,17 +8,35 @@ Logs::Logs(InventorySystem* inventorySystem, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Logs)
 {
-    int lastIndex = inventorySystem->getOperationRecord().getRecords().size() - 1;
+    ui->setupUi(this); // Setup UI FIRST before accessing any UI elements
+
     QString data;
-    for (int i = lastIndex; i >= 0; i--) {
-        if (inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Removed Item" || inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Added Item") {
-            data += "Nigger";//inventorySystem->getOperationRecord().getRecords()[i].getOperation() + ", " + QString::number(inventorySystem->getOperationRecord().getRecords()[i].getItem().quantity()) + " of " + inventorySystem->getOperationRecord().getRecords()[i].getItem().name() + "\n";
-        } else {
-            data += "Nigger";// inventorySystem->getOperationRecord().getRecords()[i].getOperation() + "\n";
+    const QVector<Record>& records = inventorySystem->getOperationRecord().getRecords();
+
+    // Check if there are any records
+    if (records.isEmpty()) {
+        data = "No operation records found.";
+    } else {
+        int lastIndex = records.size() - 1;
+        for (int i = lastIndex; i >= 0; i--) {
+            const Record& record = records[i];
+            QString operation = record.getOperation();
+
+            if (operation == "Removed Item" || operation == "Added Item") {
+                data += operation + ", " +
+                        QString::number(record.getItem().quantity()) +
+                        " of " + record.getItem().name() +
+                        " by " + record.getUsername() +
+                        " at " + record.getTime().toString("yyyy-MM-dd hh:mm:ss") + "\n";
+            } else {
+                data += operation + " by " + record.getUsername() +
+                        " at " + record.getTime().toString("yyyy-MM-dd hh:mm:ss") + "\n";
+            }
         }
     }
+
     ui->textEdit->setText(data);
-    ui->setupUi(this);
+    setWindowTitle("Operation Logs");
 }
 
 Logs::~Logs()

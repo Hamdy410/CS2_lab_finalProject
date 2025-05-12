@@ -32,6 +32,7 @@ public:
     QPushButton *pushButtonAddItem;
     QTextEdit *textEdit;
     QLabel *label_2;
+    QPushButton *pushButton_Logs;
 
     void setupUi(QDialog *Dashboard)
     {
@@ -76,6 +77,9 @@ public:
         label_2 = new QLabel(Dashboard);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(570, 170, 121, 20));
+        pushButton_Logs = new QPushButton(Dashboard);
+        pushButton_Logs->setObjectName("pushButton_Logs");
+        pushButton_Logs->setGeometry(QRect(90, 410, 83, 29));
 
         retranslateUi(Dashboard);
 
@@ -94,6 +98,7 @@ public:
         label_TotalNumItems->setText(QCoreApplication::translate("Dashboard", "Total Number of Items:", nullptr));
         pushButtonAddItem->setText(QCoreApplication::translate("Dashboard", "Add item", nullptr));
         label_2->setText(QCoreApplication::translate("Dashboard", "Recent Updates:", nullptr));
+        pushButton_Logs->setText(QCoreApplication::translate("Dashboard", "Logs", nullptr));
     } // retranslateUi
 
 };
