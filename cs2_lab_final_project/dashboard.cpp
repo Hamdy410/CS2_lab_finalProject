@@ -20,6 +20,15 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     ui->lowStock_textEdit->setReadOnly(true);
     ui->label_LowStock->setText("Low Stock Items: ");
     displayLowStock();
+    int lastIndex = inventorySystem->getOperationRecord().getRecords().size() - 1;
+    QString updatesOutput;
+    for (int i = lastIndex, j = 0; i >= 0, j < 3; i--, j++) {
+        if (inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Removed Item" || inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Added Item")
+            updatesOutput += inventorySystem->getOperationRecord().getRecords()[i].getOperation() + ", " + QString::number(inventorySystem->getOperationRecord().getRecords()[i].getItem().quantity()) + " of " + inventorySystem->getOperationRecord().getRecords()[i].getItem().name() + "\n";
+        else
+            updatesOutput += inventorySystem->getOperationRecord().getRecords()[i].getOperation() + "\n";
+    }
+    ui->textEdit->setText(updatesOutput);
     ui->label_TotalNumItems->setText("Total Number of Items: " + QString::number(inventorySystem->getInventory().getItems().size()));
     ui->label->setText("Welcome, " + inventorySystem->getCurrentUsername() + "!");
     ui->label_BestSeller->setText("Best Seller: " + inventorySystem->getOperationRecord().getBestSeller());

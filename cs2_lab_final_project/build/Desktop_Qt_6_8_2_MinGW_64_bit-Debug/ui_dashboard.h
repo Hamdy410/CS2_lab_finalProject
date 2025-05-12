@@ -29,12 +29,16 @@ public:
     QLabel *label;
     QTextEdit *lowStock_textEdit;
     QLabel *label_TotalNumItems;
+    QPushButton *pushButtonAddItem;
+    QTextEdit *textEdit;
+    QLabel *label_2;
 
     void setupUi(QDialog *Dashboard)
     {
         if (Dashboard->objectName().isEmpty())
             Dashboard->setObjectName("Dashboard");
-        Dashboard->resize(537, 455);
+        Dashboard->resize(979, 455);
+        Dashboard->setInputMethodHints(Qt::InputMethodHint::ImhMultiLine);
         pushButton_Report = new QPushButton(Dashboard);
         pushButton_Report->setObjectName("pushButton_Report");
         pushButton_Report->setGeometry(QRect(90, 320, 101, 29));
@@ -63,6 +67,15 @@ public:
         label_TotalNumItems = new QLabel(Dashboard);
         label_TotalNumItems->setObjectName("label_TotalNumItems");
         label_TotalNumItems->setGeometry(QRect(90, 370, 251, 20));
+        pushButtonAddItem = new QPushButton(Dashboard);
+        pushButtonAddItem->setObjectName("pushButtonAddItem");
+        pushButtonAddItem->setGeometry(QRect(320, 320, 131, 31));
+        textEdit = new QTextEdit(Dashboard);
+        textEdit->setObjectName("textEdit");
+        textEdit->setGeometry(QRect(570, 200, 251, 161));
+        label_2 = new QLabel(Dashboard);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(570, 170, 121, 20));
 
         retranslateUi(Dashboard);
 
@@ -79,6 +92,8 @@ public:
         goBackPushButton->setText(QCoreApplication::translate("Dashboard", "Go Back", nullptr));
         label->setText(QCoreApplication::translate("Dashboard", "Welcome!", nullptr));
         label_TotalNumItems->setText(QCoreApplication::translate("Dashboard", "Total Number of Items:", nullptr));
+        pushButtonAddItem->setText(QCoreApplication::translate("Dashboard", "Add item", nullptr));
+        label_2->setText(QCoreApplication::translate("Dashboard", "Recent Updates:", nullptr));
     } // retranslateUi
 
 };
