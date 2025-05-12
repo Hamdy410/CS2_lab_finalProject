@@ -5,6 +5,7 @@
 #include "dashboard.h"
 
 #include "systemui.h"
+#include "QMessageBox"
 
 bool LoginForm::isDarkMode = false;
 
@@ -142,6 +143,7 @@ void LoginForm::on_pushButton_Login_clicked()
 
         this->hide();
     } else {
+        QMessageBox::warning(this, "Error", "Invalid username or password");
         qDebug() << "Cannot find the user.";
     }
 }
