@@ -221,9 +221,10 @@ void InventoryForm::onSellButtonClicked() {
 void InventoryForm::on_pushButtonSelectPhoto_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
-                                                    "Select Item Photo", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
+                                "Select Item Photo", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
 
-    if (!filePath.isEmpty()) {
+    if (!filePath.isEmpty())
+    {
         selectedPhotoPath = filePath;
         QMessageBox::information(this, "Success", "Photo selected successfully");
     }
@@ -233,7 +234,8 @@ void InventoryForm::displayItemPhoto(const QString& itemName)
 {
     QPixmap photo = ItemPhotoManager::getInstance().getItemPhoto(itemName);
 
-    if (!photo.isNull()) {
+    if (!photo.isNull())
+    {
         QDialog* photoDialog = new QDialog(this);
         photoDialog->setAttribute(Qt::WA_DeleteOnClose);
         photoDialog->setWindowTitle("Item Photo: " + itemName);
