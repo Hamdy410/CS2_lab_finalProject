@@ -45,7 +45,7 @@ public:
         pushButton_Report->setGeometry(QRect(90, 320, 101, 29));
         label_BestSeller = new QLabel(Dashboard);
         label_BestSeller->setObjectName("label_BestSeller");
-        label_BestSeller->setGeometry(QRect(100, 110, 181, 31));
+        label_BestSeller->setGeometry(QRect(100, 110, 261, 31));
         label_lowesrSeller = new QLabel(Dashboard);
         label_lowesrSeller->setObjectName("label_lowesrSeller");
         label_lowesrSeller->setGeometry(QRect(100, 140, 221, 31));

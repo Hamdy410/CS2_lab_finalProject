@@ -22,19 +22,38 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     ui->lowStock_textEdit->setReadOnly(true);
     ui->label_LowStock->setText("Low Stock Items: ");
     displayLowStock();
-    int lastIndex = inventorySystem->getOperationRecord().getRecords().size() - 1;
-    QString updatesOutput;
-    for (int i = lastIndex, j = 0; i >= 0, j < 3; i--, j++) {
-        if (inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Removed Item" || inventorySystem->getOperationRecord().getRecords()[i].getOperation() == "Added Item")
-            updatesOutput += inventorySystem->getOperationRecord().getRecords()[i].getOperation() + ", " + QString::number(inventorySystem->getOperationRecord().getRecords()[i].getItem().quantity()) + " of " + inventorySystem->getOperationRecord().getRecords()[i].getItem().name() + "\n";
-        else
-            updatesOutput += inventorySystem->getOperationRecord().getRecords()[i].getOperation() + "\n";
-    }
-    ui->textEdit->setText(updatesOutput);
-    ui->label_TotalNumItems->setText("Total Number of Items: " + QString::number(inventorySystem->getInventory().getItems().size()));
-    ui->label->setText("Welcome, " + inventorySystem->getCurrentUsername() + "!");
+
     ui->label_BestSeller->setText("Best Seller: " + inventorySystem->getOperationRecord().getBestSeller());
     ui->label_lowesrSeller->setText("Lowest Seller: " + inventorySystem->getOperationRecord().getLowestSeller());
+
+    ui->label_TotalNumItems->setText("Total No. of Items: " + QString::number(inventorySystem->getInventory().getItems().size()));
+
+    ui->label->setText("Welcome, " + inventorySystem->getCurrentUsername() + "!");
+
+    QString updatesOutput;
+    int lastIndex = inventorySystem->getOperationRecord().getRecords().size() - 1;
+    int count = 0;
+
+    // Only enter the loop if there are records
+    if (lastIndex >= 0) {
+        for (int i = lastIndex; i >= 0 && count < 3; i--, count++) {
+            const Record& record = inventorySystem->getOperationRecord().getRecords()[i];
+            if (record.getOperation() == "Removed Item" || record.getOperation() == "Added Item") {
+                updatesOutput += record.getOperation() + ", " +
+                                 QString::number(record.getItem().quantity()) +
+                                 " of " + record.getItem().name() + "\n";
+            } else {
+                updatesOutput += record.getOperation() + "\n";
+            }
+        }
+    }
+
+    // If no records were found
+    if (updatesOutput.isEmpty()) {
+        updatesOutput = "No recent operations";
+    }
+
+    ui->textEdit->setText(updatesOutput);
 }
 
 Dashboard::~Dashboard()

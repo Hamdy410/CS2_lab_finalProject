@@ -1,51 +1,51 @@
 name,category,quantity,price,supplier
-Glass,Clothing,80,326.68,"Green, Schmitt and Allen"
-Through,Clothing,95,343.12,Jones Inc
-Various,Clothing,19,16.44,"Peterson, Walker and Hendrix"
-Play,Electronics,93,131.74,"Holder, Zhang and Ford"
-Produce,Toys,72,238.73,Kelly LLC
-Ready,Books,61,471.09,Allen PLC
-Agency,Toys,7,444.04,Barber-Haynes
-Control,Furniture,30,254.76,"Duffy, Davila and Williams"
-Degree,Electronics,61,479.09,Holden-Obrien
-Travel,Electronics,63,280.55,Mccann-Mccann
-Total,Electronics,74,293.32,Vargas Group
-Truth,Clothing,94,287.39,Taylor Ltd
-Sign,Books,91,364.07,Marquez-Hill
-Part,Electronics,4,47.84,Rivera-Frank
-Group,Clothing,21,432.41,Gates Ltd
-Program,Clothing,13,405.46,Phillips Ltd
-Sea,Toys,3,394.83,Miller-Rush
-Stuff,Furniture,15,91.64,Morris-Griffith
-Use,Toys,8,462.82,"Freeman, Holmes and King"
-Product,Electronics,73,77.42,"Jordan, Valdez and Yu"
-Produce,Toys,100,426.7,"Velez, Collier and Hamilton"
-Position,Electronics,88,259.88,Johnson-Richard
-Station,Clothing,81,244.79,"Flores, Lam and Cunningham"
-Much,Electronics,75,319.13,Brooks Group
-Say,Toys,33,297.2,"Larsen, Gallegos and Singh"
-Pay,Electronics,40,227.2,Morrison-Arnold
-Pretty,Clothing,77,307.54,Kelly Ltd
-Education,Toys,83,102.14,"Wade, King and Schneider"
-Myself,Books,21,229.47,Sutton PLC
-Generation,Books,20,289.01,Fields-Arias
-Serve,Electronics,79,467.54,"Golden, Edwards and Watts"
-Forget,Clothing,71,224.53,"Yates, Quinn and Smith"
-Never,Electronics,80,267.47,Taylor-Alvarez
-To,Toys,24,316.05,Hill-Rogers
-Morning,Clothing,43,48.0,Payne and Sons
-Everybody,Toys,15,89.93,Hayes-Barker
-Structure,Furniture,74,243.05,"Gibson, Diaz and Adams"
-Baby,Clothing,33,164.57,"Black, Beck and Flores"
-Player,Electronics,49,452.2,"Smith, Bell and Williams"
-Great,Clothing,88,453.77,Mcbride PLC
-Speak,Furniture,17,149.75,Hansen and Sons
-Employee,Electronics,35,30.73,"Briggs, Ball and Anderson"
-Mean,Toys,31,149.24,"Morris, Mcmillan and Barker"
-You,Furniture,11,72.95,"Reed, Burns and Johnson"
-Once,Clothing,82,351.22,Dorsey LLC
-Old,Toys,72,165.75,Williams-Palmer
-Spend,Furniture,13,476.83,Peterson Group
-Discussion,Clothing,90,130.62,Anderson-Carr
-Near,Toys,25,416.51,Hopkins Ltd
-Fund,Books,93,211.5,"Trujillo, Adkins and Powell"
+Office Chair,Furniture,27,604.55,Acme Corp
+Denim Jeans,Clothing,26,61.76,Global Imports
+Smartphone,Electronics,62,121.38,Sunrise Wholesale
+Fantasy Epic,Books,112,99.1,Peak Distributors
+Self-Help Guide,Books,70,32.9,Evergreen Supply Co
+Baseball Cap,Clothing,45,105.11,Elite Traders
+USB-C Charger,Electronics,14,459.69,Prime Retailers
+Raincoat,Clothing,37,130.97,Universal Goods
+Nightstand,Furniture,14,124.06,Quality Merchants
+Bar Stool,Furniture,38,186.94,Downtown Suppliers
+Kite,Toys,141,26.24,Citywide Traders
+Digital Camera,Electronics,37,164.16,NextGen Markets
+Hooded Sweatshirt,Clothing,57,151.44,TopShelf Inc
+Encyclopedia,Books,10,66.38,Value Suppliers
+Summer Dress,Clothing,79,40.26,Pioneer Goods
+Toy Robot,Toys,145,20.96,Metro Retail
+Patio Chair,Furniture,8,888.26,Capital Distributors
+Curtain Rods,Furniture,21,991.01,Royal Supplies
+Area Rug,Furniture,31,636.65,Summit Wholesale
+Educational Flashcards,Toys,43,91.26,Liberty Traders
+Leather Jacket,Clothing,46,97.16,Acme Corp
+Bluetooth Headphones,Electronics,52,351.82,Global Imports
+Bookshelf,Furniture,48,134.59,Sunrise Wholesale
+Wool Sweater,Clothing,65,84.32,Peak Distributors
+Coffee Table,Furniture,26,798.17,Evergreen Supply Co
+Baseball Cap,Clothing,77,96.1,Elite Traders
+USB-C Charger,Electronics,13,375.15,Prime Retailers
+TV Stand,Furniture,16,365.75,Universal Goods
+Nightstand,Furniture,33,238.05,Quality Merchants
+Smart Watch,Electronics,59,419.96,Downtown Suppliers
+Portable Speaker,Electronics,61,138.46,Citywide Traders
+Digital Camera,Electronics,5,294.09,NextGen Markets
+Hooded Sweatshirt,Clothing,49,97.81,TopShelf Inc
+Model Kit,Toys,117,99.37,Value Suppliers
+Summer Dress,Clothing,71,46.56,Pioneer Goods
+Health & Fitness,Books,185,19.94,Metro Retail
+Leggings,Clothing,85,94.26,Capital Distributors
+Autobiography,Books,119,80.37,Royal Supplies
+Horror Story,Books,22,59.64,Summit Wholesale
+Classic Literature,Books,187,15.22,Liberty Traders
+Mystery Novel,Books,133,22.84,Acme Corp
+Bluetooth Headphones,Electronics,58,186.4,Global Imports
+Puzzle Game,Toys,23,61.78,Sunrise Wholesale
+Remote Car,Toys,69,40.21,Peak Distributors
+Sneakers,Clothing,69,91.84,Evergreen Supply Co
+Bed Frame,Furniture,11,292.49,Elite Traders
+Silk Scarf,Clothing,39,185.26,Prime Retailers
+Poetry Anthology,Books,57,44.8,Universal Goods
+Webcam,Electronics,64,160.94,Quality Merchants
+Bar Stool,Furniture,9,668.76,Downtown Suppliers
