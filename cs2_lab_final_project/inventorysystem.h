@@ -46,6 +46,7 @@ public:
     bool removeItem(const Item& item);
     QVector<Item> getLowStockItems();
     bool generateReport();
+    bool openReportFile();
     const Inventory& getInventory() const;
 
     // Current user info

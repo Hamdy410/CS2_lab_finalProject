@@ -1,6 +1,12 @@
 #include "inventorysystem.h"
+
 #include <QFile>
 #include <QTextStream>
+#include <QStandardPaths>
+#include <QDir>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QFileInfo>
 
 InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
                                  const QString &inventoryFile,
@@ -260,6 +266,20 @@ bool InventorySystem::generateReport() {
 
     return result;
 }
+
+bool InventorySystem::openReportFile() {
+    QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString reportPath = dataDir + QDir::separator() + "inventory_report.txt";
+
+    QFileInfo fileInfo(reportPath);
+    if (!fileInfo.exists()) {
+        return false;
+    }
+
+    // Open the file with the system's default application
+    return QDesktopServices::openUrl(QUrl::fromLocalFile(reportPath));
+}
+
 
 bool InventorySystem::isAuthenticated() const {
     return (currentUser != nullptr);

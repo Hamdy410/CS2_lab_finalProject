@@ -163,4 +163,3 @@ bool ItemPhotoManager::hasPhoto(const QString& itemName)
 {
     return photoPaths.contains(itemName) && QFile::exists(photoPaths[itemName]);
 }
-
