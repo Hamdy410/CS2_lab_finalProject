@@ -54,7 +54,7 @@ QVector<Item> Inventory::getLowStockItems() {
 }
 
 bool Inventory::generateReport() {
-    QFile file("iventory_report.txt");
+    QFile file("inventory_report.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
