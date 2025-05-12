@@ -189,7 +189,7 @@ void InventoryForm::onSellButtonClicked() {
     if (inventorySystem->removeItem(itemToRemove)) {
         refreshItems();
         displayLowStock();
-        QMessageBox::information(this, "Sucess", QString("Sole %1 units of %2").arg(sellQuantity).arg(itemName));
+        QMessageBox::information(this, "Sucess", QString("Sold %1 units of %2").arg(sellQuantity).arg(itemName));
     } else {
         QMessageBox::warning(this, "Error", "Failed to update inventory.");
     }
