@@ -39,7 +39,7 @@ void Dashboard::closeEvent(QCloseEvent *event) {
 void Dashboard::on_pushButton_Report_clicked()
 {
     if (inventorySystem->generateReport()) {
-        QMessageBox::information(this, "Sucess", "Report generated successfully!");
+        QMessageBox::information(this, "Success", "Report generated successfully!");
     } else {
         QMessageBox::warning(this, "Error", "Failed to generate report.");
     }
