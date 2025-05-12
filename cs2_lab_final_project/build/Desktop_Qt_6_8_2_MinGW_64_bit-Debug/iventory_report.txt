@@ -1,9 +1,0 @@
-Inventory Report -Mon May 12 16:13:11 2025
-
-Total items: 53
-
-INVENTORY LISTING:
-----------------------------
-
-LOW STOCK ITEMS:
-----------------------------
