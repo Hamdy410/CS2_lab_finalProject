@@ -112,6 +112,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="label_TotalNumItems">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>370</y>
+     <width>251</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Total Number of Items:</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
