@@ -38,6 +38,8 @@ public:
     QLabel *label_10;
     QTextEdit *textEditLowStock;
     QPushButton *pushButton_Go_back;
+    QPushButton *pushButtonSelectPhoto;
+    QLabel *label_11;
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_5;
@@ -114,6 +116,12 @@ public:
         pushButton_Go_back = new QPushButton(InventoryForm);
         pushButton_Go_back->setObjectName("pushButton_Go_back");
         pushButton_Go_back->setGeometry(QRect(10, 20, 91, 51));
+        pushButtonSelectPhoto = new QPushButton(InventoryForm);
+        pushButtonSelectPhoto->setObjectName("pushButtonSelectPhoto");
+        pushButtonSelectPhoto->setGeometry(QRect(630, 570, 161, 29));
+        label_11 = new QLabel(InventoryForm);
+        label_11->setObjectName("label_11");
+        label_11->setGeometry(QRect(180, 560, 251, 41));
         widget = new QWidget(InventoryForm);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(20, 520, 1071, 30));
@@ -213,6 +221,8 @@ public:
                         "0px;\">Item #4</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Item #5</p></body></html>", nullptr));
         pushButton_Go_back->setText(QCoreApplication::translate("InventoryForm", "Go back", nullptr));
+        pushButtonSelectPhoto->setText(QCoreApplication::translate("InventoryForm", "Select photo", nullptr));
+        label_11->setText(QCoreApplication::translate("InventoryForm", "Select a photo before clicking add:", nullptr));
         label_5->setText(QCoreApplication::translate("InventoryForm", "Name:", nullptr));
         label_6->setText(QCoreApplication::translate("InventoryForm", "Quantity:", nullptr));
         label_7->setText(QCoreApplication::translate("InventoryForm", "Category:", nullptr));
