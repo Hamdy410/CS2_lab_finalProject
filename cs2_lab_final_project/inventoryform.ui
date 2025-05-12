@@ -156,8 +156,8 @@
   <widget class="QPushButton" name="pushButtonAdd">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>570</y>
+     <x>820</x>
+     <y>590</y>
      <width>83</width>
      <height>29</height>
     </rect>
@@ -227,7 +227,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QPushButton" name="pushButtonSelectPhoto">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>430</x>
      <y>570</y>
      <width>161</width>
      <height>29</height>
@@ -250,7 +250,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Select a photo before clicking add:</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
