@@ -68,7 +68,6 @@ bool Inventory::generateReport() {
     out << "Item    Category    Quantity    Price   Supplier\n";
     for (const auto& item : items) {
         out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
-        item.getDetails(out);
     }
 
     QVector<Item> lowStock = getLowStockItems();
@@ -80,7 +79,6 @@ bool Inventory::generateReport() {
         out << "Item    Category    Quantity    Price   Supplier\n";
         for (const auto& item: lowStock) {
             out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
-            item.getDetails(out);
         }
     }
 
