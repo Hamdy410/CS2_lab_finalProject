@@ -52,7 +52,7 @@ public:
         goBackPushButton->setMinimumSize(QSize(65, 65));
         label = new QLabel(Dashboard);
         label->setObjectName("label");
-        label->setGeometry(QRect(220, 20, 121, 61));
+        label->setGeometry(QRect(160, 20, 271, 61));
         QFont font;
         font.setPointSize(16);
         label->setFont(font);
