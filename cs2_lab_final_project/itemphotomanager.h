@@ -21,11 +21,9 @@ public:
     // Photo management functions
     bool saveItemPhoto(const QString& itemName, const QString& photoPath);
     QPixmap getItemPhoto(const QString& itemName);
-    bool deleteItemPhoto(const QString& itemName);
     bool addPhoto(const QString& itemName, const QString& photoPath);
     QPixmap getPhoto(const QString& itemName);
     bool hasPhoto(const QString& itemName);
-    bool removePhoto(const QString& itemName);
 
 private:
     ItemPhotoManager();

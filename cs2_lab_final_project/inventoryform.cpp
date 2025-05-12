@@ -12,8 +12,6 @@
 #include <QPixmap>
 #include <QBuffer>
 #include <QByteArray>
-//#include <QSqlQuery>
-//#include <QSqlError>
 #include <QDebug>
 #include <QLabel>
 
@@ -234,14 +232,7 @@ void InventoryForm::on_pushButtonSelectPhoto_clicked()
 void InventoryForm::displayItemPhoto(const QString& itemName)
 {
     QPixmap photo = ItemPhotoManager::getInstance().getItemPhoto(itemName);
-    // if (!photo.isNull())
-    // {
-    //     QLabel* photoLabel = new QLabel(this);
-    //     photoLabel->setAttribute(Qt::WA_DeleteOnClose);  // Auto-delete when closed
-    //     photoLabel->setPixmap(photo.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    //     photoLabel->setWindowTitle("Item Photo: " + itemName);
-    //     photoLabel->show();
-    // }
+
     if (!photo.isNull()) {
         QDialog* photoDialog = new QDialog(this);
         photoDialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -252,11 +243,6 @@ void InventoryForm::displayItemPhoto(const QString& itemName)
         QLabel* photoLabel = new QLabel(photoDialog);
         photoLabel->setPixmap(photo.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         layout->addWidget(photoLabel);
-
-        // QPushButton* closeButton = new QPushButton("Close", photoDialog);
-        // connect(closeButton, &QPushButton::clicked, photoDialog, &QDialog::close);
-        // layout->addWidget(closeButton);
-
         photoDialog->setLayout(layout);
         photoDialog->show();
     }
