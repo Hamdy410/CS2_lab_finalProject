@@ -125,6 +125,19 @@
     <string>Total Number of Items:</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButtonAddItem">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>320</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add item</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -1,6 +1,7 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "inventorysystem.h"
+#include "inventoryform.h"
 #include <QCloseEvent>
 #include <QMessageBox>
 
@@ -65,3 +66,18 @@ void Dashboard::displayLowStock() {
         ui->lowStock_textEdit->append(item.name() + " - only " + QString::number(item.quantity()) + " left");
     }
 }
+
+void Dashboard::on_pushButtonAddItem_clicked()
+{
+    if ( !inventorySystem->currentUserCanEditInventory())
+    {
+        QMessageBox::warning(this, "Error", "You are not authenticated to add items");
+    }
+    else
+    {
+        InventoryForm* displayToAdd = new InventoryForm(inventorySystem, this);
+        displayToAdd->show();
+        this->hide();
+    }
+}
+
