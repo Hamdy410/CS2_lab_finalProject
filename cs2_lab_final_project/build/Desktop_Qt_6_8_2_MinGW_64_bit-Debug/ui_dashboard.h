@@ -14,6 +14,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTextEdit>
 
 QT_BEGIN_NAMESPACE
 
@@ -24,11 +25,9 @@ public:
     QLabel *label_BestSeller;
     QLabel *label_lowesrSeller;
     QLabel *label_LowStock;
-    QLabel *label_BestSellerSold;
-    QLabel *label_LowestSellerSold;
-    QLabel *label_OnlyLeft;
     QPushButton *goBackPushButton;
     QLabel *label;
+    QTextEdit *lowStock_textEdit;
 
     void setupUi(QDialog *Dashboard)
     {
@@ -43,19 +42,10 @@ public:
         label_BestSeller->setGeometry(QRect(100, 110, 181, 31));
         label_lowesrSeller = new QLabel(Dashboard);
         label_lowesrSeller->setObjectName("label_lowesrSeller");
-        label_lowesrSeller->setGeometry(QRect(100, 180, 221, 31));
+        label_lowesrSeller->setGeometry(QRect(100, 140, 221, 31));
         label_LowStock = new QLabel(Dashboard);
         label_LowStock->setObjectName("label_LowStock");
-        label_LowStock->setGeometry(QRect(100, 250, 251, 31));
-        label_BestSellerSold = new QLabel(Dashboard);
-        label_BestSellerSold->setObjectName("label_BestSellerSold");
-        label_BestSellerSold->setGeometry(QRect(100, 140, 171, 31));
-        label_LowestSellerSold = new QLabel(Dashboard);
-        label_LowestSellerSold->setObjectName("label_LowestSellerSold");
-        label_LowestSellerSold->setGeometry(QRect(100, 210, 171, 31));
-        label_OnlyLeft = new QLabel(Dashboard);
-        label_OnlyLeft->setObjectName("label_OnlyLeft");
-        label_OnlyLeft->setGeometry(QRect(100, 280, 171, 31));
+        label_LowStock->setGeometry(QRect(100, 180, 251, 31));
         goBackPushButton = new QPushButton(Dashboard);
         goBackPushButton->setObjectName("goBackPushButton");
         goBackPushButton->setGeometry(QRect(20, 20, 81, 65));
@@ -66,6 +56,9 @@ public:
         QFont font;
         font.setPointSize(16);
         label->setFont(font);
+        lowStock_textEdit = new QTextEdit(Dashboard);
+        lowStock_textEdit->setObjectName("lowStock_textEdit");
+        lowStock_textEdit->setGeometry(QRect(240, 210, 161, 91));
 
         retranslateUi(Dashboard);
 
@@ -79,9 +72,6 @@ public:
         label_BestSeller->setText(QCoreApplication::translate("Dashboard", "BestSeller:", nullptr));
         label_lowesrSeller->setText(QCoreApplication::translate("Dashboard", "Lowest Seller: ", nullptr));
         label_LowStock->setText(QCoreApplication::translate("Dashboard", "Low Stock: ", nullptr));
-        label_BestSellerSold->setText(QCoreApplication::translate("Dashboard", "Sold: ", nullptr));
-        label_LowestSellerSold->setText(QCoreApplication::translate("Dashboard", "Sold: ", nullptr));
-        label_OnlyLeft->setText(QCoreApplication::translate("Dashboard", "Only left: ", nullptr));
         goBackPushButton->setText(QCoreApplication::translate("Dashboard", "Go Back", nullptr));
         label->setText(QCoreApplication::translate("Dashboard", "Welcome!", nullptr));
     } // retranslateUi
