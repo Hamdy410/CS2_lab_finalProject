@@ -27,15 +27,12 @@ private slots:
     void on_pushButton_Go_back_clicked();
     void onSellButtonClicked();
     //---------------------------
-    //void on_pushButtonSelectPhoto_clicked();
     void displayItemPhoto(const QString& itemName);
 
 private:
     Ui::InventoryForm *ui;
     InventorySystem* inventorySystem;
-    //--------------------------------
-    // QString selectedPhotoPath;
-    // void displayItemPhoto(const QString& itemName);
+
 };
 
 #endif // INVENTORYFORM_H
