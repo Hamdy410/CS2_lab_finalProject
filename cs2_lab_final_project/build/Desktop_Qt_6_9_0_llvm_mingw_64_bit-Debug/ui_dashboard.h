@@ -28,6 +28,8 @@ public:
     QPushButton *goBackPushButton;
     QLabel *label;
     QTextEdit *lowStock_textEdit;
+    QLabel *label_TotalNumItems;
+    QPushButton *pushButtonAddItem;
 
     void setupUi(QDialog *Dashboard)
     {
@@ -52,13 +54,19 @@ public:
         goBackPushButton->setMinimumSize(QSize(65, 65));
         label = new QLabel(Dashboard);
         label->setObjectName("label");
-        label->setGeometry(QRect(220, 20, 121, 61));
+        label->setGeometry(QRect(160, 20, 271, 61));
         QFont font;
         font.setPointSize(16);
         label->setFont(font);
         lowStock_textEdit = new QTextEdit(Dashboard);
         lowStock_textEdit->setObjectName("lowStock_textEdit");
         lowStock_textEdit->setGeometry(QRect(240, 210, 161, 91));
+        label_TotalNumItems = new QLabel(Dashboard);
+        label_TotalNumItems->setObjectName("label_TotalNumItems");
+        label_TotalNumItems->setGeometry(QRect(90, 370, 251, 20));
+        pushButtonAddItem = new QPushButton(Dashboard);
+        pushButtonAddItem->setObjectName("pushButtonAddItem");
+        pushButtonAddItem->setGeometry(QRect(320, 320, 131, 31));
 
         retranslateUi(Dashboard);
 
@@ -74,6 +82,8 @@ public:
         label_LowStock->setText(QCoreApplication::translate("Dashboard", "Low Stock: ", nullptr));
         goBackPushButton->setText(QCoreApplication::translate("Dashboard", "Go Back", nullptr));
         label->setText(QCoreApplication::translate("Dashboard", "Welcome!", nullptr));
+        label_TotalNumItems->setText(QCoreApplication::translate("Dashboard", "Total Number of Items:", nullptr));
+        pushButtonAddItem->setText(QCoreApplication::translate("Dashboard", "Add item", nullptr));
     } // retranslateUi
 
 };

@@ -12,6 +12,11 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     inventorySystem = inventorySystemInput;
     ui->setupUi(this);
 
+    if (!inventorySystem->currentUserCanEditInventory()) {
+        ui->pushButtonAddItem->hide();
+        qDebug() << "User cannot add items - hiding add item button.";
+    }
+
     ui->lowStock_textEdit->setReadOnly(true);
     ui->label_LowStock->setText("Low Stock Items: ");
     displayLowStock();
