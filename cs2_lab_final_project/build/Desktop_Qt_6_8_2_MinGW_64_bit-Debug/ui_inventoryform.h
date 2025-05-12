@@ -40,7 +40,7 @@ public:
     QPushButton *pushButton_Go_back;
     QPushButton *pushButtonSelectPhoto;
     QLabel *label_11;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_5;
     QLineEdit *lineEditAddName;
@@ -104,7 +104,7 @@ public:
         label_4->setFont(font1);
         pushButtonAdd = new QPushButton(InventoryForm);
         pushButtonAdd->setObjectName("pushButtonAdd");
-        pushButtonAdd->setGeometry(QRect(430, 570, 83, 29));
+        pushButtonAdd->setGeometry(QRect(820, 590, 83, 29));
         label_10 = new QLabel(InventoryForm);
         label_10->setObjectName("label_10");
         label_10->setGeometry(QRect(940, 10, 131, 31));
@@ -118,62 +118,62 @@ public:
         pushButton_Go_back->setGeometry(QRect(10, 20, 91, 51));
         pushButtonSelectPhoto = new QPushButton(InventoryForm);
         pushButtonSelectPhoto->setObjectName("pushButtonSelectPhoto");
-        pushButtonSelectPhoto->setGeometry(QRect(630, 570, 161, 29));
+        pushButtonSelectPhoto->setGeometry(QRect(430, 570, 161, 29));
         label_11 = new QLabel(InventoryForm);
         label_11->setObjectName("label_11");
         label_11->setGeometry(QRect(180, 560, 251, 41));
-        widget = new QWidget(InventoryForm);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(20, 520, 1071, 30));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(InventoryForm);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(20, 520, 1071, 30));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget);
         label_5->setObjectName("label_5");
 
         horizontalLayout->addWidget(label_5);
 
-        lineEditAddName = new QLineEdit(widget);
+        lineEditAddName = new QLineEdit(layoutWidget);
         lineEditAddName->setObjectName("lineEditAddName");
 
         horizontalLayout->addWidget(lineEditAddName);
 
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget);
         label_6->setObjectName("label_6");
 
         horizontalLayout->addWidget(label_6);
 
-        lineEditAddQuantity = new QLineEdit(widget);
+        lineEditAddQuantity = new QLineEdit(layoutWidget);
         lineEditAddQuantity->setObjectName("lineEditAddQuantity");
 
         horizontalLayout->addWidget(lineEditAddQuantity);
 
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(layoutWidget);
         label_7->setObjectName("label_7");
 
         horizontalLayout->addWidget(label_7);
 
-        lineEditAddCategory = new QLineEdit(widget);
+        lineEditAddCategory = new QLineEdit(layoutWidget);
         lineEditAddCategory->setObjectName("lineEditAddCategory");
 
         horizontalLayout->addWidget(lineEditAddCategory);
 
-        label_8 = new QLabel(widget);
+        label_8 = new QLabel(layoutWidget);
         label_8->setObjectName("label_8");
 
         horizontalLayout->addWidget(label_8);
 
-        lineEditAddPrice = new QLineEdit(widget);
+        lineEditAddPrice = new QLineEdit(layoutWidget);
         lineEditAddPrice->setObjectName("lineEditAddPrice");
 
         horizontalLayout->addWidget(lineEditAddPrice);
 
-        label_9 = new QLabel(widget);
+        label_9 = new QLabel(layoutWidget);
         label_9->setObjectName("label_9");
 
         horizontalLayout->addWidget(label_9);
 
-        lineEditAddSupplier = new QLineEdit(widget);
+        lineEditAddSupplier = new QLineEdit(layoutWidget);
         lineEditAddSupplier->setObjectName("lineEditAddSupplier");
 
         horizontalLayout->addWidget(lineEditAddSupplier);
