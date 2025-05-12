@@ -135,35 +135,17 @@
     <string>Criteria:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>470</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Add</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonAdd">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>590</y>
-     <width>83</width>
-     <height>29</height>
+     <x>440</x>
+     <y>480</y>
+     <width>141</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>Add item</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -223,94 +205,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <property name="text">
     <string>Go back</string>
    </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonSelectPhoto">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>570</y>
-     <width>161</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select photo</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>560</y>
-     <width>251</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select a photo before clicking add:</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>520</y>
-     <width>1071</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Name:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditAddName"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Quantity:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditAddQuantity"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Category:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditAddCategory"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>Price:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditAddPrice"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>Supplier:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditAddSupplier"/>
-    </item>
-   </layout>
   </widget>
  </widget>
  <resources/>
