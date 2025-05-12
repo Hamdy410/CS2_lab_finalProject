@@ -2,13 +2,15 @@
 #include "ui_logs.h"
 #include "operationrecord.h"
 #include <QString>
+#include <QCloseEvent>
 #include "inventorysystem.h"
 
 Logs::Logs(InventorySystem* inventorySystem, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Logs)
 {
-    ui->setupUi(this); // Setup UI FIRST before accessing any UI elements
+    ui->setupUi(this);
+    setWindowModality(Qt::ApplicationModal);
 
     QString data;
     const QVector<Record>& records = inventorySystem->getOperationRecord().getRecords();
@@ -37,6 +39,10 @@ Logs::Logs(InventorySystem* inventorySystem, QWidget *parent)
 
     ui->textEdit->setText(data);
     setWindowTitle("Operation Logs");
+}
+
+void Logs::closeEvent(QCloseEvent *event) {
+    event->accept();
 }
 
 Logs::~Logs()

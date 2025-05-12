@@ -169,7 +169,6 @@ void SystemUI::on_inventoryManagerButton_clicked()
 
 void SystemUI::closeEvent(QCloseEvent *event) {
     this->parentWidget()->show();
-    this->close();
     event->accept();
 }
 

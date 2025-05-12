@@ -99,7 +99,7 @@ void Dashboard::on_pushButtonAddItem_clicked()
 
 void Dashboard::on_pushButton_Logs_clicked()
 {
-    Logs* logs = new Logs(inventorySystem);
+    Logs* logs = new Logs(inventorySystem, this);
     logs->show();
 }
 

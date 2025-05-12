@@ -16,6 +16,9 @@ public:
     explicit Logs(InventorySystem* inventorySystem, QWidget *parent = nullptr);
     ~Logs();
 
+protected:
+    void closeEvent(QCloseEvent* event) override;
+
 private:
     Ui::Logs *ui;
 };
