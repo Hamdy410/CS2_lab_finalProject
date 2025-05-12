@@ -14,7 +14,8 @@ Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     ui->lowStock_textEdit->setReadOnly(true);
     ui->label_LowStock->setText("Low Stock Items: ");
     displayLowStock();
-
+    ui->label_TotalNumItems->setText("Total Number of Items: " + QString::number(inventorySystem->getInventory().getItems().size()));
+    ui->label->setText("Welcome, " + inventorySystem->getCurrentUsername() + "!");
     ui->label_BestSeller->setText("Best Seller: " + inventorySystem->getOperationRecord().getBestSeller());
     ui->label_lowesrSeller->setText("Lowest Seller: " + inventorySystem->getOperationRecord().getLowestSeller());
 }
