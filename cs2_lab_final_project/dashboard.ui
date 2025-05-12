@@ -164,6 +164,19 @@
     <string>Recent Updates:</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_Logs">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>410</y>
+     <width>83</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Logs</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
