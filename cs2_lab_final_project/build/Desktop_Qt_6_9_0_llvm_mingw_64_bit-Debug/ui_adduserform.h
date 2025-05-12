@@ -105,7 +105,7 @@ public:
         label_Username->setText(QCoreApplication::translate("AddUserForm", "Username:", nullptr));
         label_Password->setText(QCoreApplication::translate("AddUserForm", "Password:", nullptr));
         label_Role->setText(QCoreApplication::translate("AddUserForm", "Role", nullptr));
-        label_password_warning->setText(QCoreApplication::translate("AddUserForm", "Password should include atleast one uppercase and one lowercase character.", nullptr));
+        label_password_warning->setText(QCoreApplication::translate("AddUserForm", "Password should include at least one uppercase, one lowercase character and one number.", nullptr));
     } // retranslateUi
 
 };

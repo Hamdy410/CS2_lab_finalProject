@@ -7,6 +7,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QFileInfo>
+#include <QDateTime>
 
 InventorySystem::InventorySystem(QObject *parent, const QString &usersFile,
                                  const QString &inventoryFile,
@@ -145,7 +146,8 @@ bool InventorySystem::addUser(const User &user) {
     users.push_back(user);
 
     Item dummyItem;
-    operations.addRecord(dummyItem, currentUser->getUsername(), QDateTime(),
+    operations.addRecord(dummyItem, currentUser->getUsername(),
+                         QDateTime::currentDateTime(),
                          "Added User: " + user.getUsername());
     return true;
 }
