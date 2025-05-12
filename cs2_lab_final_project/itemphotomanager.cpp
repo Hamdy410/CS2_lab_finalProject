@@ -134,18 +134,6 @@ QPixmap ItemPhotoManager::getItemPhoto(const QString& itemName)
     return photo;
 }
 
-bool ItemPhotoManager::deleteItemPhoto(const QString& itemName)
-{
-    QString photoPath = getPhotoPath(itemName);
-    if (QFile::exists(photoPath)) {
-        if (QFile::remove(photoPath)) {
-            photoPaths.remove(itemName);
-            return true;
-        }
-    }
-    return false;
-}
-
 bool ItemPhotoManager::addPhoto(const QString& itemName, const QString& photoPath)
 {
     return saveItemPhoto(itemName, photoPath);
@@ -161,7 +149,3 @@ bool ItemPhotoManager::hasPhoto(const QString& itemName)
     return photoPaths.contains(itemName) && QFile::exists(photoPaths[itemName]);
 }
 
-bool ItemPhotoManager::removePhoto(const QString& itemName)
-{
-    return deleteItemPhoto(itemName);
-}
