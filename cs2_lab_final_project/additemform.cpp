@@ -59,8 +59,7 @@ void AddItemForm::on_pushButtonAdd_clicked()
         ui->lineEditAddSupplier->clear();
 
         QMessageBox::information(this, "Done", "Item is added");
-        emit accepted();
-        close();
+        this->accept();
     }
 }
 void AddItemForm::on_pushButtonSelectPhoto_clicked()

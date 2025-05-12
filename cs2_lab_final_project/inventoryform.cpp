@@ -51,12 +51,26 @@ InventoryForm::~InventoryForm()
 void InventoryForm::on_pushButtonAdd_clicked()
 {
     AddItemForm addItemDialog(inventorySystem, this);
-    if (addItemDialog.exec() == QDialog::Accepted)
+    int result = addItemDialog.exec();
+
+    if (result == QDialog::Accepted)
     {
+        qDebug() << "Dialog accepted, refreshing items...";
+        qDebug() << "Item count before refresh:" << inventorySystem->getInventory().getItems().size();
+
+        // Force inventory system to save and reload data
+        inventorySystem->save();
+
+        // Clear and rebuild the table
+        ui->tableWidgetInventoryItems->clearContents();
+        ui->tableWidgetInventoryItems->setRowCount(0);
         refreshItems();
         displayLowStock();
+
+        qDebug() << "Item count after refresh:" << inventorySystem->getInventory().getItems().size();
     }
 }
+
 
 void InventoryForm::on_lineEditSearch_textChanged(const QString &)
 {
@@ -108,6 +122,7 @@ void InventoryForm::refreshItems() {
                 displayItemPhoto(item.name());
             });
             ui->tableWidgetInventoryItems->setCellWidget(row, 5, photoButton);
+            QApplication::processEvents();
         }
     }
 }

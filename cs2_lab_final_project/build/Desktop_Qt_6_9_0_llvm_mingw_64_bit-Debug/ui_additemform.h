@@ -28,16 +28,16 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QSpacerItem *verticalSpacer;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_6;
-    QSpacerItem *horizontalSpacer_9;
-    QLineEdit *lineEditAddQuantity;
-    QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout;
     QLabel *label_5;
     QSpacerItem *horizontalSpacer_8;
     QLineEdit *lineEditAddName;
     QSpacerItem *horizontalSpacer_2;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_6;
+    QSpacerItem *horizontalSpacer_9;
+    QLineEdit *lineEditAddQuantity;
+    QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_7;
     QLineEdit *lineEditAddCategory;
@@ -77,29 +77,6 @@ public:
 
         verticalLayout->addItem(verticalSpacer);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label_6 = new QLabel(verticalLayoutWidget);
-        label_6->setObjectName("label_6");
-
-        horizontalLayout_3->addWidget(label_6);
-
-        horizontalSpacer_9 = new QSpacerItem(0, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_9);
-
-        lineEditAddQuantity = new QLineEdit(verticalLayoutWidget);
-        lineEditAddQuantity->setObjectName("lineEditAddQuantity");
-
-        horizontalLayout_3->addWidget(lineEditAddQuantity);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer);
-
-
-        verticalLayout->addLayout(horizontalLayout_3);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         label_5 = new QLabel(verticalLayoutWidget);
@@ -122,6 +99,29 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        label_6 = new QLabel(verticalLayoutWidget);
+        label_6->setObjectName("label_6");
+
+        horizontalLayout_3->addWidget(label_6);
+
+        horizontalSpacer_9 = new QSpacerItem(0, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_9);
+
+        lineEditAddQuantity = new QLineEdit(verticalLayoutWidget);
+        lineEditAddQuantity->setObjectName("lineEditAddQuantity");
+
+        horizontalLayout_3->addWidget(lineEditAddQuantity);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
@@ -240,8 +240,8 @@ public:
     void retranslateUi(QDialog *AddItemForm)
     {
         AddItemForm->setWindowTitle(QCoreApplication::translate("AddItemForm", "Dialog", nullptr));
-        label_6->setText(QCoreApplication::translate("AddItemForm", "Quantity:", nullptr));
         label_5->setText(QCoreApplication::translate("AddItemForm", "Name:", nullptr));
+        label_6->setText(QCoreApplication::translate("AddItemForm", "Quantity:", nullptr));
         label_7->setText(QCoreApplication::translate("AddItemForm", "Category:", nullptr));
         label_8->setText(QCoreApplication::translate("AddItemForm", "Price:", nullptr));
         label_9->setText(QCoreApplication::translate("AddItemForm", "Supplier:", nullptr));
