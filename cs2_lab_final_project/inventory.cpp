@@ -65,7 +65,9 @@ bool Inventory::generateReport() {
 
     out << "INVENTORY LISTING:\n";
     out << "----------------------------\n";
+    out << "Item    Category    Quantity    Price   Supplier\n";
     for (const auto& item : items) {
+        out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
         item.getDetails(out);
     }
 
@@ -75,7 +77,9 @@ bool Inventory::generateReport() {
     if (lowStock.isEmpty()) {
         out << "No low stock items found.\n";
     } else {
+        out << "Item    Category    Quantity    Price   Supplier\n";
         for (const auto& item: lowStock) {
+            out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
             item.getDetails(out);
         }
     }
