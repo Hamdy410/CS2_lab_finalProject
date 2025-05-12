@@ -5,6 +5,9 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
+#include <QStandardPaths>
+#include <QDir>
+#include <QString>
 
 Inventory::Inventory(const QString& inventoryFilePath) : m_inventoryFilePath(inventoryFilePath) {
     loadFromCSV();
@@ -54,37 +57,46 @@ QVector<Item> Inventory::getLowStockItems() {
 }
 
 bool Inventory::generateReport() {
-    QFile file("inventory_report.txt");
+    QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString reportPath = dataDir + QDir::separator() + "inventory_report.txt";
+
+    QFile file(reportPath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
     QTextStream out(&file);
-    out << "Inventory Report -" << QDateTime::currentDateTime().toString()
+
+    // Report header
+    out << "Inventory Report - Generated on " << QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")
         << "\n\n";
-    out << "Total items: " << items.size() << "\n\n";
+    out << "Total items in inventory: " << items.size() << "\n\n";
 
-    out << "INVENTORY LISTING:\n";
-    out << "----------------------------\n";
-    out << "Item    Category    Quantity    Price   Supplier\n";
-    for (const auto& item : items) {
-        out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
-    }
+    // Define column headers and widths
+    QStringList headers = {"Item", "Category", "Quantity", "Price", "Supplier"};
+    QVector<int> columnWidths = {20, 15, 10, 10, 30};
 
+    // LOW STOCK ALERTS
     QVector<Item> lowStock = getLowStockItems();
-    out << "\nLOW STOCK ITEMS:\n";
-    out << "----------------------------\n";
+    out << "LOW STOCK ALERTS:\n";
+    out << "----------------------------------\n";
+
     if (lowStock.isEmpty()) {
-        out << "No low stock items found.\n";
+        out << "No low stock items found.\n\n";
     } else {
-        out << "Item    Category    Quantity    Price   Supplier\n";
-        for (const auto& item: lowStock) {
-            out << item.name() << " | " << item.category() << " | " << QString::number(item.quantity()) << " | " << QString::number(item.price()) << " | " << item.supplier() << "\n";
-        }
+        printTable(out, headers, columnWidths, lowStock);
+        out << "\n";
     }
+
+    // FULL INVENTORY
+    out << "INVENTORY LISTING:\n";
+    out << "--------------------------------\n";
+    printTable(out, headers, columnWidths, items);
 
     file.close();
     return true;
 }
+
+
 
 bool Inventory::loadFromCSV() {
     items.clear();
@@ -167,3 +179,45 @@ bool Inventory::saveToCSV() {
 const QVector<Item>& Inventory::getItems() const {
     return items;
 }
+
+void Inventory::printTable(QTextStream& out, const QStringList& headers, const QVector<int>& columnWidths, const QVector<Item>& items) {
+    // Print top border
+    out << "+";
+    for (int width : columnWidths) {
+        out << QString("-").repeated(width + 2) << "+";
+    }
+    out << "\n";
+
+    // Print header row
+    out << "|";
+    for (int i = 0; i < headers.size(); i++) {
+        out << " " << headers[i].leftJustified(columnWidths[i], ' ') << " |";
+    }
+    out << "\n";
+
+    // Print separator
+    out << "+";
+    for (int width : columnWidths) {
+        out << QString("-").repeated(width + 2) << "+";
+    }
+    out << "\n";
+
+    // Print data rows
+    for (const auto& item : items) {
+        out << "|";
+        out << " " << item.name().left(columnWidths[0]).leftJustified(columnWidths[0], ' ') << " |";
+        out << " " << item.category().left(columnWidths[1]).leftJustified(columnWidths[1], ' ') << " |";
+        out << " " << QString::number(item.quantity()).leftJustified(columnWidths[2], ' ') << " |";
+        out << " " << QString::number(item.price(), 'f', 2).leftJustified(columnWidths[3], ' ') << " |";
+        out << " " << item.supplier().left(columnWidths[4]).leftJustified(columnWidths[4], ' ') << " |";
+        out << "\n";
+    }
+
+    // Print bottom border
+    out << "+";
+    for (int width : columnWidths) {
+        out << QString("-").repeated(width + 2) << "+";
+    }
+    out << "\n";
+}
+

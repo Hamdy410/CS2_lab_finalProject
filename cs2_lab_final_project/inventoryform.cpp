@@ -24,7 +24,6 @@ InventoryForm::InventoryForm(InventorySystem* inventorySystemParam, QWidget *par
 
     ui->textEditLowStock->setReadOnly(true);
 
-    //ui->tableWidgetInventoryItems->setColumnCount(6);
     ui->tableWidgetInventoryItems->setColumnCount(7);
 
     ui->tableWidgetInventoryItems->setHorizontalHeaderLabels(
@@ -68,7 +67,7 @@ void InventoryForm::on_pushButtonAdd_clicked()
         QMessageBox::warning(this, "Error", "Invalid price value");
         return;
     }
-    if (quantity <= 0)
+    if (quantity < 0)
     {
         QMessageBox::warning(this, "Error", "Invalid quantity value");
         return;

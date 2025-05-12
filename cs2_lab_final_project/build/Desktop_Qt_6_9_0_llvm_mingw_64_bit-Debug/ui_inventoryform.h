@@ -13,12 +13,14 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -32,20 +34,24 @@ public:
     QComboBox *comboBoxCriteria;
     QLabel *label_3;
     QLabel *label_4;
-    QLineEdit *lineEditAddName;
-    QLineEdit *lineEditAddSupplier;
-    QLineEdit *lineEditAddQuantity;
-    QLineEdit *lineEditAddPrice;
-    QLineEdit *lineEditAddCategory;
-    QLabel *label_5;
-    QLabel *label_6;
-    QLabel *label_7;
-    QLabel *label_8;
-    QLabel *label_9;
     QPushButton *pushButtonAdd;
     QLabel *label_10;
     QTextEdit *textEditLowStock;
     QPushButton *pushButton_Go_back;
+    QPushButton *pushButtonSelectPhoto;
+    QLabel *label_11;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_5;
+    QLineEdit *lineEditAddName;
+    QLabel *label_6;
+    QLineEdit *lineEditAddQuantity;
+    QLabel *label_7;
+    QLineEdit *lineEditAddCategory;
+    QLabel *label_8;
+    QLineEdit *lineEditAddPrice;
+    QLabel *label_9;
+    QLineEdit *lineEditAddSupplier;
 
     void setupUi(QDialog *InventoryForm)
     {
@@ -88,7 +94,7 @@ public:
         comboBoxCriteria->addItem(QString());
         comboBoxCriteria->addItem(QString());
         comboBoxCriteria->setObjectName("comboBoxCriteria");
-        comboBoxCriteria->setGeometry(QRect(210, 390, 82, 28));
+        comboBoxCriteria->setGeometry(QRect(210, 390, 111, 28));
         label_3 = new QLabel(InventoryForm);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(150, 390, 63, 20));
@@ -96,39 +102,9 @@ public:
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(440, 470, 51, 41));
         label_4->setFont(font1);
-        lineEditAddName = new QLineEdit(InventoryForm);
-        lineEditAddName->setObjectName("lineEditAddName");
-        lineEditAddName->setGeometry(QRect(70, 520, 113, 28));
-        lineEditAddSupplier = new QLineEdit(InventoryForm);
-        lineEditAddSupplier->setObjectName("lineEditAddSupplier");
-        lineEditAddSupplier->setGeometry(QRect(820, 520, 113, 28));
-        lineEditAddQuantity = new QLineEdit(InventoryForm);
-        lineEditAddQuantity->setObjectName("lineEditAddQuantity");
-        lineEditAddQuantity->setGeometry(QRect(270, 520, 113, 28));
-        lineEditAddPrice = new QLineEdit(InventoryForm);
-        lineEditAddPrice->setObjectName("lineEditAddPrice");
-        lineEditAddPrice->setGeometry(QRect(630, 520, 113, 28));
-        lineEditAddCategory = new QLineEdit(InventoryForm);
-        lineEditAddCategory->setObjectName("lineEditAddCategory");
-        lineEditAddCategory->setGeometry(QRect(460, 520, 113, 28));
-        label_5 = new QLabel(InventoryForm);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(20, 520, 63, 20));
-        label_6 = new QLabel(InventoryForm);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(200, 520, 63, 20));
-        label_7 = new QLabel(InventoryForm);
-        label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(390, 520, 63, 20));
-        label_8 = new QLabel(InventoryForm);
-        label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(590, 520, 63, 20));
-        label_9 = new QLabel(InventoryForm);
-        label_9->setObjectName("label_9");
-        label_9->setGeometry(QRect(760, 520, 63, 20));
         pushButtonAdd = new QPushButton(InventoryForm);
         pushButtonAdd->setObjectName("pushButtonAdd");
-        pushButtonAdd->setGeometry(QRect(430, 570, 83, 29));
+        pushButtonAdd->setGeometry(QRect(820, 590, 83, 29));
         label_10 = new QLabel(InventoryForm);
         label_10->setObjectName("label_10");
         label_10->setGeometry(QRect(940, 10, 131, 31));
@@ -140,6 +116,68 @@ public:
         pushButton_Go_back = new QPushButton(InventoryForm);
         pushButton_Go_back->setObjectName("pushButton_Go_back");
         pushButton_Go_back->setGeometry(QRect(10, 20, 91, 51));
+        pushButtonSelectPhoto = new QPushButton(InventoryForm);
+        pushButtonSelectPhoto->setObjectName("pushButtonSelectPhoto");
+        pushButtonSelectPhoto->setGeometry(QRect(430, 570, 161, 29));
+        label_11 = new QLabel(InventoryForm);
+        label_11->setObjectName("label_11");
+        label_11->setGeometry(QRect(180, 560, 251, 41));
+        layoutWidget = new QWidget(InventoryForm);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(20, 520, 1071, 30));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label_5 = new QLabel(layoutWidget);
+        label_5->setObjectName("label_5");
+
+        horizontalLayout->addWidget(label_5);
+
+        lineEditAddName = new QLineEdit(layoutWidget);
+        lineEditAddName->setObjectName("lineEditAddName");
+
+        horizontalLayout->addWidget(lineEditAddName);
+
+        label_6 = new QLabel(layoutWidget);
+        label_6->setObjectName("label_6");
+
+        horizontalLayout->addWidget(label_6);
+
+        lineEditAddQuantity = new QLineEdit(layoutWidget);
+        lineEditAddQuantity->setObjectName("lineEditAddQuantity");
+
+        horizontalLayout->addWidget(lineEditAddQuantity);
+
+        label_7 = new QLabel(layoutWidget);
+        label_7->setObjectName("label_7");
+
+        horizontalLayout->addWidget(label_7);
+
+        lineEditAddCategory = new QLineEdit(layoutWidget);
+        lineEditAddCategory->setObjectName("lineEditAddCategory");
+
+        horizontalLayout->addWidget(lineEditAddCategory);
+
+        label_8 = new QLabel(layoutWidget);
+        label_8->setObjectName("label_8");
+
+        horizontalLayout->addWidget(label_8);
+
+        lineEditAddPrice = new QLineEdit(layoutWidget);
+        lineEditAddPrice->setObjectName("lineEditAddPrice");
+
+        horizontalLayout->addWidget(lineEditAddPrice);
+
+        label_9 = new QLabel(layoutWidget);
+        label_9->setObjectName("label_9");
+
+        horizontalLayout->addWidget(label_9);
+
+        lineEditAddSupplier = new QLineEdit(layoutWidget);
+        lineEditAddSupplier->setObjectName("lineEditAddSupplier");
+
+        horizontalLayout->addWidget(lineEditAddSupplier);
+
 
         retranslateUi(InventoryForm);
 
@@ -167,11 +205,6 @@ public:
 
         label_3->setText(QCoreApplication::translate("InventoryForm", "Criteria:", nullptr));
         label_4->setText(QCoreApplication::translate("InventoryForm", "Add", nullptr));
-        label_5->setText(QCoreApplication::translate("InventoryForm", "Name:", nullptr));
-        label_6->setText(QCoreApplication::translate("InventoryForm", "Quantity:", nullptr));
-        label_7->setText(QCoreApplication::translate("InventoryForm", "Category:", nullptr));
-        label_8->setText(QCoreApplication::translate("InventoryForm", "Price:", nullptr));
-        label_9->setText(QCoreApplication::translate("InventoryForm", "Supplier:", nullptr));
         pushButtonAdd->setText(QCoreApplication::translate("InventoryForm", "Add", nullptr));
         label_10->setText(QCoreApplication::translate("InventoryForm", "Low Stock:", nullptr));
         textEditLowStock->setHtml(QCoreApplication::translate("InventoryForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -188,6 +221,13 @@ public:
                         "0px;\">Item #4</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Item #5</p></body></html>", nullptr));
         pushButton_Go_back->setText(QCoreApplication::translate("InventoryForm", "Go back", nullptr));
+        pushButtonSelectPhoto->setText(QCoreApplication::translate("InventoryForm", "Select photo", nullptr));
+        label_11->setText(QCoreApplication::translate("InventoryForm", "Select a photo before clicking add:", nullptr));
+        label_5->setText(QCoreApplication::translate("InventoryForm", "Name:", nullptr));
+        label_6->setText(QCoreApplication::translate("InventoryForm", "Quantity:", nullptr));
+        label_7->setText(QCoreApplication::translate("InventoryForm", "Category:", nullptr));
+        label_8->setText(QCoreApplication::translate("InventoryForm", "Price:", nullptr));
+        label_9->setText(QCoreApplication::translate("InventoryForm", "Supplier:", nullptr));
     } // retranslateUi
 
 };

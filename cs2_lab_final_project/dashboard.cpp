@@ -36,14 +36,20 @@ void Dashboard::closeEvent(QCloseEvent *event) {
 }
 
 
-void Dashboard::on_pushButton_Report_clicked()
-{
+void Dashboard::on_pushButton_Report_clicked() {
     if (inventorySystem->generateReport()) {
         QMessageBox::information(this, "Success", "Report generated successfully!");
+
+        // Open the report file with the default text editor
+        if (!inventorySystem->openReportFile()) {
+            QMessageBox::warning(this, "Warning",
+                                 "Report was generated but could not be opened automatically.");
+        }
     } else {
         QMessageBox::warning(this, "Error", "Failed to generate report.");
     }
 }
+
 
 void Dashboard::displayLowStock() {
     QVector<Item> lowStock = inventorySystem->getLowStockItems();
