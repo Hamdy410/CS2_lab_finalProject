@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButtonAddItem_clicked();
 
+    void on_pushButton_Logs_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 

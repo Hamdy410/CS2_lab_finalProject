@@ -25,6 +25,7 @@ SOURCES += \
     item.cpp \
     itemphotomanager.cpp \
     loginform.cpp \
+    logs.cpp \
     main.cpp \
     mainwindow.cpp \
     operationrecord.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     item.h \
     itemphotomanager.h \
     loginform.h \
+    logs.h \
     mainwindow.h \
     operationrecord.h \
     record.h \
@@ -61,6 +63,7 @@ FORMS += \
     editroleform.ui \
     inventoryform.ui \
     loginform.ui \
+    logs.ui \
     mainwindow.ui \
     systemui.ui
 

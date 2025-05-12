@@ -4,7 +4,11 @@
 #include "inventoryform.h"
 #include <QCloseEvent>
 #include <QMessageBox>
+<<<<<<< HEAD
 #include "additemform.h"
+=======
+#include "logs.h"
+>>>>>>> b8645606dff49e04f7a181faa5d06afa65d81a5e
 
 Dashboard::Dashboard(InventorySystem* inventorySystemInput, QWidget *parent)
     : QDialog(parent)
@@ -93,5 +97,12 @@ void Dashboard::on_pushButtonAddItem_clicked()
         AddItemForm* add = new AddItemForm(inventorySystem, this);
         add->show();
     }
+}
+
+
+void Dashboard::on_pushButton_Logs_clicked()
+{
+    Logs* logs = new Logs(inventorySystem);
+    logs->show();
 }
 
