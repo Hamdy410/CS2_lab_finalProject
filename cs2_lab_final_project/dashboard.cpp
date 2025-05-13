@@ -104,16 +104,33 @@ void Dashboard::displayLowStock() {
 
 void Dashboard::on_pushButtonAddItem_clicked()
 {
-    if ( !inventorySystem->currentUserCanEditInventory())
+    if (!inventorySystem->currentUserCanEditInventory())
     {
         QMessageBox::warning(this, "Error", "You are not authenticated to add items");
     }
     else
     {
+        // Create the AddItemForm as a modal dialog
         AddItemForm* add = new AddItemForm(inventorySystem, this);
-        add->show();
+
+        // Connect the accepted signal to refresh the Dashboard
+        connect(add, &QDialog::accepted, this, [this]() {
+            // Refresh low stock display
+            displayLowStock();
+
+            // Update total items count
+            ui->label_TotalNumItems->setText("Total No. of Items: " +
+                                             QString::number(inventorySystem->getInventory().getItems().size()));
+
+            // Refresh recent updates
+            refreshRecentUpdates();
+        });
+
+        // Show as modal dialog
+        add->exec();
     }
 }
+
 
 
 void Dashboard::on_pushButton_Logs_clicked()
@@ -121,4 +138,33 @@ void Dashboard::on_pushButton_Logs_clicked()
     Logs* logs = new Logs(inventorySystem, this);
     logs->show();
 }
+
+void Dashboard::refreshRecentUpdates()
+{
+    QString updatesOutput;
+    int lastIndex = inventorySystem->getOperationRecord().getRecords().size() - 1;
+    int count = 0;
+
+    // Only enter the loop if there are records
+    if (lastIndex >= 0) {
+        for (int i = lastIndex; i >= 0 && count < 3; i--, count++) {
+            const Record& record = inventorySystem->getOperationRecord().getRecords()[i];
+            if (record.getOperation() == "Removed Item" || record.getOperation() == "Added Item") {
+                updatesOutput += record.getOperation() + ", " +
+                                 QString::number(record.getItem().quantity()) +
+                                 " of " + record.getItem().name() + "\n";
+            } else {
+                updatesOutput += record.getOperation() + "\n";
+            }
+        }
+    }
+
+    // If no records were found
+    if (updatesOutput.isEmpty()) {
+        updatesOutput = "No recent operations";
+    }
+
+    ui->textEdit->setText(updatesOutput);
+}
+
 

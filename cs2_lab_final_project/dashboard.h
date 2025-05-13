@@ -34,6 +34,7 @@ private:
     InventorySystem* inventorySystem;
 
     void displayLowStock();
+    void refreshRecentUpdates();
 };
 
 #endif // DASHBOARD_H
